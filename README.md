@@ -1,4 +1,4 @@
-# Rede Social - 1.0
+# Rede Social - Beyond School
 Este projeto tem como objetivo ser uma aplicação  modelo (_blueprint_) para a disicplina de Análise e Projeto Orientado a Objeto.
 
 Atualmente o projeto não possui uma implementação, mas está aberto a receber contribuições de código que representem as especificação aqui presente.
