@@ -10,24 +10,14 @@ Todo material está publicado sob licença [GPL-3.0](https://www.gnu.org/license
 
 
 ### Artefatos do Projeto
-* [Documento de visão `/docs/visao_do_produto.md`](./docs/visao_do_produto.md)
+* [Documento de visão](./docs/visao_do_produto.md)
 
 * Documento de Requisitos
 
-* Detalhamento de casos de uso 
+* Detalhamento de casos de uso
 
-  1. [Post Trails](./docs/casos_de_uso/ucd_post_trails.md)
- 
-  2. [Comment Trails](./docs/casos_de_uso/ucd_comment_trails.md)
+* Diagrama de casos de uso
 
-  3. [Like Trails](./docs/casos_de_uso/ucd_like_trails.md)
-
-  4. [See Milage](./docs/casos_de_uso/ucd_see_milage.md)
-
-* [Diagrama de casos de uso](./diagramas/UseCase_diagram.png)
-
-* [Diagrama de classes de domínio](./diagramas/Domain_diagram.png)
+* Diagrama de classes de domínio
 
 * Documentação da arquitetura
-
-
