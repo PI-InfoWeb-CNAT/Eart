@@ -1,5 +1,6 @@
 # Rede Social - Beyond School
-!(![logo-projeto-3 (2)](https://user-images.githubusercontent.com/82484797/131020716-b7a5a499-34ba-4685-bb11-1bdc5b482a7e.png)
+![logo-projeto-oficial](https://user-images.githubusercontent.com/82484797/131021736-736df8c0-7da9-4c56-8c07-e4cdd437e123.gif)
+
 
 Este projeto tem como objetivo ser uma aplicação  modelo (_blueprint_) para a disicplina de Análise e Projeto Orientado a Objeto.
 
