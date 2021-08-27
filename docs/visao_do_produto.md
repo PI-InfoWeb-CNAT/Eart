@@ -61,12 +61,29 @@ O sistema deve possuir uma logo marca que identifique-o e que possa ser utilizad
 |:---  |:--- |:--- |
 | RF01 | Gerenciar perfil (conta)| Este requisito tem o propósito de habilitar o membro da rede a consultar e atualizar seus dados de perfil. |
 | RF02 | Criar perfil | Permite que pessoas visitantes da rede possam realizar seu cadastro e começar a participar fazendo postagens de suas atividades. |
-| RF03 | Gerenciar postagens |  Membros da rede podem criar, consultar, editar e excluir suas postagens. Como forma de moderar postagens abusivas o administrador do sistema poderá excluir uma postagem. |
+| RF03 | Gerenciar postagens | Membros da rede podem criar, consultar, editar e excluir suas postagens. Como forma de moderar postagens abusivas o administrador do sistema poderá excluir uma postagem. |
 | RF04 | Comentar postagens | Permite que membros da rede possam fazer comentários em postagens de outro membros. |
-| RF05 | Apreciar (like) postagens | Além de poderem fazer comentários sobre uma postagem os membros da rede podem apreciar uma postagem apenas dando um like. |
-| RF06 | Enviar mensagens | O sistem deve permitir a comunicação entre os membros da rede, onde as mensagens devem ser enviadas e consultas no próprio sistema. |
-| RF07 | Cancelar membro | Por questões de ordem éticas  um membro da rede pode ter seu perfil cancelado pelo administrador da rede.|
-
+| RF05 | Curtir postagens | Além de poderem fazer comentários sobre uma postagem os membros da rede podem apreciar uma postagem apenas dando um like. |
+| RF06 | Enviar mensagens | O sistem deve permitir a comunicação entre os membros da rede, onde as mensagens devem ser enviadas e consultadas no próprio sistema. |
+| RF07 | Excluir mensagens | Um membro pode excluir as mensagens que envia. |
+| RF08 | Cancelar membro | Por questões de ordem éticas um membro da rede pode ter seu perfil cancelado pelo administrador da rede.|
+| RF09 | Seguir perfil | Um membro pode seguir outros membros da rede e acompanhar o conteúdo postado por eles. |
+| RF10 | Salvar postagem | Permite um membro salvar postagens de outros membros para ver depois. |
+| RF11 | Cancelar perfil | Membros podem cancelar suas contas na rede. |
+| RF12 | Visualizar postagens em alta | Visitantes e membros podem visualizar postagens em alta. |
+| RF13 | Visualizar postagens de membros seguidos | Membros podem visualizar postagens de membros que eles seguem. |
+| RF14 | Visitar perfil | Membros podem visitar o perfil de outros membros. |
+| RF15 | Bloquear usuário | Os membros devem ter a opção de bloquear outros perfis. |
+| RF16 | Denunciar usuário | Os membros devem ter a opção de denunciar outros perfis. |
+| RF17 | Denunciar postagem | Permite que os membros denunciem postagens. |
+| RF18 | Pesquisar postagens, perfis e hashtags | Membros e visitantes podem pesquisar postagens, perfis e hashtags. |
+| RF19 | Compartilhar postagens| Possibilita aos membros compartilhar postagens de outros membros no próprio perfil. |
+| RF20 | Ampliar imagens | Membros e visitantes podem ampliar imagens de postagens ao clicarem sobre ela. |
+| RF21 | Ver notificações | Membros podem ver notificações sobre suas interações na rede. |
+| RF22 | Ativar modo noturno | Membros podem ativar o modo escuro na rede social. |
+| RF23 | Curtir comentários | Permite que membros curtam comentários. |
+| RF24 | Responder comentários | Membros podem responder comentários. |
+| RF25 | Apagar comentários | Membros podem apagar comentários. |
 
 ### 9. Requisitos não-funcionais
 
