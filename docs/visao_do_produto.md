@@ -1,34 +1,34 @@
 # Documento de visão
 
-## Rede Social (Beyond School)
+## Rede Social (Eart)
 
 ### Histórico da Revisão 
 
 |  Data  | Versão | Descrição | Autor |
 |:-------|:-------|:----------|:------|
-| 16/08/2021 |  **`1.0`** | Versão Inicial  | Alexsander Anulino, Aristóteles Daniel, Marcos Vinícius, Mariana Raquel, Viviane Pereira |
+| 07/09/2021 |  **`1.0`** | Versão Inicial  | Alexsander Anulino, Aristóteles Daniel, Marcos Vinícius, Mariana Raquel, Viviane Pereira |
 
 
 ### 1. Objetivo do Projeto 
 
-O projeto __Beyond School__ tem como objetivo ser uma rede social específica para aqueles interessados em atividades extracurriculares.
+O projeto __Eart__ tem como objetivo ser uma rede social específica para aqueles interessados em compartilhar suas artes e buscar inspiração.
 
 
 ### 2. Descrição do problema 
 
 |         __        | __   |
 |:------------------|:-----|
-| **_O problema_**    | está relacionado a falta de uma rede social específica para atividades extracurriculares |
-| **_afetando_**      | pessoas que gostariam de compartilhar e descobrir experiências extracurriculares |
-| **_cujo impacto é_**| um ambiente para compartilhamento de experiências extracurriculares.|
-| **_Uma boa solução seria_** | a criação de uma rede social que permita o compartilhamento de atividades extracurriculares bem como a comunicação entre os grupos interessados. |
+| **_O problema_**    | está relacionado à falta de uma rede social específica para artes que possibilite interação ativa entre seus usuários |
+| **_afetando_**      | pessoas que gostariam de compartilhar suas artes e descobrir outras |
+| **_cujo impacto é_**| um ambiente para compartilhamento de artes |
+| **_Uma boa solução seria_** | a criação de uma rede social que permita o compartilhamento de artes bem como a comunicação entre os grupos interessados. |
 
 
 ### 3. Descrição dos usuários
 
 | Nome | Descrição | Responsabilidades |
 |:---  |:--- |:--- |
-| Membro  | Membros da rede social que compartilham atividades extracurriculares | Postam experiências extracurriculares , realizam comentários, podem dar like, etc.|
+| Membro  | Membros da rede social que compartilham suas artes e veem artes de outras pessoas | Postam artes, realizam comentários, podem dar like, etc.|
 | Visitante  | Pessoal não cadastrado como membro da rede. | Realizam apenas consultas de postagens, mas não podem fazer comentários nem favoritar uma postagem. |
 | Moderador | Administrador do sistema | Além de poderem realizar as atividades inerentes aos membros, podem fazer o desligamento destes ou cancelamento de postagens indevidas. |
 
@@ -40,18 +40,17 @@ Por se tratar de uma rede social, as tarefas executadas sobre o sistema são fei
 Os locais para interação com o sistema são diversos e estes podem ter uma variação da qualidade de sinal de internet, fato que pode limitar o acesso ao sistema. 
 
 ### 5. Principais necessidades dos usuários
-As pessoas que praticam ou buscam atividades extracurriculares sentem falta de um ambiente apropriado para conversar sobre e postar suas atividades . Atualmente se tem usado alguns aplicativos de rede social como Facebook, Instagram, entre outros. Como estes sistemas são de cunho generalista, seus participantes precisam criar grupos específicos que os identifiquem. Isso causa uma proliferação de grupos que termina prejudicando a comunicação entre a comunidade.
+Os artistas sentem falta de um ambiente apropriado para interagir com outros artistas e postar suas atividades. Atualmente se tem usado alguns aplicativos de rede social como Facebook, Instagram, Pinterest, DeviantArt, ArtStation, entre outros. Alguns desses sistemas são de cunho generalista, seus participantes precisam criar grupos específicos que os identifiquem. Isso causa uma proliferação de grupos que termina prejudicando a comunicação entre a comunidade. Além disso, mesmo nos que são específicos para arte, os usuários reclamam sobre aspectos de velocidade, performance, linguagem, usabilidade, etc.
 
-Neste contexto, eles gostariam que fosse construído um sistema exclusivo para os registros e divulgação de suas atividades, como: intercâmbio, cursos, summer programs, etc.
+Neste contexto, eles gostariam que fosse construído um sistema exclusivo para os registros e divulgação de suas artes, como: desenhos, pinturas, animações, etc.
 
 Para isso, o sistema precisaria permitir a realização de postagens das atividades com fotos e textos. O sistema deve, também, permitir a realização de comentários por parte dos membros da rede sobre determinada postagem e enviar uma mensagem para um membro específico. Além, claro, gerenciar o perfil de cada membro da rede.
 
-
 ### 6.	Alternativas concorrentes
-Como alternativas concorrentes existem os sistema de rede social existentes atualmente: Facebook, Instagram, Pinterest, Twitter, Linkedin, etc.
+Como alternativas concorrentes existem os sistema de rede social existentes atualmente: Facebook, Instagram, Pinterest, Twitter, Linkedin, DeviantArt, ArtStation, etc.
 
 ### 7.	Visão geral do produto
-A nova rede social, específica para interessados em atividades extracurriculares, deve ser construída para uso em navegadores (_browsers_) existentes no mercado. Sua interface com usuário deve possuir um boa usabilidade e para isto deve se aproximar da forma de interação já difundidas nas redes sociais existentes.
+A nova rede social, específica para interessados arte, deve ser construída para uso em navegadores (_browsers_) existentes no mercado. Sua interface com usuário deve possuir um boa usabilidade e para isto deve se aproximar da forma de interação já difundidas nas redes sociais existentes.
 
 O sistema deve possuir uma logo marca que identifique-o e que possa ser utilizado pelos seus membros para divulgação em eventos. 
 
@@ -60,9 +59,9 @@ O sistema deve possuir uma logo marca que identifique-o e que possa ser utilizad
 | Código | Nome | Descrição |
 |:---  |:--- |:--- |
 | RF01 | Gerenciar perfil (conta)| Este requisito tem o propósito de habilitar o membro da rede a consultar e atualizar seus dados de perfil. |
-| RF02 | Criar perfil | Permite que pessoas visitantes da rede possam realizar seu cadastro e começar a participar fazendo postagens de suas atividades. |
-| RF03 | Cancelar membro | Um membro pode cancelar seu perfil quando quiser ou por questões de ordem éticas, um administrador da rede pode realizar o cancelamento. |
-| RF04 | Bloquear usuário | Os membros devem ter a opção de bloquear outros perfis. |
+| RF02 | Criar perfil | Permite que pessoas visitantes da rede possam realizar seu cadastro e começar a participar fazendo postagens de suas artes. |
+| RF03 | Deletar perfil | Um membro pode cancelar seu perfil quando quiser ou, por questões de ordem ética, um administrador da rede pode realizar o cancelamento. |
+| RF04 | Bloquear perfil | Os membros devem ter a opção de bloquear outros perfis. |
 | RF05 | Visitar perfil | Membros podem visitar o perfil de outros membros. |
 | RF06 | Seguir perfil | Um membro pode seguir outros membros da rede e acompanhar o conteúdo postado por eles. |
 | RF07 | Gerenciar postagens | Membros da rede podem criar, consultar, editar e excluir suas postagens. Como forma de moderar postagens abusivas, o administrador do sistema poderá excluir uma postagem. |
@@ -75,6 +74,9 @@ O sistema deve possuir uma logo marca que identifique-o e que possa ser utilizad
 | RF14 | Pesquisar postagens, perfis e hashtags | Membros e visitantes podem pesquisar postagens, perfis e hashtags. |
 | RF15 | Enviar mensagens | O sistem deve permitir a comunicação entre os membros da rede, onde as mensagens devem ser enviadas e consultadas no próprio sistema. |
 | RF16 | Ver notificações | Membros podem ver notificações sobre suas interações na rede. |
+| RF17 | Fazer login / logout | Membros podem entrar e sair da conta. |
+| RF18 | Notificar perfil | Moderadores podem notificar o perfil dos membros caso eles descumpram as diretrizes do site. |
+| RF19 | Deletar postagem | Moderadores podem deletar postagens que descumprem as diretrizes do site. |
 
 
 ### 9. Requisitos não-funcionais
