@@ -18,9 +18,9 @@ O projeto __Eart__ tem como objetivo ser uma rede social específica para aquele
 
 |         __        | __   |
 |:------------------|:-----|
-| **_O problema_**    | está relacionado à falta de uma rede social específica para artes que possibilite interação ativa entre seus usuários |
+| **_O problema_**    | está relacionado à falta de uma rede social específica para artistas interagirem entre si enquanto compartilham suas artes |
 | **_afetando_**      | pessoas que gostariam de compartilhar suas artes e descobrir outras |
-| **_cujo impacto é_**| um ambiente para compartilhamento de artes |
+| **_cujo impacto é_**| a falta de divulgação das artes dos artistas |
 | **_Uma boa solução seria_** | a criação de uma rede social que permita o compartilhamento de artes bem como a comunicação entre os grupos interessados. |
 
 
