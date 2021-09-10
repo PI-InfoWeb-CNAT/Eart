@@ -50,33 +50,30 @@ Para isso, o sistema precisaria permitir a realização de postagens das ativida
 Como alternativas concorrentes existem os sistema de rede social existentes atualmente: Facebook, Instagram, Pinterest, Twitter, Linkedin, DeviantArt, ArtStation, etc.
 
 ### 7.	Visão geral do produto
-A nova rede social, específica para interessados arte, deve ser construída para uso em navegadores (_browsers_) existentes no mercado. Sua interface com usuário deve possuir um boa usabilidade e para isto deve se aproximar da forma de interação já difundidas nas redes sociais existentes.
+A nova rede social, específic para interessados arte, deve ser construída para uso em navegadores (_browsers_) existentes no mercado. Sua interface com usuário deve possuir um boa usabilidade e para isto deve se aproximar da forma de interação já difundidas nas redes sociais existentes.
 
 O sistema deve possuir uma logo marca que identifique-o e que possa ser utilizado pelos seus membros para divulgação em eventos. 
 
-### 8. Requisitos Funcionais
+### 8. Requisitos Funcionaisa
 
 | Código | Nome | Descrição |
 |:---  |:--- |:--- |
-| RF01 | Gerenciar perfil (conta)| Este requisito tem o propósito de habilitar o membro da rede a consultar e atualizar seus dados de perfil. |
-| RF02 | Criar perfil | Permite que pessoas visitantes da rede possam realizar seu cadastro e começar a participar fazendo postagens de suas artes. |
-| RF03 | Deletar perfil | Um membro pode cancelar seu perfil quando quiser ou, por questões de ordem ética, um administrador da rede pode realizar o cancelamento. |
-| RF04 | Bloquear perfil | Os membros devem ter a opção de bloquear outros perfis. |
-| RF05 | Visitar perfil | Membros podem visitar o perfil de outros membros. |
-| RF06 | Seguir perfil | Um membro pode seguir outros membros da rede e acompanhar o conteúdo postado por eles. |
-| RF07 | Gerenciar postagens | Membros da rede podem criar, consultar, editar e excluir suas postagens. Como forma de moderar postagens abusivas, o administrador do sistema poderá excluir uma postagem. |
-| RF08 | Denunciar postagem | Permite que os membros denunciem postagens. |
-| RF09 | Curtir postagens | Os membros da rede podem apreciar uma postagem apenas dando um like. |
-| RF10 | Compartilhar postagens| Possibilita aos membros compartilhar postagens de outros membros no próprio perfil. |
-| RF11 | Gerenciar comentários | Membros da rede podem criar, consultar, editar e excluir comentários em suas postagens ou na de outros membros. Como forma de moderar comentários abusivos, o administrador do sistema poderá excluir um comentário. |
-| RF12 | Visualizar postagens em alta | Visitantes e membros podem visualizar postagens em alta. |
-| RF13 | Visualizar postagens de membros seguidos | Membros podem visualizar postagens de membros que eles seguem. |
-| RF14 | Pesquisar postagens, perfis e hashtags | Membros e visitantes podem pesquisar postagens, perfis e hashtags. |
-| RF15 | Enviar mensagens | O sistem deve permitir a comunicação entre os membros da rede, onde as mensagens devem ser enviadas e consultadas no próprio sistema. |
-| RF16 | Ver notificações | Membros podem ver notificações sobre suas interações na rede. |
-| RF17 | Fazer login / logout | Membros podem entrar e sair da conta. |
-| RF18 | Notificar perfil | Moderadores podem notificar o perfil dos membros caso eles descumpram as diretrizes do site. |
-| RF19 | Deletar postagem | Moderadores podem deletar postagens que descumprem as diretrizes do site. |
+| RF01 | Gerenciar perfil (conta)| Este requisito tem o propósito de habilitar o membro da rede a criar, consultar, editar e excluir seus dados de perfil. A opção de criar só fica disponível para o visitante para que ele possa realizar seu cadastro e começar a fazer suas postagens. A opção de consultar e editar só fica disponível para quem já tem um perfil cadastrado. A opção de excluir (cancelar), ela fica visível para o dono do perfil e para o moderador, que por questões de ordem ética, pode realizar o cancelamento. |
+| RF02 | Bloquear perfil | Os membros devem ter a opção de bloquear outros perfis. |
+| RF03 | Visitar perfil | Membros podem visitar o perfil de outros membros. |
+| RF04 | Seguir perfil | Um membro pode seguir outros membros da rede e acompanhar o conteúdo postado por eles. |
+| RF05 | Gerenciar postagens | Membros da rede podem criar, consultar, editar e excluir suas postagens. Como forma de moderar postagens abusivas, o administrador do sistema poderá excluir uma postagem. |
+| RF06 | Denunciar postagem | Permite que os membros denunciem postagens. |
+| RF07 | Curtir postagens | Os membros da rede podem apreciar uma postagem apenas dando um like. |
+| RF08 | Compartilhar postagens| Possibilita aos membros compartilhar postagens de outros membros no próprio perfil. |
+| RF09 | Gerenciar comentários | Membros da rede podem criar, consultar, editar e excluir comentários em suas postagens ou na de outros membros. Como forma de moderar comentários abusivos, o administrador do sistema poderá excluir um comentário. |
+| RF10 | Visualizar postagens em alta | Visitantes e membros podem visualizar postagens em alta. |
+| RF11 | Visualizar postagens de membros seguidos | Membros podem visualizar postagens de membros que eles seguem. |
+| RF12 | Pesquisar postagens, perfis e hashtags | Membros e visitantes podem pesquisar postagens, perfis e hashtags. |
+| RF13 | Enviar mensagens | O sistema deve permitir a comunicação entre os membros da rede, onde as mensagens devem ser enviadas e consultadas no próprio sistema. |
+| RF14 | Ver notificações | Membros podem ver notificações sobre suas interações na rede. O usuário pode receber notificação por interações de outros membros em suas postagens ou por ter recebido mensagens diretas. |
+| RF15 | Fazer login / logout | Membros podem entrar e sair da conta. |
+| RF16 | Notificar perfil | Moderadores podem notificar o perfil dos membros caso eles descumpram as diretrizes do site. |
 
 
 ### 9. Requisitos não-funcionais
