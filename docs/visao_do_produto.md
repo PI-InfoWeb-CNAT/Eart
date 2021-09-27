@@ -59,18 +59,18 @@ O sistema deve possuir uma logo marca que identifique-o e que possa ser utilizad
 | Código | Nome | Descrição |
 |:---  |:--- |:--- |
 | RF01 | Gerenciar perfil (conta)| Este requisito tem o propósito de habilitar o membro da rede a criar, consultar, editar e excluir seus dados de perfil. A opção de criar só fica disponível para o visitante para que ele possa realizar seu cadastro e começar a fazer suas postagens. A opção de consultar e editar só fica disponível para quem já tem um perfil cadastrado. A opção de excluir (cancelar), ela fica visível para o dono do perfil e para o moderador, que por questões de ordem ética, pode realizar o cancelamento. |
-| RF02 | Bloquear perfil | Os membros devem ter a opção de bloquear outros perfis para que seu perfil, comentários, curtidas e mensagens não sejam vísiveis para o membro bloqueado e que o perfil, comentários, curtidas e mensagens do membro bloqueado não sejam visíveis para ele. |
-| RF03 | Visitar perfil | Membros podem visitar o perfil de outros membros. |
-| RF04 | Seguir perfil | Um membro pode seguir outros membros da rede e acompanhar o conteúdo postado por eles. |
-| RF05 | Gerenciar postagens | Membros da rede podem criar, consultar, editar e excluir suas postagens. Como forma de moderar postagens abusivas, o administrador do sistema poderá excluir uma postagem. |
-| RF06 | Curtir postagens | Os membros da rede podem apreciar uma postagem apenas dando um like. |
-| RF07 | Compartilhar postagens| Possibilita aos membros compartilhar postagens de outros membros no próprio perfil. |
-| RF08 | Gerenciar comentários | Membros da rede podem criar, consultar, editar e excluir comentários em suas postagens ou na de outros membros. Como forma de moderar comentários abusivos, o administrador do sistema poderá excluir um comentário. |
-| RF09 | Visualizar postagens em alta | Visitantes e membros podem visualizar postagens em alta. |
-| RF10 | Visualizar postagens de membros seguidos | Membros podem visualizar postagens de membros que eles seguem. |
-| RF11 | Pesquisar postagens, perfis e hashtags | Membros e visitantes podem pesquisar postagens, perfis e hashtags. |
-| RF13 | Ver notificações | Membros podem ver notificações sobre suas interações na rede. O usuário pode receber notificação por interações de outros membros em suas postagens ou por ter recebido mensagens diretas. |
-| RF14 | Fazer login / logout | Membros podem entrar e sair da conta. |
+| RF02 | Visitar perfil | Membros podem visitar o perfil de outros membros. |
+| RF03 | Seguir perfil | Um membro pode seguir outros membros da rede e acompanhar o conteúdo postado por eles. |
+| RF04 | Gerenciar postagens | Membros da rede podem criar, consultar, editar e excluir suas postagens. Como forma de moderar postagens abusivas, o administrador do sistema poderá excluir uma postagem. |
+| RF05 | Curtir postagens | Os membros da rede podem apreciar uma postagem apenas dando um like. |
+| RF06 | Compartilhar postagens| Possibilita aos membros compartilhar postagens de outros membros no próprio perfil. |
+| RF07 | Gerenciar comentários | Membros da rede podem criar, consultar, editar e excluir comentários em suas postagens ou na de outros membros. Como forma de moderar comentários abusivos, o administrador do sistema poderá excluir um comentário. |
+| RF08 | Visualizar postagens em alta | Visitantes e membros podem visualizar postagens em alta. |
+| RF09 | Visualizar postagens de membros seguidos | Membros podem visualizar postagens de membros que eles seguem. |
+| RF10 | Pesquisar postagens, perfis e hashtags | Membros e visitantes podem pesquisar postagens, perfis e hashtags. |
+| RF11 | Enviar e ler mensagens | O sistema deve permitir a comunicação entre os membros da rede, onde as mensagens devem ser enviadas e consultadas no próprio sistema. |
+| RF12 | Ver notificações | Membros podem ver notificações sobre suas interações na rede. O usuário pode receber notificação por interações de outros membros em suas postagens ou por ter recebido mensagens diretas. |
+| RF13 | Fazer login / logout | Membros podem entrar e sair da conta. |
 
 
 ### 9. Requisitos não-funcionais
