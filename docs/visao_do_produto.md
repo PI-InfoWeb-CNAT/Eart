@@ -54,7 +54,7 @@ A nova rede social, específic para interessados arte, deve ser construída para
 
 O sistema deve possuir uma logo marca que identifique-o e que possa ser utilizado pelos seus membros para divulgação em eventos. 
 
-### 8. Requisitos Funcionaisa
+### 8. Requisitos Funcionais
 
 | Código | Nome | Descrição |
 |:---  |:--- |:--- |
@@ -63,17 +63,14 @@ O sistema deve possuir uma logo marca que identifique-o e que possa ser utilizad
 | RF03 | Visitar perfil | Membros podem visitar o perfil de outros membros. |
 | RF04 | Seguir perfil | Um membro pode seguir outros membros da rede e acompanhar o conteúdo postado por eles. |
 | RF05 | Gerenciar postagens | Membros da rede podem criar, consultar, editar e excluir suas postagens. Como forma de moderar postagens abusivas, o administrador do sistema poderá excluir uma postagem. |
-| RF06 | Denunciar postagem | Permite que os membros denunciem postagens. |
-| RF07 | Curtir postagens | Os membros da rede podem apreciar uma postagem apenas dando um like. |
-| RF08 | Compartilhar postagens| Possibilita aos membros compartilhar postagens de outros membros no próprio perfil. |
-| RF09 | Gerenciar comentários | Membros da rede podem criar, consultar, editar e excluir comentários em suas postagens ou na de outros membros. Como forma de moderar comentários abusivos, o administrador do sistema poderá excluir um comentário. |
-| RF10 | Visualizar postagens em alta | Visitantes e membros podem visualizar postagens em alta. |
-| RF11 | Visualizar postagens de membros seguidos | Membros podem visualizar postagens de membros que eles seguem. |
-| RF12 | Pesquisar postagens, perfis e hashtags | Membros e visitantes podem pesquisar postagens, perfis e hashtags. |
-| RF13 | Enviar mensagens | O sistema deve permitir a comunicação entre os membros da rede, onde as mensagens devem ser enviadas e consultadas no próprio sistema. |
-| RF14 | Ver notificações | Membros podem ver notificações sobre suas interações na rede. O usuário pode receber notificação por interações de outros membros em suas postagens ou por ter recebido mensagens diretas. |
-| RF15 | Fazer login / logout | Membros podem entrar e sair da conta. |
-| RF16 | Notificar perfil | Moderadores podem notificar o perfil dos membros caso eles descumpram as diretrizes do site. |
+| RF06 | Curtir postagens | Os membros da rede podem apreciar uma postagem apenas dando um like. |
+| RF07 | Compartilhar postagens| Possibilita aos membros compartilhar postagens de outros membros no próprio perfil. |
+| RF08 | Gerenciar comentários | Membros da rede podem criar, consultar, editar e excluir comentários em suas postagens ou na de outros membros. Como forma de moderar comentários abusivos, o administrador do sistema poderá excluir um comentário. |
+| RF09 | Visualizar postagens em alta | Visitantes e membros podem visualizar postagens em alta. |
+| RF10 | Visualizar postagens de membros seguidos | Membros podem visualizar postagens de membros que eles seguem. |
+| RF11 | Pesquisar postagens, perfis e hashtags | Membros e visitantes podem pesquisar postagens, perfis e hashtags. |
+| RF13 | Ver notificações | Membros podem ver notificações sobre suas interações na rede. O usuário pode receber notificação por interações de outros membros em suas postagens ou por ter recebido mensagens diretas. |
+| RF14 | Fazer login / logout | Membros podem entrar e sair da conta. |
 
 
 ### 9. Requisitos não-funcionais
