@@ -1,6 +1,6 @@
 # Rede Social - Eart
 
-![logofinal](https://user-images.githubusercontent.com/82484797/132416189-c92ee5ac-7796-4f08-8b48-e858c31b0918.png)
+![logo-final-eart](https://user-images.githubusercontent.com/82484797/134920013-c6a516dc-7ad0-4f24-bedb-307853bdb367.png)
 
 O projeto __Eart__ tem como objetivo ser uma aplicação para a disciplina do Projeto Integrador.
 
