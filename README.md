@@ -16,7 +16,11 @@ Todo material está publicado sob licença [GPL-3.0](https://www.gnu.org/license
 
 * Detalhamento de casos de uso
 
+<<<<<<< HEAD
 * [Diagrama de casos de uso](./diagramas/Diagrama-de-Casos-de-Uso.png)
+=======
+* [Diagrama de casos de uso](./diagramas/Diagrama-Casos-de-Uso.png)
+>>>>>>> cc5320d7cc83d1a7b1776015c6b2b3d16c8731c5
 
 * [Diagrama de classes de domínio](./diagramas/Diagrama-de-Classes.png)
 
