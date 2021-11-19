@@ -1,0 +1,81 @@
+﻿@model Eart.Areas.Membros.Models.Membro
+
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title> Cadastrar novo usuário - versão 2 </title>
+        <meta charset="utf-8"> 
+        <link rel="stylesheet" href="~/CSS/Styles.css">
+        <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="box">
+                @using (Html.BeginForm()) {
+                    @Html.AntiForgeryToken()
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h1 class="logo"> Eart </h1>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-horizontal">                                    
+                                @Html.ValidationSummary(true, "Verifique os seguintes erros", new { @class = "text-danger" } )
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Usuario, htmlAttributes: new { @class = "control-label col-md-2" })                                        
+                                    <div class="col-md-10">
+                                         @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "form-control" } })
+                                         @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ConfSenha, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.ConfSenha, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.ConfSenha, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer panel-info">
+                            <div class="col-md-offset-2 col-md-10">
+                                <div class="button">
+                                    <button> Cadastre-se </button>
+                                </div>
+                                <div class="login">
+                                    <p> Já tem uma conta? <a href="#"> Faça login! </a></p>
+                               </div>
+                            </div>
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </body>
+</html>
