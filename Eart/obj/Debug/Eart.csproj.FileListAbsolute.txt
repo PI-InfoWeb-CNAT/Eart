@@ -79,7 +79,6 @@ C:\Users\Mariana\Projeto-Integrador\Eart\Eart\bin\pt-br\System.Web.Razor.resourc
 C:\Users\Mariana\Projeto-Integrador\Eart\Eart\bin\pt-br\System.Web.WebPages.resources.dll
 C:\Users\Mariana\Projeto-Integrador\Eart\Eart\bin\pt-br\System.Web.WebPages.Deployment.resources.dll
 C:\Users\Mariana\Projeto-Integrador\Eart\Eart\bin\pt-br\System.Web.WebPages.Razor.resources.dll
-C:\Users\Mariana\Projeto-Integrador\Eart\Eart\obj\Debug\Eart.csproj.AssemblyReference.cache
 C:\Users\Mariana\Projeto-Integrador\Eart\Eart\obj\Debug\Eart.csproj.CoreCompileInputs.cache
 C:\Users\Mariana\Projeto-Integrador\Eart\Eart\obj\Debug\Eart.csproj.CopyComplete
 C:\Users\Mariana\Projeto-Integrador\Eart\Eart\obj\Debug\Eart.dll
@@ -88,3 +87,4 @@ C:\Users\Mariana\Projeto-Integrador\Eart\Eart\bin\EntityFramework.dll
 C:\Users\Mariana\Projeto-Integrador\Eart\Eart\bin\EntityFramework.SqlServer.dll
 C:\Users\Mariana\Projeto-Integrador\Eart\Eart\bin\EntityFramework.xml
 C:\Users\Mariana\Projeto-Integrador\Eart\Eart\bin\EntityFramework.SqlServer.xml
+C:\Users\Mariana\Projeto-Integrador\Eart\Eart\obj\Debug\Eart.csproj.AssemblyReference.cache

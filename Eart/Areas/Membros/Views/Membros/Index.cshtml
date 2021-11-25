@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Eart.Areas.Membros.Models.Membro>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title> Editar usuário </title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <table>
+        <tr>
+            <th> Nome </th>
+            <th> Usuário </th>
+            <th> Email </th>
+            <th> Biografia </th>
+            <th> Senha </th>
+            <th> Confirmação da senha </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> @item.Nome </td>
+                <td> @item.Usuario </td>
+                <td> @item.Email </td>
+                <td> @item.Biografia </td>
+                <td> @item.Senha </td>
+                <td> @item.ConfSenha </td>
+            </tr>
+        }
+    </table>
+    <a href="~/Areas/Membros/Views/Membros/Create.cshtml"> Create </a>
+</body>
+</html>

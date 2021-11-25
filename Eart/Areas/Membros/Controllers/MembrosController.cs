@@ -13,6 +13,21 @@ namespace Eart.Areas.Membros.Controllers
     public class MembrosController : Controller
     {
         MembroDAL membroDAL = new MembroDAL();
+
+        private ActionResult ObterVisaoMembroPorId(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Membro membro = membroDAL.ObterMembroPorId((long)id);
+            if (membro == null)
+            {
+                return HttpNotFound();
+            }
+            return View(membro);
+        }
+
         private ActionResult GravarMembro(Membro membro)
         {
             try
@@ -20,7 +35,7 @@ namespace Eart.Areas.Membros.Controllers
                 if (ModelState.IsValid)
                 {
                     membroDAL.GravarMembro(membro);
-                    return RedirectToAction("Create");
+                    return RedirectToAction("Edit", new { id = membro.MembroId });
                 }
                 return View(membro);
             }
@@ -30,16 +45,38 @@ namespace Eart.Areas.Membros.Controllers
             }
         }
 
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        // GET: Create
         public ActionResult Create()
         {
             return View();
         }
 
+        // POST: Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Membro membro)
         {
             return GravarMembro(membro);
         }
+
+        // Get: Edit
+        public ActionResult Edit(long? id)
+        {
+            return ObterVisaoMembroPorId(id);
+        }
+
+        // POST: Edit
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Membro membro)
+        {
+            return GravarMembro(membro);
+        }
+
     }
 }

@@ -12,9 +12,14 @@ namespace Eart.Persistencia.DAL
     public class MembroDAL
     {
         private EFContext context = new EFContext();
+
+        public Membro ObterMembroPorId(long id)
+        {
+            return context.Membros.Where(m => m.MembroId == id).First();
+        }
         public void GravarMembro(Membro membro)
         {
-            if (membro.Id == null || membro.Id == 0)
+            if (membro.MembroId == null)
             {
                 context.Membros.Add(membro);
             }

@@ -10,7 +10,7 @@ namespace Eart.Areas.Membros.Models
     public class Membro
     {
         [DisplayName("Id")]
-        public long? Id { get; set; }
+        public long? MembroId { get; set; }
 
         [DisplayName("Nome")]
         [StringLength(50, ErrorMessage = "O nome do fabricante precisa ter no mínimo 2 caracteres", MinimumLength = 2)]
@@ -38,5 +38,15 @@ namespace Eart.Areas.Membros.Models
         [DataType(DataType.Password)]
         [Compare("Senha", ErrorMessage = "A senha e a confirmação da senha estão diferentes")]
         public string ConfSenha { get; set; }
+
+        [DisplayName("Biografia")]
+        public string Biografia { get; set; }
+
+        /*
+        public string FotoPerfilNome { get; set; }
+        public string FotoPerfilCaminho { get; set; }
+        public string FotoCapaNome { get; set; }
+        public string FotoCapaCaminho { get; set; }
+        */
     }
 }

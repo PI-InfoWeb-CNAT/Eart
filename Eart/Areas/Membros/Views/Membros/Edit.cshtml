@@ -1,0 +1,69 @@
+﻿@model Eart.Areas.Membros.Models.Membro
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title> Editar usuário </title>
+    <meta charset="utf-8">
+    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
+</head>
+    <body>
+        <div class="box">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="panel panel-primary">
+                    
+                    <div class="panel-body">
+                        <div class="form-horizontal">
+                            @Html.HiddenFor(model => model.MembroId, new { htmlAttributes = new { @class = "form-control" } })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "input" } })
+                                    <hr />
+                                    @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "error" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Usuario, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "input" } })
+                                    <hr />
+                                    @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "error" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "input" } })
+                                    <hr />
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "error" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Biografia, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Biografia, new { htmlAttributes = new { @class = "input" } })
+                                    <hr />
+                                    @Html.ValidationMessageFor(model => model.Biografia, "", new { @class = "error" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer panel-info">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Salvar alterações" class="btn btn-danger" />
+                            @Html.ActionLink("Index", "Index", null, new { @class = "btn btn-warning" })
+                        </div>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            }
+        </div>
+    </body>
+</html>
