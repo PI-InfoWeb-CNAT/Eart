@@ -42,11 +42,19 @@ namespace Eart.Areas.Membros.Models
         [DisplayName("Biografia")]
         public string Biografia { get; set; }
 
-        /*
+    }
+
+    public class LoginViewModel
+    {
+        public string Usuario { get; set; }
+
+        public string Senha { get; set; }
+    }
+}
+
+/*
         public string FotoPerfilNome { get; set; }
         public string FotoPerfilCaminho { get; set; }
         public string FotoCapaNome { get; set; }
         public string FotoCapaCaminho { get; set; }
         */
-    }
-}

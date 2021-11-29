@@ -3,12 +3,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <title> Editar usuário </title>
+    <title> Index </title>
     <meta charset="utf-8">
 </head>
 <body>
-    <table>
+    <table border="1">
         <tr>
+            <th> Id </th>
             <th> Nome </th>
             <th> Usuário </th>
             <th> Email </th>
@@ -19,6 +20,7 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td> @item.MembroId  </td>
                 <td> @item.Nome </td>
                 <td> @item.Usuario </td>
                 <td> @item.Email </td>
@@ -28,6 +30,9 @@
             </tr>
         }
     </table>
-    <a href="~/Areas/Membros/Views/Membros/Create.cshtml"> Create </a>
+    <br /><br />
+    @Html.ActionLink("Cadastro", "Create", "Membros")
+    <br /><br />
+    @Html.ActionLink("Sair", "Logout", "Account")
 </body>
 </html>

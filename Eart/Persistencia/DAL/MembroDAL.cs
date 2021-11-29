@@ -13,13 +13,24 @@ namespace Eart.Persistencia.DAL
     {
         private EFContext context = new EFContext();
 
+        public IQueryable<Membro> ObterMembrosClassificadosPorNome()
+        {
+            return context.Membros.OrderBy(m => m.Nome);
+        }
+
         public Membro ObterMembroPorId(long id)
         {
             return context.Membros.Where(m => m.MembroId == id).First();
         }
+
+        public Membro ObterMembroPorUsuario(string usuario)
+        {
+            return context.Membros.Where(m => m.Usuario == usuario).First();
+        }
+
         public void GravarMembro(Membro membro)
         {
-            if (membro.MembroId == null)
+            if (membro.MembroId == 0)
             {
                 context.Membros.Add(membro);
             }

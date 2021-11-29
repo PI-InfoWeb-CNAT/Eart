@@ -12,6 +12,7 @@ namespace Eart.Areas.Membros.Controllers
 {
     public class MembrosController : Controller
     {
+        //IdentityDbContextAplicacao idb = new IdentityDbContextAplicacao();
         MembroDAL membroDAL = new MembroDAL();
 
         private ActionResult ObterVisaoMembroPorId(long? id)
@@ -20,7 +21,7 @@ namespace Eart.Areas.Membros.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Membro membro = membroDAL.ObterMembroPorId((long)id);
+            Membro membro = membroDAL.ObterMembroPorId((long) id);
             if (membro == null)
             {
                 return HttpNotFound();
@@ -35,7 +36,7 @@ namespace Eart.Areas.Membros.Controllers
                 if (ModelState.IsValid)
                 {
                     membroDAL.GravarMembro(membro);
-                    return RedirectToAction("Edit", new { id = membro.MembroId });
+                    
                 }
                 return View(membro);
             }
@@ -47,7 +48,7 @@ namespace Eart.Areas.Membros.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return View(membroDAL.ObterMembrosClassificadosPorNome());
         }
 
         // GET: Create
@@ -61,7 +62,8 @@ namespace Eart.Areas.Membros.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Membro membro)
         {
-            return GravarMembro(membro);
+            GravarMembro(membro);
+            return RedirectToAction("Edit", new { id = membro.MembroId });
         }
 
         // Get: Edit
@@ -75,7 +77,8 @@ namespace Eart.Areas.Membros.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Membro membro)
         {
-            return GravarMembro(membro);
+            GravarMembro(membro);
+            return RedirectToAction("Index");
         }
 
     }

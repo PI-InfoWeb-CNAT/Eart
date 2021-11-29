@@ -15,7 +15,7 @@
                 {
                     @Html.AntiForgeryToken()
                     <div class="logo">
-                        <img alt="Logo" href="~/Imagens/logo.png" />
+                        <img alt="Logo" src="~/Imagens/logo.png" heigth="50" width="50"  />
                         <h1 class="logo"> Eart </h1>
                     </div>
                     <div class="form-horizontal">
@@ -59,7 +59,7 @@
                             <button> Cadastre-se </button>
                         </div>
                         <div class="login">
-                            <p> Já tem uma conta? <a href="#"> Faça login! </a></p>
+                            <p> Já tem uma conta? @Html.ActionLink("Faça Login!", "Login", "Account")</p>
                         </div>
                     </div>
                     <br />
@@ -67,6 +67,5 @@
                 }
             </div>
         </div>
-        <a href="~/Areas/Membros/Views/Membros/Index.cshtml"> Index </a>
     </body>
 </html>
