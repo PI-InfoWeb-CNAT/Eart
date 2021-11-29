@@ -45,13 +45,7 @@ Usuário
 3. O usuário informa um nome de usuário que não está cadastrado no sistema;
 4. O sistema informa a mensagem “Este usuário não existe” e solicita as informações novamente.
 
-**5.4. Fluxo de exceção 2 - Senha menor que 6 caracteres**
-   1. O usuário entra no sistema;
-   2. O sistema solicita as informações do usuário;
-   3. O usuário informa uma senha com menos de 6 caracteres;
-   4. O sistema informa a mensagem “Sua senha deve ter no mínimo 6 caracteres” e solicita as informações novamente.
-
-**5.5. Fluxo de exceção 4 - Senha errada**
+**5.4. Fluxo de exceção 4 - Senha errada**
 1. O usuário entra no sistema;
 2. O sistema solicita as informações do usuário;
 3. O usuário informa uma senha diferente da correspondente ao nome de usuário;
