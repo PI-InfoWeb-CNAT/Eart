@@ -6,7 +6,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Eart.Areas.Membros.Models;
 using Eart.Persistencia.DAL;
-//using Eart.Infraestrutura;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
@@ -25,14 +24,6 @@ namespace Eart.Areas.Membros.Controllers
                 return HttpContext.GetOwinContext().Authentication;
             }
         }
-        /*private GerenciadorUsuario UserManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().GetUserManager<GerenciadorUsuario>();
-            }
-        }*/
-
 
         // Metodos
         public ActionResult Login(string returnUrl)
@@ -50,30 +41,19 @@ namespace Eart.Areas.Membros.Controllers
                 Membro membro = membroDAL.ObterMembroPorUsuario(usuario);
                 if (details.Usuario != membro.Usuario && details.Senha != membro.Senha)
                 {
-                    ModelState.AddModelError("", "Usuário ou senha inválido(s).");
+                    ModelState.AddModelError("", "Usuário inválido");
+                    if (details.Senha != membro.Senha)
+                    {
+                        ModelState.AddModelError("", "Senha inválido");
+                    }
                 }
                 else
                 {
                     return RedirectToAction("Index", "Membros", new { area = "Membros" });
                 }
-                /*Usuario user = UserManager.Find(details.Usuario, details.Senha);
-                if (user == null)
-                {
-                    ModelState.AddModelError("", "Usuário ou senha inválido(s).");
-                }
-                else
-                {
-                    ClaimsIdentity ident = UserManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-                    AuthManager.SignOut();
-                    AuthManager.SignIn(new AuthenticationProperties { IsPersistent = false }, ident);
-                    if (returnUrl == null)
-                        returnUrl = "/Account";
-                    return Redirect(returnUrl);
-                }*/
             }
             return View(details);
         }
-
 
         public ActionResult Logout()
         {

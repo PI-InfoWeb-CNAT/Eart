@@ -30,7 +30,7 @@ namespace Eart.Persistencia.DAL
 
         public void GravarMembro(Membro membro)
         {
-            if (membro.MembroId == 0)
+            if (membro.MembroId is null)
             {
                 context.Membros.Add(membro);
             }

@@ -7,7 +7,6 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 using Eart.Persistencia.DAL;
-using Eart.Infraestrutura;
 
 namespace Eart
 {
@@ -15,8 +14,6 @@ namespace Eart
     {
         public void Configuration(IAppBuilder app)
         {
-            app.CreatePerOwinContext<IdentityDbContextAplicacao>(IdentityDbContextAplicacao.Create);
-            app.CreatePerOwinContext<GerenciadorUsuario>(GerenciadorUsuario.Create);
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,

@@ -20,6 +20,8 @@
                 <div class="panel-body">
                     <div class="form-horizontal">
                         @Html.HiddenFor(model => model.MembroId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.HiddenFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.HiddenFor(model => model.ConfSenha, new { htmlAttributes = new { @class = "form-control" } })
                         <div class="form-group">
                             @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">

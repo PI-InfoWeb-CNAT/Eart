@@ -163,9 +163,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infraestrutura\GerenciadorUsuario.cs" />
     <Compile Include="Persistencia\Contexts\EFContext.cs" />
-    <Compile Include="Persistencia\DAL\IdentityDbContextAplicacao.cs" />
     <Compile Include="Persistencia\DAL\MembroDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

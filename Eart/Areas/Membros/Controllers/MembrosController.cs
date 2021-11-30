@@ -12,7 +12,6 @@ namespace Eart.Areas.Membros.Controllers
 {
     public class MembrosController : Controller
     {
-        //IdentityDbContextAplicacao idb = new IdentityDbContextAplicacao();
         MembroDAL membroDAL = new MembroDAL();
 
         private ActionResult ObterVisaoMembroPorId(long? id)
