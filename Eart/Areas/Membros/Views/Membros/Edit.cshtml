@@ -5,14 +5,15 @@
 <head>
     <title> Editar usuário </title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="~/Css/styles.css">
     <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
 </head>
     <body>
         <div class="box">
-            @using (Html.BeginForm())
-            {
+            @using (Html.BeginForm("Edit", "Membros", FormMethod.Post, new{enctype = "multipart/form-data"}))
+             {
                 @Html.AntiForgeryToken()
-            <div class="panel panel-primary">
+             <div class="panel panel-primary">
                 <div class="logo">
                     <img alt="Logo" src="~/Imagens/logo.png" heigth="50" width="50"  />
                     <h1 class="logo"> Eart </h1>
@@ -22,6 +23,32 @@
                         @Html.HiddenFor(model => model.MembroId, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.HiddenFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.HiddenFor(model => model.ConfSenha, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.HiddenFor(model => model.FotoPerfilType)
+                        @Html.HiddenFor(model => model.FotoPerfil)
+                        @Html.HiddenFor(model => model.FotoCapaType)
+                        @Html.HiddenFor(model => model.FotoCapa)
+                        <div class="fotoPerfil">
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    <p> Foto Perfil </p>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.TextBox("fotoPerfil", "", new { type = "file" }) <br />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fotoCapa">
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    <p> Foto Capa </p>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.TextBox("fotoCapa", "", new { type = "file" }) <br />
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">

@@ -2,10 +2,12 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <title> Login </title>
-        <meta charset="utf-8">
-    </head>
+<head>
+    <title> Login </title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="~/Css/styles.css">
+    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
+</head>
     <body>
         @using (Html.BeginForm())
         {
@@ -41,6 +43,9 @@
                 <div class="panel-footer panel-info">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Acessar" class="btn btn-danger" />
+                    </div>
+                    <div class="create">
+                        <p> Não tem uma conta? @Html.ActionLink("Cadastre-se!", "Create", "Membros")</p>
                     </div>
                     <br />
                     <br />

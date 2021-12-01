@@ -95,3 +95,7 @@ a {
 hr {
     color: var(--cor5);
 }
+
+.logout {
+    color: var(--cor5);
+}

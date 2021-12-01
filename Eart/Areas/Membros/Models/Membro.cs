@@ -43,6 +43,21 @@ namespace Eart.Areas.Membros.Models
         [StringLength(140, ErrorMessage = "Sua biografia precisa ter no máximo 140 caracteres")]
         public string Biografia { get; set; }
 
+        public string FotoPerfilType { get; set; }
+
+        public byte[] FotoPerfil { get; set; }
+
+        public string FotoPerfilNome { get; set; }
+
+        public long FotoPerfilTamanho { get; set; }
+
+        public string FotoCapaType { get; set; }
+
+        public byte[] FotoCapa { get; set; }
+
+        public string FotoCapaNome { get; set; }
+
+        public long FotoCapaTamanho { get; set; }
     }
 
     public class LoginViewModel

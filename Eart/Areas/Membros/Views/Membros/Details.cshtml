@@ -1,0 +1,98 @@
+﻿@model Eart.Areas.Membros.Models.Membro
+<!DOCTYPE html >
+<html>
+<head>
+    <title> Perfil do usuário </title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="~/Css/styles.css">
+    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
+</head>
+<body>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="logo">
+                <img alt="Logo" src="~/Imagens/logo.png" heigth="50" width="50" />
+                <h1 class="logo"> Eart </h1>
+            </div>
+            Perfil do Usuário: @Model.Nome @Html.ActionLink("- Sair", "Logout", "Account")
+        </div>
+        <div class="panel-body">
+            <div class="fotoPerfil">
+                @if (Model.FotoPerfil == null)
+                {
+                    <div class="form-control-static">
+                        Este usuário não tem foto de perfil
+                    </div>
+                }
+                else
+                {
+                    <div class="panel-body">
+                        <img class="img-thumbnail" src="@Url.Action("GetFotoPerfil", "Membros", new { id = Model.MembroId })" style="display:block;margin-left:auto; margin-right:auto; width:100px; height:100px; border-radius:75px" />
+                    </div>
+                    /*<div class="panel-footer">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="chkRemoverFotoPerfil" value="Sim">Remover foto de perfil
+                            </label>
+                        </div>
+                        @Html.ActionLink("Baixar o arquivo : " + Model.FotoPerfilNome, "DownloadFotoPerfil", "Membros", new { area = "Membros", id = Model.MembroId }, null)
+                    </div>*/
+                }
+            </div>
+            <div class="fotoCapa">
+                @if (Model.FotoCapa == null)
+                {
+                    <div class="form-control-static">
+                        Este usuario não tem foto de capa
+                    </div>
+                }
+                else
+                {
+                    <div class="panel-body">
+                        <img class="img-thumbnail" src="@Url.Action("GetFotoCapa", "Membros", new { id = Model.MembroId })" style="display: block; margin-left: auto; margin-right: auto; width: 300px; height: 200px;" />
+                    </div>
+                    /*<div class="panel-footer">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="chkRemoverFotoCapal" value="Sim">Remover foto de capa
+                            </label>
+                        </div>
+                        @Html.ActionLink("Baixar o arquivo: " + Model.FotoCapaNome, "DownloadFotoCapa", "Membros", new { area = "Membros", id = Model.MembroId }, null)
+                    </div>*/
+                }
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Nome)<br />
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-user"></i>
+                    </span>
+                    @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Usuario)<br />
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-user"></i>
+                    </span>
+                    @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Biografia)<br />
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-user"></i>
+                    </span>
+                    @Html.EditorFor(model => model.Biografia, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

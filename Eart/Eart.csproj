@@ -159,7 +159,6 @@
     <Compile Include="Areas\Membros\MembrosAreaRegistration.cs" />
     <Compile Include="Areas\Membros\Models\Membro.cs" />
     <Compile Include="Areas\Membros\Models\Usuario.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -184,6 +183,7 @@
     <Content Include="Areas\Membros\Views\Membros\Create.cshtml" />
     <Content Include="Areas\Membros\Views\Membros\Edit.cshtml" />
     <Content Include="Areas\Membros\Views\Account\Login.cshtml" />
+    <Content Include="Areas\Membros\Views\Membros\Details.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -211,7 +211,6 @@
     <Folder Include="Areas\Membros\Data\" />
     <Folder Include="Areas\Membros\Views\Shared\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

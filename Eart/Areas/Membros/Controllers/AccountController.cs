@@ -49,7 +49,7 @@ namespace Eart.Areas.Membros.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Membros", new { area = "Membros" });
+                    return RedirectToAction("Details", "Membros", new { area = "Membros", id = membro.MembroId });
                 }
             }
             return View(details);
