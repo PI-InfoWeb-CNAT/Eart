@@ -62,8 +62,11 @@ namespace Eart.Areas.Membros.Models
 
     public class LoginViewModel
     {
+        [DisplayName("Usuário")]
         public string Usuario { get; set; }
 
+        [DisplayName("Senha")]
+        [DataType(DataType.Password)]
         public string Senha { get; set; }
     }
 }

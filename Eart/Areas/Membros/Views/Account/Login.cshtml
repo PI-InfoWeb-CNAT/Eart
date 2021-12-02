@@ -6,53 +6,109 @@
     <title> Login </title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="~/Css/styles.css">
-    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
+    <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
+    <!--<link href="Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
 </head>
-    <body>
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    Acessando o sistema
+<body>
+    <div class="container">
+        <div class="box">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="logo">
+                    <img id="logo_img" alt="Logo" src="~/Imagens/logo.png" />
+                    <h1 id="logo_nome">Eart</h1>
                 </div>
-                <div class="panel-body">
-                    <div class="form-horizontal">
-                        @if (ViewData.ModelState.Keys.Any(k => ViewData.ModelState[k].Errors.Count() > 0))
-                        {
-                            <div class="alert alert-danger alert-dismissable">
-                                @Html.ValidationSummary(false, "Verifique os seguintes erros:")
-                            </div>
-                        }
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Usuario, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
-                            </div>
+                <div class="form-horizontal">
+                    @if (ViewData.ModelState.Keys.Any(k => ViewData.ModelState[k].Errors.Count() > 0))
+                    {
+                        <div class="alert alert-danger alert-dismissable">
+                            @Html.ValidationSummary(false, "Verifique os seguintes erros:", new { @class = "error" })
                         </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.PasswordFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
-                            </div>
+                    }
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "input", placeholder = "Usuário" } })
+                            @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "error" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "input", placeholder = "Senha" } })
+                            @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "error" })
                         </div>
                     </div>
                 </div>
-                <div class="panel-footer panel-info">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Acessar" class="btn btn-danger" />
+                <div class="col-md-offset-2 col-md-10">
+                    <div class="button">
+                        <button> Fazer login </button>
                     </div>
                     <div class="create">
                         <p> Não tem uma conta? @Html.ActionLink("Cadastre-se!", "Create", "Membros")</p>
                     </div>
-                    <br />
-                    <br />
                 </div>
-            </div>
-        }
-    </body>
+                <br />
+                <br />
+            }
+        </div>
+    </div>
+</body>
 </html>
+@*@model Eart.Areas.Membros.Models.LoginViewModel
+
+    <!DOCTYPE html>
+    <html lang="pt-br">
+    <head>
+        <title> Login </title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="~/Css/styles.css">
+        <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
+    </head>
+        <body>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        Acessando o sistema
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-horizontal">
+                            @if (ViewData.ModelState.Keys.Any(k => ViewData.ModelState[k].Errors.Count() > 0))
+                            {
+                                <div class="alert alert-danger alert-dismissable">
+                                    @Html.ValidationSummary(false, "Verifique os seguintes erros:")
+                                </div>
+                            }
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Usuario, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.PasswordFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer panel-info">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Acessar" class="btn btn-danger" />
+                        </div>
+                        <div class="create">
+                            <p> Não tem uma conta? @Html.ActionLink("Cadastre-se!", "Create", "Membros")</p>
+                        </div>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            }
+        </body>
+    </html>*@
 
 

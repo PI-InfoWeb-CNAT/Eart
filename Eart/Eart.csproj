@@ -177,6 +177,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Imagens\logo.png" />
+    <Content Include="Imagens\logo_ico.ico" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Membros\Views\web.config" />
