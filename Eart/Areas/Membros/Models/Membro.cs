@@ -13,12 +13,12 @@ namespace Eart.Areas.Membros.Models
         public long? MembroId { get; set; }
 
         [DisplayName("Nome")]
-        [StringLength(50, ErrorMessage = "Seu nome precisa ter no mínimo 2 caracteres", MinimumLength = 2)]
+        [StringLength(35, ErrorMessage = "Seu nome precisa ter entre {2} e {1} caracteres", MinimumLength = 2)]
         [Required(ErrorMessage = "Informe o seu nome")]
         public string Nome { get; set; }
 
         [DisplayName("Usuário")]
-        [StringLength(12, ErrorMessage = "Seu usuário precisa ter no mínimo 2 caracteres", MinimumLength = 2)]
+        [StringLength(35, ErrorMessage = "Seu usuário precisa ter entre {2} e {1} caracteres", MinimumLength = 2)]
         [Required(ErrorMessage = "Informe seu nome de usuário")]
         public string Usuario { get; set; }
 
@@ -45,6 +45,7 @@ namespace Eart.Areas.Membros.Models
 
         public string FotoPerfilType { get; set; }
 
+        [DisplayName("Foto de Perfil")]
         public byte[] FotoPerfil { get; set; }
 
         public string FotoPerfilNome { get; set; }
@@ -53,6 +54,7 @@ namespace Eart.Areas.Membros.Models
 
         public string FotoCapaType { get; set; }
 
+        [DisplayName("Foto de capa")]
         public byte[] FotoCapa { get; set; }
 
         public string FotoCapaNome { get; set; }

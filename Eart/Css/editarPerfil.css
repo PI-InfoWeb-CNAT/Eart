@@ -13,62 +13,39 @@
     text-decoration: none;
 }
 
-form {
-    width: 360px;
-}
-
 body {
     background-color: var(--cor1);
     color: var(--cor5);
     display: flex;
+    flex-direction:inherit;
     align-items: center;
     justify-content: center;
-    margin-top: auto;
-    margin-bottom: auto;
 }
 
 .box {
     background-color: var(--cor2);
     border-radius: 25px;
-    width: 600px;
-    height: 500px;
+    width: 1000px;
+    height: 560px;
     display: flex;
-    margin-top: 40%;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-.logo {
-    width: 400px;
-    color: var(--cor4);
-    font-size: 50px;
-}
-
-#logo_img {
-    float: left;
-    width: 80px;
-    margin-left: 75px;
-    margin-top: 25px;
-}
-
-#logo_nome {
-    font-size: 50px;
-    float: right;
-    margin-top: 10px;
-    margin-right: 140px;
-    margin-top: 35px;
+    margin: 5%;
 }
 
 .input {
     background-color: var(--cor1);
     color: var(--cor3);
+    display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     border: none;
     border-radius: 25px;
     height: 40px;
     width: 360px;
-    margin-top: 15px;
+    margin-top: 9px;
     padding-left: 20px;
 }
 
@@ -76,13 +53,8 @@ body {
     color: var(--cor3);
 }
 
-.button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
-button, .salvar {
+button {
     background-color: var(--cor4);
     color: var(--cor5);
     border: none;
@@ -90,23 +62,7 @@ button, .salvar {
     height: 45px;
     width: 195px;
     margin-top: 20px;
-    cursor: pointer;
 }
-/* */
-.cancelar {
-    background-color: var(--cor3);
-    color: var(--cor2);
-    border: none;
-    border-radius: 25px;
-    height: 45px;
-    width: 195px;
-    margin-top: 20px;
-    cursor: pointer;
-}
-.form-group {
-    display: inline-block;
-}
-/**/
 
 .login {
     display: flex;
@@ -132,19 +88,18 @@ hr {
     color: var(--cor5);
 }
 
-@media (min-width: 320px) and (max-width: 767px) {
-    body {
-        background-color: var(--cor2);
-    }
-
-    .box {
-        margin-top: 15%;
-    }
+.logout {
+    color: var(--cor5);
+}
+ 
+.input1 {
+    display: inline-block;
 }
 
-@media (min-width: 320px) and (max-width: 370px) {
-    .input {
-        width: 310px;
-        margin-left: 25px;
-    }
+.input2 {
+    display: inline-block;
+}
+
+.form-group {
+    display: inline-block;
 }

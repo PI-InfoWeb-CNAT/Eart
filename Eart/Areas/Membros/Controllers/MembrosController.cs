@@ -138,8 +138,15 @@ namespace Eart.Areas.Membros.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Membro membro, HttpPostedFileBase fotoPerfil = null, HttpPostedFileBase fotoCapa = null, string chkRemoverFotoPerfil = null, string chkRemoverFotoCapa = null)
         {
-            GravarMembro(membro, fotoPerfil, fotoCapa, chkRemoverFotoPerfil, chkRemoverFotoCapa);
-            return RedirectToAction("Edit", new { id = membro.MembroId });
+            if(ModelState.IsValid)
+            {
+                GravarMembro(membro, fotoPerfil, fotoCapa, chkRemoverFotoPerfil, chkRemoverFotoCapa);
+                return RedirectToAction("Edit", new { id = membro.MembroId });
+            }
+            else
+            {
+                return GravarMembro(membro, fotoPerfil, fotoCapa, chkRemoverFotoPerfil, chkRemoverFotoCapa);
+            }
         }
 
         // Get: Edit
