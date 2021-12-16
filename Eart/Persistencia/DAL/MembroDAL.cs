@@ -41,5 +41,13 @@ namespace Eart.Persistencia.DAL
             context.SaveChanges();
         }
 
+        public Membro EliminarMembroPorId(long id)
+        {
+            Membro membro = ObterMembroPorId(id);
+            context.Membros.Remove(membro);
+            context.SaveChanges();
+            return membro;
+        }
+
     }
 }

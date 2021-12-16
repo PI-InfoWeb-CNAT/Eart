@@ -9,7 +9,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
     <link rel="stylesheet" href="~/Css/styles.css">
     <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
-  
 </head>
     <body>
         <div class="box">
@@ -32,7 +31,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.FotoPerfil, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10 button">
-                                    @Html.TextBox("fotoPerfil", "", new { type = "file" }) <br />
+                                    @Html.TextBox("fotoPerfil", "", new { type = "file"}) <br />
                                 </div>
                             </div>
                         </div>
@@ -41,7 +40,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.FotoCapa, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.TextBox("fotoCapa", "", new { type = "file" })
+                                    @Html.TextBox("fotoCapa", "", new { type = "file", @class = "image_input" })
                                 </div>
                             </div>
                         </div>
@@ -74,7 +73,7 @@
                         </div>
 
                         <div class="form-group">
-                                @Html.LabelFor(model => model.Biografia, htmlAttributes: new { @class = "label control-label col-md-2" })
+                                @Html.LabelFor(model => model.Biografia, htmlAttributes: new { @class = "label control-label col-md-2", maxLenght = "140" })
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.Biografia, new { htmlAttributes = new { @class = "input" } })
 
@@ -85,7 +84,7 @@
                 </div>
                 <div class="botões">
                     <div class="col-md-offset-2 col-md-10">
-                        @Html.ActionLink("Cancelar", "Details", null, new { @class = "cancelar" })
+                        @Html.ActionLink("Cancelar", "Details", new { id = Model.MembroId }, new { @class = "cancelar" })
                         <div class="button">
                             <button> Salvar alterações </button>
                         </div>

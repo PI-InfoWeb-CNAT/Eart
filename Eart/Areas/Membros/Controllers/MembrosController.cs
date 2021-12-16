@@ -54,9 +54,6 @@ namespace Eart.Areas.Membros.Controllers
             fileStream.Close();
             return File(fileStream.Name, membro.FotoPerfilType, membro.FotoPerfilNome);
         }
-
-
-
         private byte[] SetFotoCapa(HttpPostedFileBase fotoCapa)
         {
             var bytesFotoCapa = new byte[fotoCapa.ContentLength];
@@ -74,15 +71,14 @@ namespace Eart.Areas.Membros.Controllers
             return null;
         }
 
-        /*public ActionResult DownloadFotoCapa(long id)
+        public ActionResult DownloadFotoCapa(long id)
         {
             Membro membro = membroDAL.ObterMembroPorId(id);
             FileStream fileStream = new FileStream(Server.MapPath("~/App_Data/" + membro.FotoCapaNome), FileMode.Create, FileAccess.Write);
             fileStream.Write(membro.FotoCapa, 0, Convert.ToInt32(membro.FotoCapaTamanho));
             fileStream.Close();
             return File(fileStream.Name, membro.FotoCapaType, membro.FotoCapaNome);
-        }*/
-
+        }
 
         private ActionResult GravarMembro(Membro membro, HttpPostedFileBase fotoPerfil = null, HttpPostedFileBase fotoCapa = null, string chkRemoverFotoPerfil = null, string chkRemoverFotoCapa = null)
         {
@@ -168,6 +164,28 @@ namespace Eart.Areas.Membros.Controllers
         public ActionResult Details(long? id)
         {
             return ObterVisaoMembroPorId(id);
+        }
+
+        public ActionResult Delete(long? id)
+        {
+            return ObterVisaoMembroPorId(id);
+        }
+
+        // POST: Produtos/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            try
+            {
+                Membro membro = membroDAL.EliminarMembroPorId(id);
+                TempData["Message"] = "Membro " + membro.Nome.ToUpper() + " foi removido";
+                return RedirectToAction("Create");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
     }

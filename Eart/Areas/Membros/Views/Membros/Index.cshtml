@@ -17,6 +17,7 @@
             <th> Biografia </th>
             <th> Senha </th>
             <th> Confirmação da senha </th>
+            <th> Ações </th>
         </tr>
         @foreach (var item in Model)
         {
@@ -28,6 +29,11 @@
                 <td> @item.Biografia </td>
                 <td> @item.Senha </td>
                 <td> @item.ConfSenha </td>
+                <td>
+                            @Html.ActionLink("Editar", "Edit", new { id = item.MembroId }) |
+                            @Html.ActionLink("Detalhes", "Details", new { id = item.MembroId }) |
+                            @Html.ActionLink("Excluir", "Delete", new { id = item.MembroId })
+                        </td>
             </tr>
         }
     </table>

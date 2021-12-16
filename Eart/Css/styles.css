@@ -93,6 +93,16 @@ button, .salvar {
     cursor: pointer;
 }
 /* */
+input[type=file] .image_input {
+    background-color: var(--cor4);
+    color: var(--cor5);
+    border: none;
+    border-radius: 25px;
+    height: 45px;
+    width: 195px;
+    margin-top: 20px;
+    cursor: pointer;
+}
 .cancelar {
     background-color: var(--cor3);
     color: var(--cor2);

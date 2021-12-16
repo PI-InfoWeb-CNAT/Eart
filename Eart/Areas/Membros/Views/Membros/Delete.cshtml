@@ -1,8 +1,8 @@
 ﻿@model Eart.Areas.Membros.Models.Membro
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html>
 <head>
-    <title> Perfil do usuário </title>
+    <title> Deletar usuário </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
     @*<link rel="stylesheet" href="~/Css/editarPerfil.css">*@
@@ -13,13 +13,8 @@
 <body>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <div class="logo">
-                <img alt="Logo" src="~/Imagens/logo.png" heigth="50" width="50" />
-                <h1 class="logo"> Eart </h1>
-            </div>
-            Perfil do Usuário: @Model.Nome
+            Dados do usuário a ser removido
         </div>
-        @Html.ActionLink("- Sair", "Logout", "Account")
         <div class="panel-body">
             <div class="fotoPerfil">
                 @if (Model.FotoPerfil == null)
@@ -29,10 +24,7 @@
                 else
                 {
                     <div class="panel-body">
-                        <a>
-                            @Html.ActionLink("Baixar o arquivo: " + Model.FotoPerfilNome, "DownloadFotoPerfil", "Membros", new { area = "Membros", id = Model.MembroId }, null)
-                            <img class="img-thumbnail" src="@Url.Action("GetFotoPerfil", "Membros", new { id = Model.MembroId })" style="display: block; margin-left: auto; margin-right: auto; width: 300px; height: 200px;" />
-                        </a>
+                        <img class="img-thumbnail" src="@Url.Action("GetFotoPerfil", "Membros", new { id = Model.MembroId })" style="display: block; margin-left: auto; margin-right: auto; width: 100px; height: 100px; border-radius:75px;" />
                     </div>
                 }
             </div>
@@ -44,13 +36,11 @@
                 else
                 {
                     <div class="panel-body">
-                        <a>
-                            @Html.ActionLink("Baixar o arquivo: " + Model.FotoCapaNome, "DownloadFotoCapa", "Membros", new { area = "Membros", id = Model.MembroId }, null)
-                            <img class="img-thumbnail" src="@Url.Action("GetFotoCapa", "Membros", new { id = Model.MembroId })" style="display: block; margin-left: auto; margin-right: auto; width: 300px; height: 200px;" />
-                        </a>
+                        <img class="img-thumbnail" src="@Url.Action("GetFotoCapa", "Membros", new { id = Model.MembroId })" style="display: block; margin-left: auto; margin-right: auto; width: 300px; height: 200px;" />
                     </div>
                 }
             </div>
+
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Nome)<br />
@@ -83,6 +73,55 @@
             </div>
 
         </div>
+        <div class="panel-footer panel-info">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <input type="submit" value="Remover" class="btn btn-danger" />
+                @Html.ActionLink("Cancelar", "Details", new { id = Model.MembroId }, new { @class = "btn btn-warning" })
+            }
+        </div>
+        @*<div class="panel-footer panel-info">
+            <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#deleteConfirmationModal">Remover Usuário</a>
+            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-warning" })
+        </div>*@
     </div>
+    @*<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        Confirmação de exclusão de USUÁRIO
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Você está prestes a remover o usuário @Model.Nome.ToUpper() do cadastro.
+                    </p>
+                    <p>
+                        <strong>
+                            Você está certo que deseja prosseguir?
+                        </strong>
+                    </p>
+                    @using (Html.BeginForm("Delete", "Membros", FormMethod.Post, new { @id = "delete-form", role = "form" }))
+                    {
+                        @Html.HiddenFor(m => m.MembroId)
+                        @Html.AntiForgeryToken()
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" onclick="$('#delete-form').submit();">
+                        Sim, exclua este membro.
+                    </button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                        Não, não exclua este membro.
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>*@
 </body>
 </html>
