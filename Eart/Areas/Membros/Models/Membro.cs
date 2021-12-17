@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Eart.Areas.Postagens.Models;
 
 namespace Eart.Areas.Membros.Models
 {
@@ -60,6 +61,8 @@ namespace Eart.Areas.Membros.Models
         public string FotoCapaNome { get; set; }
 
         public long FotoCapaTamanho { get; set; }
+
+        public virtual ICollection<Postagem> Postagens { get; set; }
     }
 
     public class LoginViewModel

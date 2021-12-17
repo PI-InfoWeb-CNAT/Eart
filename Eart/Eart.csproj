@@ -159,11 +159,15 @@
     <Compile Include="Areas\Membros\MembrosAreaRegistration.cs" />
     <Compile Include="Areas\Membros\Models\Membro.cs" />
     <Compile Include="Areas\Membros\Models\Usuario.cs" />
+    <Compile Include="Areas\Postagens\Controllers\PostagensController.cs" />
+    <Compile Include="Areas\Postagens\Models\Postagem.cs" />
+    <Compile Include="Areas\Postagens\PostagensAreaRegistration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Persistencia\Contexts\EFContext.cs" />
     <Compile Include="Persistencia\DAL\MembroDAL.cs" />
+    <Compile Include="Persistencia\DAL\PostagemDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -189,6 +193,12 @@
     <Content Include="Areas\Membros\Views\Account\Login.cshtml" />
     <Content Include="Areas\Membros\Views\Membros\Details.cshtml" />
     <Content Include="Areas\Membros\Views\Membros\Delete.cshtml" />
+    <Content Include="Areas\Postagens\Views\web.config" />
+    <Content Include="Areas\Postagens\Views\Postagens\Index.cshtml" />
+    <Content Include="Areas\Postagens\Views\Postagens\Create.cshtml" />
+    <Content Include="Areas\Postagens\Views\Postagens\Edit.cshtml" />
+    <Content Include="Areas\Postagens\Views\Postagens\Details.cshtml" />
+    <Content Include="Areas\Postagens\Views\Postagens\Delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -215,6 +225,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Membros\Data\" />
     <Folder Include="Areas\Membros\Views\Shared\" />
+    <Folder Include="Areas\Postagens\Data\" />
+    <Folder Include="Areas\Postagens\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

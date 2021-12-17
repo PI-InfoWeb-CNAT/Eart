@@ -8,6 +8,12 @@
     <meta charset="utf-8">
 </head>
 <body>
+    @if (@TempData["Message"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["Message"]
+        </div>
+    }
     <table border="1">
         <tr>
             <th> Id </th>
@@ -30,16 +36,16 @@
                 <td> @item.Senha </td>
                 <td> @item.ConfSenha </td>
                 <td>
-                            @Html.ActionLink("Editar", "Edit", new { id = item.MembroId }) |
-                            @Html.ActionLink("Detalhes", "Details", new { id = item.MembroId }) |
-                            @Html.ActionLink("Excluir", "Delete", new { id = item.MembroId })
-                        </td>
+                    @Html.ActionLink("Editar", "Edit", "Membros", new { area = "Membros", id = item.MembroId }, null) |
+                    @Html.ActionLink("Detalhes", "Details", "Membros", new { area = "Membros", id = item.MembroId }, null) |
+                    @Html.ActionLink("Excluir", "Delete", "Membros", new { area = "Membros", id = item.MembroId }, null)
+                </td>
             </tr>
         }
     </table>
     <br /><br />
-    @Html.ActionLink("Cadastro", "Create", "Membros")
+    @Html.ActionLink("Cadastro", "Create", "Membros", new { area = "Membros"}, null)
     <br /><br />
-    @Html.ActionLink("Sair", "Logout", "Account")
+    @Html.ActionLink("Sair", "Logout", "Account", new { area = "Membros" }, null)
 </body>
 </html>

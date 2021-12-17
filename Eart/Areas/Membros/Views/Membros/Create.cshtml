@@ -57,7 +57,7 @@
                         <button> Cadastre-se </button>
                     </div>
                     <div class="login">
-                        <p> Já tem uma conta? @Html.ActionLink("Faça Login!", "Login", "Account")</p>
+                        <p> Já tem uma conta? @Html.ActionLink("Faça Login!", "Login", "Account", new { area = "Membros"}, null)</p>
                     </div>
                 </div>
                 <br />
@@ -66,78 +66,4 @@
         </div>
     </div>
 </body>
-</html>
-
-@*@model Eart.Areas.Membros.Models.Membro
-
-    <!DOCTYPE html>
-    <html lang="pt-br">
-    <head>
-        <title> Cadastrar novo usuário</title>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="~/Css/styles.css">
-        <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
-        <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
-    </head>
-    <body>
-        <div class="container">
-            <div class="box">
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="logo">
-                        <img id="logo_img" alt="Logo" src="~/Imagens/logo.png" />
-                        <h1 id="logo_nome">Eart</h1>
-                    </div>
-                    <div class="form-horizontal">
-
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "input", placeholder = "Nome" } })
-                                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "error" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "input", placeholder = "Usuário" } })
-                                @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "error" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "input", placeholder = "Email" } })
-                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "error" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "input", placeholder = "Senha" } })
-                                @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "error" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.ConfSenha, new { htmlAttributes = new { @class = "input", placeholder = "Confirme sua senha" } })
-                                @Html.ValidationMessageFor(model => model.ConfSenha, "", new { @class = "error" })
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="button">
-                            <button> Cadastre-se </button>
-                        </div>
-                        <div class="login">
-                            <p> Já tem uma conta? @Html.ActionLink("Faça Login!", "Login", "Account")</p>
-                        </div>
-                    </div>
-                    <br />
-                    <br />
-                }
-            </div>
-        </div>
-    </body>
-    </html>*@
+</html> 

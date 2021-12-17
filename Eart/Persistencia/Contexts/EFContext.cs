@@ -5,6 +5,7 @@ using System.Web;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using Eart.Areas.Membros.Models;
+using Eart.Areas.Postagens.Models;
 
 namespace Eart.Persistencia.Contexts
 {
@@ -15,6 +16,7 @@ namespace Eart.Persistencia.Contexts
             Database.SetInitializer<EFContext>(new DropCreateDatabaseIfModelChanges<EFContext>());
         }
         public DbSet<Membro> Membros { get; set; }
+        public DbSet<Postagem> Postagens { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

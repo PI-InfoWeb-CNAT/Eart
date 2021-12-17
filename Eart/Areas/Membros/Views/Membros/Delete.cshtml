@@ -24,7 +24,7 @@
                 else
                 {
                     <div class="panel-body">
-                        <img class="img-thumbnail" src="@Url.Action("GetFotoPerfil", "Membros", new { id = Model.MembroId })" style="display: block; margin-left: auto; margin-right: auto; width: 100px; height: 100px; border-radius:75px;" />
+                        <img class="img-thumbnail" src="@Url.Action("GetFotoPerfil", "Membros", new { area = "Membros", id = Model.MembroId })" style="display: block; margin-left: auto; margin-right: auto; width: 100px; height: 100px; border-radius:75px;" />
                     </div>
                 }
             </div>
@@ -36,7 +36,7 @@
                 else
                 {
                     <div class="panel-body">
-                        <img class="img-thumbnail" src="@Url.Action("GetFotoCapa", "Membros", new { id = Model.MembroId })" style="display: block; margin-left: auto; margin-right: auto; width: 300px; height: 200px;" />
+                        <img class="img-thumbnail" src="@Url.Action("GetFotoCapa", "Membros", new { area = "Membros", id = Model.MembroId })" style="display: block; margin-left: auto; margin-right: auto; width: 300px; height: 200px;" />
                     </div>
                 }
             </div>
@@ -78,7 +78,7 @@
             {
                 @Html.AntiForgeryToken()
                 <input type="submit" value="Remover" class="btn btn-danger" />
-                @Html.ActionLink("Cancelar", "Details", new { id = Model.MembroId }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Cancelar", "Details", "Membros", new { area = "Membros", id = Model.MembroId }, new { @class = "btn btn-warning" })
             }
         </div>
         @*<div class="panel-footer panel-info">

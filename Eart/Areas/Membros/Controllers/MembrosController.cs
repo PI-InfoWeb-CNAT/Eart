@@ -137,7 +137,8 @@ namespace Eart.Areas.Membros.Controllers
             if(ModelState.IsValid)
             {
                 GravarMembro(membro, fotoPerfil, fotoCapa, chkRemoverFotoPerfil, chkRemoverFotoCapa);
-                return RedirectToAction("Edit", new { id = membro.MembroId });
+                ViewBag.MembroId = membro.MembroId;
+                return RedirectToAction("Edit", new { area = "Membros", id = membro.MembroId });
             }
             else
             {
@@ -158,7 +159,7 @@ namespace Eart.Areas.Membros.Controllers
         public ActionResult Edit(Membro membro, HttpPostedFileBase fotoPerfil = null, HttpPostedFileBase fotoCapa = null, string chkRemoverFotoPerfil = null, string chkRemoverFotoCapa = null)
         {
             GravarMembro(membro, fotoPerfil, fotoCapa, chkRemoverFotoPerfil, chkRemoverFotoCapa);
-            return RedirectToAction("Details", new { id = membro.MembroId });
+            return RedirectToAction("Index", "Postagens", new { Area = "Postagens", id = membro.MembroId });
         }
 
         public ActionResult Details(long? id)
@@ -180,7 +181,7 @@ namespace Eart.Areas.Membros.Controllers
             {
                 Membro membro = membroDAL.EliminarMembroPorId(id);
                 TempData["Message"] = "Membro " + membro.Nome.ToUpper() + " foi removido";
-                return RedirectToAction("Create");
+                return RedirectToAction("Create", "Membros", new { Area = "Membros"});
             }
             catch
             {
