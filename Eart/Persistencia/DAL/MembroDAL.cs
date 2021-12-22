@@ -25,7 +25,12 @@ namespace Eart.Persistencia.DAL
 
         public Membro ObterMembroPorUsuario(string usuario)
         {
-            return context.Membros.Where(m => m.Usuario == usuario).First();
+            IQueryable<Membro> membros = context.Membros.Where(m => m.Usuario == usuario);
+
+            if (membros.Count() != 0)
+                return membros.First();
+            else
+                return null;
         }
 
         public void GravarMembro(Membro membro)

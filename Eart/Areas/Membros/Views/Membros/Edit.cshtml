@@ -85,6 +85,8 @@
                 <div class="botões">
                     <div class="col-md-offset-2 col-md-10">
                         @Html.ActionLink("Cancelar", "Details", "Membros", new { area = "Membros", id = Model.MembroId }, new { @class = "cancelar" })
+                        @Html.ActionLink("Baixar o arquivo : " + Model.FotoPerfilNome, "DownloadFotoPerfil", "Membros", new { area = "Membros", id = Model.MembroId }, null)
+                        @Html.ActionLink("Cancelar", "Details", null, new { @class = "cancelar" })
                         <div class="button">
                             <button> Salvar alterações </button>
                         </div>

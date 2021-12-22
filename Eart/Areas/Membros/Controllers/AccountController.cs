@@ -39,17 +39,25 @@ namespace Eart.Areas.Membros.Controllers
             if (ModelState.IsValid)
             {
                 Membro membro = membroDAL.ObterMembroPorUsuario(usuario);
-                if (details.Usuario != membro.Usuario && details.Senha != membro.Senha)
+                if (membro != null)
                 {
-                    ModelState.AddModelError("", "Usuário inválido");
-                    if (details.Senha != membro.Senha)
+                    if ((details.Usuario != membro.Usuario) || (details.Senha != membro.Senha))
                     {
-                        ModelState.AddModelError("", "Senha inválido");
+                        ModelState.AddModelError("", "Usuário inválido");
+                        if (details.Senha != membro.Senha)
+                        {
+                            ModelState.AddModelError("", "Senha inválido");
+                        }
+                    }
+                    else
+                    {
+
+                        return RedirectToAction("Index", "Postagens", new { area = "Postagens" });
                     }
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Postagens", new { area = "Postagens" });
+                    ModelState.AddModelError("", "Usuário inválido");
                 }
             }
             return View(details);
