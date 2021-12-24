@@ -7,13 +7,13 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Eart.Areas.Postagens.Models;
+using Eart.Areas.Membros.Models;
 using Eart.Persistencia.DAL;
 
 namespace Eart.Areas.Postagens.Controllers
 {
     public class PostagensController : Controller
     {
-        MembroDAL membroDAL = new MembroDAL();
         PostagemDAL postagemDAL = new PostagemDAL();
 
         private ActionResult ObterVisaoPostagemPorId(long? id)
@@ -89,7 +89,11 @@ namespace Eart.Areas.Postagens.Controllers
         public ActionResult Create(long id)
         {
             Postagem postagem = new Postagem();
-            postagem.MembroId = id;
+            Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
+            if(membroLogin != null)
+            {
+                postagem.MembroId = membroLogin.MembroId;
+            }
             return View(postagem);
         }
 

@@ -68,9 +68,11 @@ namespace Eart.Areas.Membros.Models
     public class LoginViewModel
     {
         [DisplayName("Usuário")]
+        [Required(ErrorMessage = "Por favor, informe seu usuário")]
         public string Usuario { get; set; }
 
         [DisplayName("Senha")]
+        [Required(ErrorMessage = "Por favor, informe sua senha")]
         [DataType(DataType.Password)]
         public string Senha { get; set; }
     }
