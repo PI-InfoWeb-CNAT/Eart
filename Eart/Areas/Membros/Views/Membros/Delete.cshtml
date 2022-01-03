@@ -73,20 +73,20 @@
             </div>
 
         </div>
-        <div class="panel-footer panel-info">
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
-                <input type="submit" value="Remover" class="btn btn-danger" />
-                @Html.ActionLink("Cancelar", "Details", "Membros", new { area = "Membros", id = Model.MembroId }, new { @class = "btn btn-warning" })
-            }
-        </div>
         @*<div class="panel-footer panel-info">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="Remover" class="btn btn-danger" />
+                    @Html.ActionLink("Cancelar", "Details", "Membros", new { area = "Membros", id = Model.MembroId }, new { @class = "btn btn-warning" })
+                }
+            </div>*@
+        <div class="panel-footer panel-info">
             <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#deleteConfirmationModal">Remover Usuário</a>
             @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-warning" })
-        </div>*@
+        </div>
     </div>
-    @*<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -122,6 +122,10 @@
                 </div>
             </div>
         </div>
-    </div>*@
+    </div>
+    <script src="@Url.Content("~/scripts/jquery-1.9.1.js")"></script>
+    <script src="@Url.Content("~/scripts/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
 </body>
 </html>

@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using Eart.Areas.Membros.Models;
+using Eart.Areas.Comportamentos.Models;
 
 namespace Eart.Areas.Postagens.Models
 {
@@ -14,7 +15,7 @@ namespace Eart.Areas.Postagens.Models
         public long? PostagemId { get; set; }
 
         [DisplayName("Legenda")]
-        [StringLength(35, ErrorMessage = "Seu nome precisa ter no máximo {1} caracteres")]
+        [StringLength(100, ErrorMessage = "Sua legenda precisa ter no máximo {1} caracteres")]
         public string Texto { get; set; }
 
         [DisplayName("Data da postagem")]
@@ -32,6 +33,8 @@ namespace Eart.Areas.Postagens.Models
         public long? MembroId { get; set; }
 
         public Membro Membro { get; set; }
+
+        public virtual ICollection<Comentario> Comentarios { get; set; }
     }
 }
 

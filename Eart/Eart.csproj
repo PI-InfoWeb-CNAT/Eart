@@ -154,6 +154,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Comportamentos\ComportamentosAreaRegistration.cs" />
+    <Compile Include="Areas\Comportamentos\Controllers\ComentariosController.cs" />
+    <Compile Include="Areas\Comportamentos\Models\Comentario.cs" />
     <Compile Include="Areas\Membros\Controllers\AccountController.cs" />
     <Compile Include="Areas\Membros\Controllers\MembrosController.cs" />
     <Compile Include="Areas\Membros\MembrosAreaRegistration.cs" />
@@ -166,6 +169,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Persistencia\Contexts\EFContext.cs" />
+    <Compile Include="Persistencia\DAL\ComentarioDAL.cs" />
     <Compile Include="Persistencia\DAL\MembroDAL.cs" />
     <Compile Include="Persistencia\DAL\PostagemDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -199,6 +203,12 @@
     <Content Include="Areas\Postagens\Views\Postagens\Edit.cshtml" />
     <Content Include="Areas\Postagens\Views\Postagens\Details.cshtml" />
     <Content Include="Areas\Postagens\Views\Postagens\Delete.cshtml" />
+    <Content Include="Areas\Comportamentos\Views\web.config" />
+    <Content Include="Areas\Comportamentos\Views\Comentarios\Index.cshtml" />
+    <Content Include="Areas\Comportamentos\Views\Comentarios\Create.cshtml" />
+    <Content Include="Areas\Comportamentos\Views\Comentarios\Edit.cshtml" />
+    <Content Include="Areas\Comportamentos\Views\Comentarios\Details.cshtml" />
+    <Content Include="Areas\Comportamentos\Views\Comentarios\Delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -223,6 +233,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Comportamentos\Data\" />
+    <Folder Include="Areas\Comportamentos\Views\Shared\" />
     <Folder Include="Areas\Membros\Data\" />
     <Folder Include="Areas\Membros\Views\Shared\" />
     <Folder Include="Areas\Postagens\Data\" />

@@ -90,7 +90,7 @@ namespace Eart.Areas.Postagens.Controllers
         {
             Postagem postagem = new Postagem();
             Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
-            if(membroLogin != null)
+            if (membroLogin.MembroId != null)
             {
                 postagem.MembroId = membroLogin.MembroId;
             }

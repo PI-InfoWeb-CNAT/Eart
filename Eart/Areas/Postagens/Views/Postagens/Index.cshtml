@@ -32,76 +32,81 @@
     }
     <div class="panel panel-primary">
         <div class="panel-body">
-            @*@Html.ActionLink("Criar Postagem", "Create", "Postagens", new { Area = "Postagens", id = ViewBag.MembroId }, new { @class = "cancelar" })*@
+            @*Html.ActionLink("Criar Postagem", "Create", "Postagens", new { Area = "Postagens", id = membroLogin.MembroId }, new { @class = "cancelar" })*@
+            
             @foreach (var item in Model)
             {
-                <div class="postagem">
-                    <div class="conf">
-                        <details>
-                            <summary> Configurações </summary>
-                            <ol>
-                                <li> @Html.ActionLink("Ver publicação", "Details", "Postagens", new { area = "Postagens", id = item.PostagemId }, null) </li>
-                                <li> @Html.ActionLink("Editar publicação", "Edit", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
-                                <li> @Html.ActionLink("Excluir publicação", "Delete", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
-                            </ol>
-                        </details>
+            <div class="postagem">
+                <div class="conf">
+                    <details>
+                        <summary> Configurações </summary>
+                        <ol>
+                            <li> @Html.ActionLink("Ver publicação", "Details", "Postagens", new { area = "Postagens", id = item.PostagemId }, null) </li>
+                            <li> @Html.ActionLink("Editar publicação", "Edit", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
+                            <li> @Html.ActionLink("Excluir publicação", "Delete", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
+                        </ol>
+                    </details>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-user"></i>
+                        </span>
+
+                        @*@if (item.Membro.FotoPerfil is null)
+                {
+                    <img class="img-thumbnail" src="~/Imagens/avatar.png" style="display:block;margin-left:auto; margin-right:auto; width:100px; height:100px; border-radius:75px" />
+                }
+                else
+                {
+                    <img class="img-thumbnail" src="@Url.Action("GetFotoPerfil", "Membros", new { id = item.MembroId })" style="display: block; margin-left: auto; margin-right: auto; width: 300px; height: 200px;" />
+                }*@
+                        @Html.EditorFor(modelItem => item.Membro.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        @Html.ActionLink(" - Ver perfil", "Details", "Membros", new { Area = "Membros", id = item.MembroId }, null);
                     </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-user"></i>
+                        </span>
+                        @Html.EditorFor(modelItem => item.Data, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                    </div>
+                </div>
+
+                @if (item.Texto != null)
+                {
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon">
                                 <i class="glyphicon glyphicon-user"></i>
                             </span>
-
-                            @*@if (item.Membro.FotoPerfil is null)
-                        {
-                            <img class="img-thumbnail" src="~/Imagens/avatar.png" style="display:block;margin-left:auto; margin-right:auto; width:100px; height:100px; border-radius:75px" />
-                        }
-                        else
-                        {
-                            <img class="img-thumbnail" src="@Url.Action("GetFotoPerfil", "Membros", new { id = item.MembroId })" style="display: block; margin-left: auto; margin-right: auto; width: 300px; height: 200px;" />
-                        }*@
-                            @Html.EditorFor(modelItem => item.Membro.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                            @Html.ActionLink(" - Ver perfil", "Details", "Membros", new { Area = "Membros", id = item.MembroId }, null);
+                            @Html.EditorFor(modelItem => item.Texto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="glyphicon glyphicon-user"></i>
-                            </span>
-                            @Html.EditorFor(modelItem => item.Data, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                }
+
+                @if (item.Foto != null)
+                {
+                    <div class="foto">
+                        <div class="panel-body">
+                            <a>
+                                @Html.ActionLink("Baixar o arquivo: " + item.FotoNome, "DownloadFoto", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)
+                                <img class="img-thumbnail" src="@Url.Action("GetFoto", "Postagens", new { id = item.PostagemId })" style="display: block; margin-left: auto; margin-right: auto; width: 300px; height: 200px;" />
+                            </a>
                         </div>
+
+                    </div>
+                }
+                <br />
+                @Html.ActionLink("Comentários", "Index", "Comentarios", new { area = "Comportamentos", id = item.PostagemId }, new { @class = "cancelar" })
+                @Html.ActionLink("Criar Comentário", "Create", "Comentarios", new { Area = "Comportamentos", id = item.PostagemId }, new { @class = "cancelar" })
                     </div>
 
-                    @if (item.Texto != null)
-                    {
-                        <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <i class="glyphicon glyphicon-user"></i>
-                                </span>
-                                @Html.EditorFor(modelItem => item.Texto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                            </div>
-                        </div>
-                    }
-
-                    @if (item.Foto != null)
-                    {
-                        <div class="fotoPerfil">
-                            <div class="panel-body">
-                                <a>
-                                    @Html.ActionLink("Baixar o arquivo: " + item.FotoNome, "DownloadFoto", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)
-                                    <img class="img-thumbnail" src="@Url.Action("GetFoto", "Postagens", new { id = item.PostagemId })" style="display: block; margin-left: auto; margin-right: auto; width: 300px; height: 200px;" />
-                                </a>
-                            </div>
-
-                        </div>
+                        <br />
+                        <br />
                     }
                 </div>
-                <br />
-                <br />
-            }
-        </div>
-    </div>
-</body>
-</html>
+            </div>
+        </body>
+        </html>

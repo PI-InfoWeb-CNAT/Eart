@@ -69,35 +69,3 @@ namespace Eart.Areas.Membros.Controllers
         }
     }
 }
-
-/*if (membro != null)
-            {
-                if (details.Usuario != membro.Usuario && details.Usuario != null)
-                {
-                    ModelState.AddModelError("Usuario", "Usuário inválido");
-                }
-                if (details.Senha != membro.Senha && details.Senha != null)
-                {
-                    ModelState.AddModelError("Senha", "Senha inválida");
-                }
-                else
-                {
-                    HttpContext.Session["membroLogin"] = membro;
-                    return RedirectToAction("Index", "Postagens", new { area = "Postagens" });
-                }
-            }
-            else
-            {
-                if (details.Usuario == null)
-                {
-                    ModelState.AddModelError("Usuario", "Por favor, insira seu usuário");
-                }
-                else
-                {
-                    ModelState.AddModelError("Usuario", "Usuário inválido");
-                }
-            }
-            if (details.Senha == null)
-            {
-                ModelState.AddModelError("Senha", "Por favor, insira sua senha");
-            }*/

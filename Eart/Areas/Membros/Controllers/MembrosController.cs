@@ -137,7 +137,6 @@ namespace Eart.Areas.Membros.Controllers
             if(ModelState.IsValid)
             {
                 GravarMembro(membro, fotoPerfil, fotoCapa, chkRemoverFotoPerfil, chkRemoverFotoCapa);
-                ViewBag.MembroId = membro.MembroId;
                 return RedirectToAction("Edit", new { area = "Membros", id = membro.MembroId });
             }
             else
@@ -151,7 +150,6 @@ namespace Eart.Areas.Membros.Controllers
         {
             return ObterVisaoMembroPorId(id);
         }
-
 
         //POST: Edit
         [HttpPost]
