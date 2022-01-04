@@ -1,5 +1,8 @@
 ﻿@model Eart.Areas.Comportamentos.Models.Comentario
 
+@{
+    long Id  = (long) Model.PostagemId;
+}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -63,7 +66,7 @@
                 {
                     @Html.AntiForgeryToken()
                     <input type="submit" value="Remover" class="btn btn-danger" />
-                    @Html.ActionLink("Cancelar", "Index", "Comentarios", new { Area = "Comportamentos", id = Model.PostagemId }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Cancelar", "Index", "Comentarios", new { Area = "Comportamentos", id = Id }, new { @class = "btn btn-warning" })
                 }
             </div>
         </div>

@@ -1,5 +1,12 @@
 ﻿@model IEnumerable<Eart.Areas.Comportamentos.Models.Comentario>
 
+@{ 
+    long Id = 0;
+    foreach (var i in Model)
+        {
+            Id = (long)i.PostagemId;
+        }
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,56 +39,61 @@
     }
     <div class="panel panel-primary">
         <div class="panel-body">
-            @*@Html.ActionLink("Criar Postagem", "Create", "Postagens", new { Area = "Postagens", id = ViewBag.MembroId }, new { @class = "cancelar" })*@
-            @*Html.ActionLink("Criar Comentário", "Create", "Comentarios", new { Area = "Comportamentos", id = Model.PostagemId }, new { @class = "cancelar" })*@
-            @*<p> @PageId  </p>*@
+            <br /><br />
+            @Html.ActionLink("Criar Comentário", "Create", "Comentarios", new { Area = "Comportamentos", id = Id }, new { @class = "cancelar" })
+            @Html.ActionLink("Voltar", "Index", "Postagens", new { area = "Postagens" }, null)
+            <br /><br />
             @foreach (var item in Model)
             {
-                //if (PageId == item.PostagemId)
-                //{
-                <div class="comentario">
-                    <div class="conf">
-                        <details>
-                            <summary> Configurações </summary>
-                            <ol>
-                                <li> @Html.ActionLink("Ver comentário", "Details", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null) </li>
-                                <li> @Html.ActionLink("Editar comentário", "Edit", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
-                                <li> @Html.ActionLink("Excluir comentário", "Delete", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
-                            </ol>
-                        </details>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="glyphicon glyphicon-user"></i>
-                            </span>
-                            @Html.EditorFor(modelItem => item.Membro.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                            @Html.ActionLink(" - Ver perfil", "Details", "Membros", new { Area = "Membros", id = item.MembroId }, null);
+                if (item.Membro is null)
+                {
+                    <p> Esta publicação não possui comentários. Seja o primeiro a comentar!</p>
+                }
+                else
+                {
+                    <div class="comentario">
+                        <div class="conf">
+                            <details>
+                                <summary> Configurações </summary>
+                                <ol>
+                                    <li> @Html.ActionLink("Ver comentário", "Details", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null) </li>
+                                    <li> @Html.ActionLink("Editar comentário", "Edit", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
+                                    <li> @Html.ActionLink("Excluir comentário", "Delete", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
+                                </ol>
+                            </details>
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="glyphicon glyphicon-user"></i>
-                            </span>
-                            @Html.EditorFor(modelItem => item.Data, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                </span>
+                                @Html.EditorFor(modelItem => item.Membro.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                                @Html.ActionLink(" - Ver perfil", "Details", "Membros", new { Area = "Membros", id = item.MembroId }, null);
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="glyphicon glyphicon-user"></i>
-                            </span>
-                            @Html.EditorFor(modelItem => item.Texto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                </span>
+                                @Html.EditorFor(modelItem => item.Data, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                            </div>
                         </div>
-                    </div>
 
-                </div>
-                //}
-                <br />
-                <br />
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                </span>
+                                @Html.EditorFor(modelItem => item.Texto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                            </div>
+                        </div>
+
+                    </div>
+                    <br />
+                    <br />
+                }
             }
         </div>
     </div>

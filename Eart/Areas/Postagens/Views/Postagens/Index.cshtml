@@ -32,8 +32,9 @@
     }
     <div class="panel panel-primary">
         <div class="panel-body">
-            @*Html.ActionLink("Criar Postagem", "Create", "Postagens", new { Area = "Postagens", id = membroLogin.MembroId }, new { @class = "cancelar" })*@
-            
+            <br /><br />
+            @Html.ActionLink("Criar Postagem", "Create", "Postagens", new { Area = "Postagens" }, new { @class = "cancelar" })
+            <br /><br />
             @foreach (var item in Model)
             {
             <div class="postagem">
@@ -100,7 +101,7 @@
                 }
                 <br />
                 @Html.ActionLink("Comentários", "Index", "Comentarios", new { area = "Comportamentos", id = item.PostagemId }, new { @class = "cancelar" })
-                @Html.ActionLink("Criar Comentário", "Create", "Comentarios", new { Area = "Comportamentos", id = item.PostagemId }, new { @class = "cancelar" })
+                
                     </div>
 
                         <br />

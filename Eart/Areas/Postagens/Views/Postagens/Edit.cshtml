@@ -25,6 +25,8 @@
                     @Html.HiddenFor(model => model.MembroId, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.HiddenFor(model => model.FotoType)
                     @Html.HiddenFor(model => model.Foto)
+                    @Html.HiddenFor(model => model.FotoNome)
+                    @Html.HiddenFor(model => model.FotoTamanho)
                     <div class="form-group">
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "input", placeholder = "Adicionar legenda..." } })

@@ -80,20 +80,12 @@ namespace Eart.Areas.Membros.Controllers
             return File(fileStream.Name, membro.FotoCapaType, membro.FotoCapaNome);
         }
 
-        private ActionResult GravarMembro(Membro membro, HttpPostedFileBase fotoPerfil = null, HttpPostedFileBase fotoCapa = null, string chkRemoverFotoPerfil = null, string chkRemoverFotoCapa = null)
+        private ActionResult GravarMembro(Membro membro, HttpPostedFileBase fotoPerfil = null, HttpPostedFileBase fotoCapa = null)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    if (chkRemoverFotoPerfil != null)
-                    {
-                        membro.FotoPerfil = null;
-                    }
-                    if (chkRemoverFotoCapa != null)
-                    {
-                        membro.FotoCapa = null;
-                    }
                     if (fotoPerfil != null)
                     {
                         membro.FotoPerfilType = fotoPerfil.ContentType;
@@ -132,16 +124,17 @@ namespace Eart.Areas.Membros.Controllers
         //POST: Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Membro membro, HttpPostedFileBase fotoPerfil = null, HttpPostedFileBase fotoCapa = null, string chkRemoverFotoPerfil = null, string chkRemoverFotoCapa = null)
+        public ActionResult Create(Membro membro, HttpPostedFileBase fotoPerfil = null, HttpPostedFileBase fotoCapa = null)
         {
             if(ModelState.IsValid)
             {
-                GravarMembro(membro, fotoPerfil, fotoCapa, chkRemoverFotoPerfil, chkRemoverFotoCapa);
+                GravarMembro(membro, fotoPerfil, fotoCapa);
+                HttpContext.Session["membroLogin"] = membro;
                 return RedirectToAction("Edit", new { area = "Membros", id = membro.MembroId });
             }
             else
             {
-                return GravarMembro(membro, fotoPerfil, fotoCapa, chkRemoverFotoPerfil, chkRemoverFotoCapa);
+                return GravarMembro(membro, fotoPerfil, fotoCapa);
             }
         }
 
@@ -154,10 +147,10 @@ namespace Eart.Areas.Membros.Controllers
         //POST: Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Membro membro, HttpPostedFileBase fotoPerfil = null, HttpPostedFileBase fotoCapa = null, string chkRemoverFotoPerfil = null, string chkRemoverFotoCapa = null)
+        public ActionResult Edit(Membro membro, HttpPostedFileBase fotoPerfil = null, HttpPostedFileBase fotoCapa = null)
         {
-            GravarMembro(membro, fotoPerfil, fotoCapa, chkRemoverFotoPerfil, chkRemoverFotoCapa);
-            return RedirectToAction("Index", "Postagens", new { Area = "Postagens", id = membro.MembroId });
+            GravarMembro(membro, fotoPerfil, fotoCapa);
+            return RedirectToAction("Details", "Membros", new { Area = "Membros", id = membro.MembroId });
         }
 
         public ActionResult Details(long? id)
@@ -177,9 +170,16 @@ namespace Eart.Areas.Membros.Controllers
         {
             try
             {
-                Membro membro = membroDAL.EliminarMembroPorId(id);
-                TempData["Message"] = "Membro " + membro.Nome.ToUpper() + " foi removido";
-                return RedirectToAction("Create", "Membros", new { Area = "Membros"});
+                if (ModelState.IsValid)
+                {
+                    Membro membro = membroDAL.EliminarMembroPorId(id);
+                    //TempData["Message"] = "Membro " + membro.Nome.ToUpper() + " foi removido";
+                    return RedirectToAction("Create", "Membros", new { Area = "Membros" });
+                }
+                else
+                {
+                    return RedirectToAction("../Usuario_não_encontrado");
+                }
             }
             catch
             {

@@ -39,7 +39,7 @@ namespace Eart.Areas.Comportamentos.Controllers
                 {
                     comentario.Data = DateTime.Now;
                     comentarioDAL.GravarComentario(comentario);
-                    return RedirectToAction("Index", "Postagens", new { area = "Postagens" });
+                    return RedirectToAction("Index", "Comentarios", new { area = "Comportamentos", id = comentario.PostagemId });
                 }
                 return View(comentario);
             }
@@ -49,9 +49,24 @@ namespace Eart.Areas.Comportamentos.Controllers
             }
         }
 
-        public ActionResult Index()
+        public ActionResult Index(long id)
         {
-            return View(comentarioDAL.ObterComentariosClassificadosPorId());
+            IQueryable<Comentario> comentarios = comentarioDAL.ObterComentariosClassificadosPorId();
+            List<Comentario> nova_lista = new List<Comentario>();
+            foreach (var item in comentarios)
+            {
+                if (item.PostagemId == id) {
+                    nova_lista.Add(item);
+                }
+            }
+            if (nova_lista.Count() == 0)
+            {
+                Comentario comentario = new Comentario();
+                comentario.PostagemId = id;
+                nova_lista.Add(comentario);
+            }
+            
+            return View(nova_lista);
         }
 
         public ActionResult Create(long id)
@@ -59,7 +74,7 @@ namespace Eart.Areas.Comportamentos.Controllers
             Comentario comentario = new Comentario();
             comentario.PostagemId = id;
             Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
-            if (membroLogin.MembroId != null)
+            if (membroLogin != null)
             {
                 comentario.MembroId = membroLogin.MembroId;
             }
@@ -105,9 +120,18 @@ namespace Eart.Areas.Comportamentos.Controllers
         {
             try
             {
-                Comentario comentario = comentarioDAL.EliminarComentarioPorId(id);
-                TempData["Message"] = "Comentário excluído com sucesso";
-                return RedirectToAction("Index", "Postagens", new { area = "Postagens" });
+                if (ModelState.IsValid)
+                {
+                    Comentario comentario_id = comentarioDAL.ObterComentarioPorId(id);
+                    long postagemId = (long) comentario_id.PostagemId;
+                    Comentario comentario = comentarioDAL.EliminarComentarioPorId(id);
+                    TempData["Message"] = "Comentário excluído com sucesso";
+                    return RedirectToAction("Index", "Comentarios", new { area = "Comportamentos", id = postagemId });
+                }
+                else
+                {
+                    return RedirectToAction("../Comentário_não_encontrado");
+                }
             }
             catch
             {

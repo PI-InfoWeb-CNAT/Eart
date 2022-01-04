@@ -86,13 +86,17 @@ namespace Eart.Areas.Postagens.Controllers
             return View(postagemDAL.ObterPostagensClassificadasPorId());
         }
 
-        public ActionResult Create(long id)
+        public ActionResult Create()
         {
             Postagem postagem = new Postagem();
             Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
-            if (membroLogin.MembroId != null)
+            if (membroLogin != null)
             {
                 postagem.MembroId = membroLogin.MembroId;
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account", new { area = "Membros" });
             }
             return View(postagem);
         }
@@ -132,9 +136,16 @@ namespace Eart.Areas.Postagens.Controllers
         {
             try
             {
-                Postagem postagem = postagemDAL.EliminarPostagemPorId(id);
-                TempData["Message"] = "Postagem excluída com sucesso";
-                return RedirectToAction("Index", "Postagens", new { area = "Postagens" });
+                if (ModelState.IsValid)
+                {
+                    Postagem postagem = postagemDAL.EliminarPostagemPorId(id);
+                    TempData["Message"] = "Postagem excluída com sucesso";
+                    return RedirectToAction("Index", "Postagens", new { area = "Postagens" });
+                }
+                else
+                {
+                    return RedirectToAction("../Postagem_não_encontrada");
+                }
             }
             catch
             {
