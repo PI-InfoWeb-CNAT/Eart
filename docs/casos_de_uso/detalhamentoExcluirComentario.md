@@ -20,6 +20,7 @@ Usuário
 **3 Pré-condições**
 
 1. Ter um cadastro.
+2. Ter um comentário publicado.
 
 **4 Pós-condições**
 
