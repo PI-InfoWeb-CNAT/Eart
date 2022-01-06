@@ -41,4 +41,4 @@ Usuário
 1. O usuário aperta no ícone de comentário;
 2. O sistema apresenta uma caixa de texto na parte inferior da tela;;
 3. O usuário tenta enviar uma caixa de texto vazia;
-4. O sistema permanece na tela de comentários.
+4. O sistema apresenta uma mensagem de aviso.
