@@ -42,4 +42,4 @@ Usuário
 1. O usuário seleciona os 3 pontinhos ao lado do comentário e aperta em "Editar comentário";
 2. O sistema apresenta o comentário em uma caixa de texto na parte inferior;
 3. O usuário tenta enviar um comentário vazio;
-4. O sistema permanece na edição.
+4. O sistema apresenta uma mensagem de aviso.
