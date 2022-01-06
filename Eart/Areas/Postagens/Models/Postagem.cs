@@ -29,12 +29,21 @@ namespace Eart.Areas.Postagens.Models
 
         public long FotoTamanho { get; set; }
 
+        public bool Curtida { get; set; }
+
+        public long Cont_Curtida { get; set; }
+
+        [DisplayName("Curtida")]
+        public long? CurtidaId { get; set; }
+
         [DisplayName("Membro")]
         public long? MembroId { get; set; }
 
         public Membro Membro { get; set; }
 
         public virtual ICollection<Comentario> Comentarios { get; set; }
+
+        public virtual ICollection<Curtida> Curtidas { get; set; }
     }
 }
 

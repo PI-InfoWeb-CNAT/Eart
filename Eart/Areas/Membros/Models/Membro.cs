@@ -65,6 +65,7 @@ namespace Eart.Areas.Membros.Models
         public virtual ICollection<Postagem> Postagens { get; set; }
 
         public virtual ICollection<Comentario> Comentarios { get; set; }
+        public virtual ICollection<Curtida> Curtidas { get; set; }
     }
 
     public class LoginViewModel

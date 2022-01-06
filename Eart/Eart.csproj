@@ -156,7 +156,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Comportamentos\ComportamentosAreaRegistration.cs" />
     <Compile Include="Areas\Comportamentos\Controllers\ComentariosController.cs" />
+    <Compile Include="Areas\Comportamentos\Controllers\CurtidasController.cs" />
     <Compile Include="Areas\Comportamentos\Models\Comentario.cs" />
+    <Compile Include="Areas\Comportamentos\Models\Curtida.cs" />
     <Compile Include="Areas\Membros\Controllers\AccountController.cs" />
     <Compile Include="Areas\Membros\Controllers\MembrosController.cs" />
     <Compile Include="Areas\Membros\MembrosAreaRegistration.cs" />
@@ -170,6 +172,7 @@
     </Compile>
     <Compile Include="Persistencia\Contexts\EFContext.cs" />
     <Compile Include="Persistencia\DAL\ComentarioDAL.cs" />
+    <Compile Include="Persistencia\DAL\CurtidaDAL.cs" />
     <Compile Include="Persistencia\DAL\MembroDAL.cs" />
     <Compile Include="Persistencia\DAL\PostagemDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -234,6 +237,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Comportamentos\Data\" />
+    <Folder Include="Areas\Comportamentos\Views\Curtidas\" />
     <Folder Include="Areas\Comportamentos\Views\Shared\" />
     <Folder Include="Areas\Membros\Data\" />
     <Folder Include="Areas\Membros\Views\Shared\" />

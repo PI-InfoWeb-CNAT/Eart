@@ -20,7 +20,7 @@ namespace Eart.Persistencia.DAL
 
         public Comentario ObterComentarioPorId(long id)
         {
-            return context.Comentarios.Where(c => c.ComentarioId == id).First();
+            return context.Comentarios.Where(c => c.ComentarioId == id).Include(m => m.Membro).First();
         }
 
         public void GravarComentario(Comentario comentario)

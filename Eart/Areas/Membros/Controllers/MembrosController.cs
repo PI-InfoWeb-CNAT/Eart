@@ -155,6 +155,8 @@ namespace Eart.Areas.Membros.Controllers
 
         public ActionResult Details(long? id)
         {
+            Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
+            ViewBag.MembroLogado = membroLogin.MembroId;
             return ObterVisaoMembroPorId(id);
         }
 

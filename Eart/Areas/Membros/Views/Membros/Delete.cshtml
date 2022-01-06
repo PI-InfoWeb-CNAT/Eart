@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
         @*<link rel="stylesheet" href="~/Css/editarPerfil.css">*@
-        @*<link rel="stylesheet" href="~/Css/styles.css">*@
+        <link rel="stylesheet" href="~/Css/styles.css">
         <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
         <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
     </head>
@@ -54,14 +54,8 @@
                     <div class="bio">
                         <span style="font-size: 14px; width: 20px;">@Model.Biografia</span>
                     </div>
-                    <br />
-                    @Html.ActionLink("Editar perfil", "Edit", "Membros", new { area = "Membros", id = Model.MembroId }, new { @class = "editar-perfil" })
-                    <br />
-                    <br />
-                    @Html.ActionLink("Criar Postagem", "Create", "Postagens", new { area = "Postagens" }, new { @class = "editar-perfil" })
-                    <br />
                 </div>
-
+                <br /><br />
                 <div class="form-group">
                     @Html.LabelFor(model => model.Nome)<br />
                     <div class="input-group">
@@ -94,8 +88,8 @@
                 <br /><br />
             </div>
             <div class="panel-footer panel-info">
-                <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#deleteConfirmationModal">Remover Usuário</a>
-                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-warning" })
+                <a href="#" class="editar-perfil" data-toggle="modal" data-target="#deleteConfirmationModal">Remover Usuário</a>
+                @Html.ActionLink("Cancelar", "Details", new { area = "Membros", id = Model.MembroId }, new { @class = "cancelar" })
             </div>
         </div>
         <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-hidden="true">

@@ -83,6 +83,8 @@ namespace Eart.Areas.Postagens.Controllers
 
         public ActionResult Index()
         {
+            Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
+            ViewBag.MembroLogado = membroLogin.MembroId;
             return View(postagemDAL.ObterPostagensClassificadasPorId());
         }
 
