@@ -19,7 +19,8 @@ Usuário
 
 **3 Pré-condições**
 
-1. Ter um cadastro.
+1. Ter um cadastro;
+2. Ter uma postagem publicada.
 
 **4 Pós-condições**
 
