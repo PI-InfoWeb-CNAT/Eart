@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Eart.Areas.Comportamentos.Models.Comentario>
+
+@{ 
+    long Id = 0;
+    foreach (var i in Model)
+        {
+            Id = (long)i.PostagemId;
+        }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Comentários </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
+    <link rel="stylesheet" href="~/Css/styles.css">
+    <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
+    <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
+    <style>
+        .comentario {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: dashed 1px solid;
+            background-color: #1E2333;
+            padding: 20px;
+            border-radius: 25px;
+        }
+    </style>
+</head>
+<body>
+    @if (@TempData["Message"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["Message"]
+        </div>
+        <br /><br /><br />
+    }
+    <div class="panel panel-primary">
+        <div class="panel-body">
+            <br /><br />
+            @Html.ActionLink("Criar Comentário", "Create", "Comentarios", new { Area = "Comportamentos", id = Id }, new { @class = "cancelar" })
+            @Html.ActionLink("Voltar", "Index", "Postagens", new { area = "Postagens" }, null)
+            <br /><br />
+            @foreach (var item in Model)
+            {
+                if (item.Membro is null)
+                {
+                    <p> Esta publicação não possui comentários. Seja o primeiro a comentar!</p>
+                }
+                else
+                {
+                    <div class="comentario">
+                        <div class="conf">
+                            <details>
+                                <summary> Configurações </summary>
+                                <ol>
+                                    <li> @Html.ActionLink("Ver comentário", "Details", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null) </li>
+                                    <li> @Html.ActionLink("Editar comentário", "Edit", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
+                                    <li> @Html.ActionLink("Excluir comentário", "Delete", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
+                                </ol>
+                            </details>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                </span>
+                                @Html.EditorFor(modelItem => item.Membro.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                                @Html.ActionLink(" - Ver perfil", "Details", "Membros", new { Area = "Membros", id = item.MembroId }, null);
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                </span>
+                                @Html.EditorFor(modelItem => item.Data, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                </span>
+                                @Html.EditorFor(modelItem => item.Texto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                            </div>
+                        </div>
+
+                    </div>
+                    <br />
+                    <br />
+                }
+            }
+        </div>
+    </div>
+</body>
+</html>

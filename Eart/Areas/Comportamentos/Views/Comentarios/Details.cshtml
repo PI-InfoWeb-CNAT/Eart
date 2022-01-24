@@ -1,0 +1,67 @@
+﻿@model Eart.Areas.Comportamentos.Models.Comentario
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title> Ver comentário </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
+    <link rel="stylesheet" href="~/Css/styles.css">
+    <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
+    <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
+    <style>
+        .comentario {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: dashed 1px solid;
+            background-color: #1E2333;
+            padding: 20px;
+            border-radius: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="logo">
+                <img alt="Logo" src="~/Imagens/logo.png" heigth="50" width="50" />
+                <h1 class="logo"> Eart </h1>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="comentario">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-user"></i>
+                        </span>
+                        @Html.EditorFor(model => model.Membro.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-user"></i>
+                        </span>
+                        @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-user"></i>
+                        </span>
+                        @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                    </div>
+                </div>
+
+            </div>
+            @Html.ActionLink("Voltar", "Index", "Comentarios", new { area = "Comportamentos", id = Model.PostagemId }, null)
+        </div>
+    </div>
+</body>
+</html>
+
