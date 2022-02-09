@@ -2,6 +2,8 @@
 
 @{ 
     var membrologado = ViewBag.MembroLogado;
+    var membrologadoid = ViewBag.MembroLogadoId;
+
 }
 <!DOCTYPE html>
 <html>
@@ -36,7 +38,7 @@
     <div class="panel panel-primary">
         <div class="panel-body">
             <br /><br />
-            @Html.ActionLink("Perfil", "Details", "Membros", new { area = "Membros", id = membrologado }, new { @class = "editar-perfil" })
+            @Html.ActionLink("Perfil", "Details", "Membros", new { area = "Membros", id = membrologadoid }, new { @class = "editar-perfil" })
             <br /><br />
             @Html.ActionLink("Criar Postagem", "Create", "Postagens", new { Area = "Postagens" }, new { @class = "cancelar" })
             <br /><br />
@@ -60,16 +62,27 @@
                                 <i class="glyphicon glyphicon-user"></i>
                             </span>
 
-                            @*@if (item.Membro.FotoPerfil is null)
-                        {
-                            <img class="img-thumbnail" src="~/Imagens/avatar.png" style="display:block;margin-left:auto; margin-right:auto; width:100px; height:100px; border-radius:75px" />
-                        }
-                        else
-                        {
-                            <img class="img-thumbnail" src="@Url.Action("GetFotoPerfil", "Membros", new { id = item.MembroId })" style="display: block; margin-left: auto; margin-right: auto; width: 300px; height: 200px;" />
-                        }*@
+                            @if (item.Membro.FotoPerfil is null)
+                            {
+                                <img class="img-thumbnail" src="~/Imagens/avatar.png" style="display:block;margin-left:auto; margin-right:auto; width:100px; height:100px; border-radius:75px" />
+                            }
+                            else
+                            {
+                                <img class="img-thumbnail" src="@Url.Action("GetFotoPerfil", "Membros", new { area = "Membros", id = item.MembroId })" style="display: block; margin-left: auto; margin-right: auto; width: 100px; height: 100px; border-radius: 75px" />
+                            }
                             @Html.EditorFor(modelItem => item.Membro.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
                             @Html.ActionLink(" - Ver perfil", "Details", "Membros", new { Area = "Membros", id = item.MembroId }, null);
+                            @if (item.MembroId != membrologadoid)
+                            {
+                                
+                                if (item.Membro.Seguindo.Contains(membrologado))
+                                {
+                                    @Html.ActionLink("Deixar de seguir", "Unfollow", "Membros", new { area = "Membros", id = item.MembroId }, null);
+                                }
+                                else { 
+                                    @Html.ActionLink("Seguir", "Follow", "Membros", new { area = "Membros", id = item.MembroId }, null);
+                                }
+                            }
                         </div>
                     </div>
                     <div class="form-group">

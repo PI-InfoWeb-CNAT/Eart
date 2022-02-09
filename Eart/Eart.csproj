@@ -212,6 +212,7 @@
     <Content Include="Areas\Comportamentos\Views\Comentarios\Edit.cshtml" />
     <Content Include="Areas\Comportamentos\Views\Comentarios\Details.cshtml" />
     <Content Include="Areas\Comportamentos\Views\Comentarios\Delete.cshtml" />
+    <Content Include="Areas\Membros\Views\Membros\_PartialPostagens.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -237,6 +238,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Comportamentos\Data\" />
+    <Folder Include="Areas\Comportamentos\Views\Compartilharmento\" />
     <Folder Include="Areas\Comportamentos\Views\Curtidas\" />
     <Folder Include="Areas\Comportamentos\Views\Shared\" />
     <Folder Include="Areas\Membros\Data\" />

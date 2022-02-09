@@ -43,6 +43,5 @@ namespace Eart.Persistencia.DAL
             context.SaveChanges();
             return postagem;
         }
-
     }
 }
