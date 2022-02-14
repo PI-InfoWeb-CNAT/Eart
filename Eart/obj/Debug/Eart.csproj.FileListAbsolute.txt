@@ -104,7 +104,6 @@ C:\Users\Mariana\Projeto-Integrador\Eart\Eart\bin\Microsoft.Owin.Host.SystemWeb.
 C:\Users\Mariana\Projeto-Integrador\Eart\Eart\bin\Microsoft.Owin.Security.xml
 C:\Users\Mariana\Projeto-Integrador\Eart\Eart\bin\Microsoft.Owin.Security.Cookies.xml
 C:\Users\Mariana\Projeto-Integrador\Eart\Eart\bin\Microsoft.Owin.Security.OAuth.xml
-C:\Users\Mariana\Projeto-Integrador\Eart\Eart\obj\Debug\Eart.csproj.AssemblyReference.cache
 C:\Users\Mariana\Projeto_Integrador_2\Eart\Eart\bin\Eart.dll.config
 C:\Users\Mariana\Projeto_Integrador_2\Eart\Eart\bin\Eart.dll
 C:\Users\Mariana\Projeto_Integrador_2\Eart\Eart\bin\Eart.pdb
@@ -319,3 +318,4 @@ C:\Users\vivij\Downloads\aider\Eart\Eart\obj\Debug\Eart.csproj.CopyComplete
 C:\Users\vivij\Downloads\aider\Eart\Eart\obj\Debug\Eart.dll
 C:\Users\vivij\Downloads\aider\Eart\Eart\obj\Debug\Eart.pdb
 C:\Users\Mariana\Projeto_Integrador_2\Eart\Eart\obj\Debug\Eart.csproj.AssemblyReference.cache
+C:\Users\Mariana\Projeto-Integrador\Eart\Eart\obj\Debug\Eart.csproj.AssemblyReference.cache

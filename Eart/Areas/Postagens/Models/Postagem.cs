@@ -33,9 +33,6 @@ namespace Eart.Areas.Postagens.Models
 
         public long Cont_Curtida { get; set; }
 
-        [DisplayName("Curtida")]
-        public long? CurtidaId { get; set; }
-
         [DisplayName("Membro")]
         public long? MembroId { get; set; }
 

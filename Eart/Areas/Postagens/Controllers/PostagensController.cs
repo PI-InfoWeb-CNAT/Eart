@@ -15,6 +15,7 @@ namespace Eart.Areas.Postagens.Controllers
     public class PostagensController : Controller
     {
         PostagemDAL postagemDAL = new PostagemDAL();
+        CurtidaDAL curtidaDAL = new CurtidaDAL();
 
         private ActionResult ObterVisaoPostagemPorId(long? id)
         {
@@ -86,10 +87,14 @@ namespace Eart.Areas.Postagens.Controllers
             Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
             if (membroLogin != null)
             {
-                ViewBag.MembroLogadoId = membroLogin.MembroId;
-                ViewBag.MembroLogado = membroLogin;
+                ViewBag.MembroLogado = membroLogin.MembroId;
             }
-            return View(postagemDAL.ObterPostagensClassificadasPorId());
+            IQueryable<Postagem> postagens = postagemDAL.ObterPostagensClassificadasPorData();
+            foreach (var p in postagens) { 
+                p.Curtida = curtidaDAL.ObterPostagensCurtidasPorMembro((long) p.PostagemId, (long) membroLogin.MembroId);
+                GravarPostagem(p);
+            }
+            return View(postagens);
         }
 
         public ActionResult Create()

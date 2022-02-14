@@ -85,19 +85,24 @@ namespace Eart.Areas.Comportamentos.Controllers
             curtida.PostagemId = id;
             GravarCurtida(curtida);
             postagem.Cont_Curtida += 1;
-            postagem.Curtida = true;
-            postagem.CurtidaId = curtida.CurtidaId;
             GravarPostagem(postagem);
             return RedirectToAction("Index", "Postagens", new { area = "Postagens"});
         }
         public ActionResult Descurtir(long id)
         {
             Postagem postagem = postagemDAL.ObterPostagemPorId(id);
-            curtidaDAL.EliminarCurtidaPorId((long) postagem.CurtidaId);
-            postagem.Curtida = false;
-            postagem.Cont_Curtida -= 1;
-            GravarPostagem(postagem);
-            return RedirectToAction("Index", "Postagens", new { area = "Postagens" });
+            Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
+            if (membroLogin != null)
+            {
+                curtidaDAL.EliminarCurtidaPorId((long)postagem.PostagemId, (long)membroLogin.MembroId);
+                postagem.Cont_Curtida -= 1;
+                GravarPostagem(postagem);
+                return RedirectToAction("Index", "Postagens", new { area = "Postagens" });
+            }
+            else 
+            {
+                return RedirectToAction("Login", "Account", new { area = "Membros" });
+            }
         }
     }
 }

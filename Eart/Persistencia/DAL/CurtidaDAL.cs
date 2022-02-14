@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Eart.Persistencia.Contexts;
 using System.Data.Entity;
 using Eart.Areas.Comportamentos.Models;
+using Eart.Areas.Membros.Models;
+using Eart.Areas.Postagens.Models;
 
 namespace Eart.Persistencia.DAL
 {
@@ -13,9 +15,9 @@ namespace Eart.Persistencia.DAL
     {
         private EFContext context = new EFContext();
 
-        public IQueryable<Curtida> ObterCurtidasClassificadasPorId()
+        public Curtida ObterCurtidasClassificadasPorId()
         {
-            return context.Curtidas.Include(m => m.Membro).OrderBy(p => p.PostagemId);
+            return context.Curtidas.Include(m => m.Membro).OrderBy(p => p.PostagemId).First();
         }
         public void GravarCurtida(Curtida curtida)
         {
@@ -34,10 +36,23 @@ namespace Eart.Persistencia.DAL
         {
             return context.Curtidas.Where(c => c.CurtidaId == id).First();
         }
-
-        public Curtida EliminarCurtidaPorId(long id)
+        public bool ObterPostagensCurtidasPorMembro(long idPostagem, long idMembro)
         {
-            Curtida curtida = ObterCurtidaPorId(id);
+            IQueryable<Curtida> curtidas = context.Curtidas.Where(p => p.PostagemId == idPostagem).Where(m => m.MembroId == idMembro);
+            if (curtidas.Count() != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        public Curtida EliminarCurtidaPorId(long postagemid, long membroid)
+        {
+            Curtida curtida = context.Curtidas.Where(m => m.MembroId == membroid).Where(p => p.PostagemId == postagemid).First();
             context.Curtidas.Remove(curtida);
             context.SaveChanges();
             return curtida;

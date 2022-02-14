@@ -138,10 +138,6 @@ a {
     color: var(--cor3);
 }
 
-hr {
-    color: var(--cor5);
-}
-
 .details_body {
     align-items: start;
     color: white !important;
@@ -190,173 +186,96 @@ hr {
     top: 20%;
 }
 
-@media (min-width: 320px) and (max-width: 767px) {
-    body {
-        background-color: var(--cor2);
-    }
+.bodyPostagens {
+    width: 100%;
 }
 
-@media (min-width: 320px) and (max-width: 370px) {
-    .input {
-        width: 310px;
-        margin-left: 25px;
-    }
+.postagem {
+    justify-content: left;
+    padding: 10px 0 10px 0 !important;
 }
 
-
-
-
-/*:root {
-    --cor1: #252E4F;
-    --cor2: #1E2333;
-    --cor3: #7E92BA;
-    --cor4: #F0818E;
-    --cor5: #ffffff;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-}
-
-form {
-    width: 360px;
-}
-
-body {
-    background-color: var(--cor1);
-    color: var(--cor5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-.box {
-    background-color: var(--cor2);
-    border-radius: 25px;
-    width: 600px;
-    height: 500px;
-    display: flex;
-    margin-top: 40%;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-.logo {
-    width: 400px;
-    color: var(--cor4);
-    font-size: 50px;
-}
-
-#logo_img {
+.usuario {
+    width: 350px;
     float: left;
-    width: 80px;
-    margin-left: 75px;
-    margin-top: 25px;
+    margin-left: 10px;
 }
 
-#logo_nome {
-    font-size: 50px;
+.nomeUsuario {
+    color: white;
+    font-weight: bold;
+}
+
+.imgPerfPostag {
+    float: left;
+    margin-right: 10px;
+}
+
+.configPost {
     float: right;
-    margin-top: 10px;
-    margin-right: 140px;
-    margin-top: 35px;
 }
 
-.input {
-    background-color: var(--cor1);
-    color: var(--cor3);
-    flex-direction: column;
-    border: none;
-    border-radius: 25px;
-    height: 40px;
+.imgPost {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     width: 360px;
-    margin-top: 15px;
-    padding-left: 20px;
+    max-height: 310px;
 }
 
-::-webkit-input-placeholder {
-    color: var(--cor3);
+.legendaPostagem {
+    margin-left: 2px;
 }
 
-.button {
+.dadosPostagem {
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
-button, .salvar {
-    background-color: var(--cor4);
-    color: var(--cor5);
-    border: none;
-    border-radius: 25px;
-    height: 45px;
-    width: 195px;
-    margin-top: 20px;
-    cursor: pointer;
-}
-/* ----------
-input[type=file] .image_input {
-    background-color: var(--cor4);
-    color: var(--cor5);
-    border: none;
-    border-radius: 25px;
-    height: 45px;
-    width: 195px;
-    margin-top: 20px;
-    cursor: pointer;
-}
-.cancelar {
-    background-color: var(--cor3);
-    color: var(--cor2);
-    border: none;
-    border-radius: 25px;
-    height: 45px;
-    width: 195px;
-    margin-top: 20px;
-    cursor: pointer;
-}
-.form-group {
-    display: inline-block;
-}
-/*------
-
-.login {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
+.dataPostagem {
+    font-size: 12px;
+    color: #8A8484;
 }
 
-a {
-    color: var(--cor4);
-}
-
-.error {
-    color: var(--cor4);
-    margin-top: 20px;
-}
-
-.label {
-    color: var(--cor3);
-}
-
-hr {
-    color: var(--cor5);
-}
 
 @media (min-width: 320px) and (max-width: 767px) {
     body {
         background-color: var(--cor2);
     }
 
-    .box {
-        margin-top: 15%;
+    hr {
+        height: 1px;
+        border: 1px solid var(--cor1);
+    }
+
+    .bodyPostagens {
+        display: block;
+        width: 100%;
+    }
+
+    .imgPost, .midiaPost {
+        width: 100%;
+        max-height: 1350px;
+    }
+
+    .usuario {
+        margin-left: 0;
+        width: 100%;
+        float: left;
+        padding: 0 15px 0 15px;
+    }
+
+    #criarPubl {
+        text-align: center !important;
+        padding-top: 10px;
+    }
+
+    #botao-criar {
+        padding: 7px 20px 7px 20px;
+        font-size: 26px;
+        background-color: #F0818E;
+        color: white;
+        border-radius: 36px;
     }
 }
 
@@ -366,4 +285,3 @@ hr {
         margin-left: 25px;
     }
 }
-*/
