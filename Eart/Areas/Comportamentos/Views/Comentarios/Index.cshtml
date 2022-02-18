@@ -1,11 +1,9 @@
 ﻿@model IEnumerable<Eart.Areas.Comportamentos.Models.Comentario>
 
 @{ 
-    long Id = 0;
-    foreach (var i in Model)
-        {
-            Id = (long)i.PostagemId;
-        }
+    var idPostagem = ViewBag.IdPostagem;
+    var urlanterior = ViewBag.UrlAnterior;
+    var idIndex = ViewBag.IdIndex;
 }
 <!DOCTYPE html>
 <html>
@@ -14,6 +12,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
     <link rel="stylesheet" href="~/Css/styles.css">
+    <link rel="stylesheet" href="~/Css/modal.css">
     <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
     <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
     <style>
@@ -30,24 +29,104 @@
     </style>
 </head>
 <body>
+    <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-hidden="true" style="color:black">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        Mensagem de confirmação
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    @TempData["Message"]
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                        Ok
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
     @if (@TempData["Message"] != null)
     {
-        <div class="alert alert-success" role="alert">
-            @TempData["Message"]
-        </div>
-        <br /><br /><br />
+        <script src="@Url.Content("~/scripts/jquery-3.4.1.js")"></script>
+        <script>
+            $(document).ready(function () {
+                $('#Modal').modal('show');
+            });
+        </script>
     }
     <div class="panel panel-primary">
         <div class="panel-body">
             <br /><br />
-            @Html.ActionLink("Criar Comentário", "Create", "Comentarios", new { Area = "Comportamentos", id = Id }, new { @class = "cancelar" })
-            @Html.ActionLink("Voltar", "Index", "Postagens", new { area = "Postagens" }, null)
-            <br /><br />
-            @foreach (var item in Model)
+            @if (idIndex == 1)
             {
-                if (item.Membro is null)
+                @Html.ActionLink("Criar Comentário", "Create1", "Comentarios", new { Area = "Comportamentos", id = idPostagem }, new { @class = "cancelar" })
+            }
+            @if (idIndex == 2)
+            {
+                @Html.ActionLink("Criar Comentário", "Create2", "Comentarios", new { Area = "Comportamentos", id = idPostagem }, new { @class = "cancelar" })
+            }
+            <br /><br />
+            <a href="@Url.Content(@urlanterior)"> Voltar </a>
+            <br /><br />
+            @if (Model.Count() == 0)
+            {
+                <p> Está postagem não possui comentários. Seja o primeiro a comentar! </p>
+            }
+            else { 
+                foreach (var item in Model)
                 {
-                    <p> Esta publicação não possui comentários. Seja o primeiro a comentar!</p>
+                if (item.MembroId == null && item.Texto != null)
+                {
+                    <div class="comentario">
+                        <div class="conf">
+                            <details>
+                                <summary> Configurações </summary>
+                                <ol>
+                                    <li> @Html.ActionLink("Ver comentário", "Details", "Comentarios", new { area = "Comportamentos", idComentario = item.ComentarioId, idIndex = idIndex  }, null) </li>
+                                    @*@if (idIndex == 1)
+                                    {
+                                        <li> @Html.ActionLink("Editar comentário", "Edit1", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
+                                        <li> @Html.ActionLink("Excluir comentário", "Delete1", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
+                                    }
+                                    @if (idIndex == 2)
+                                    {
+                                        <li> @Html.ActionLink("Editar comentário", "Edit2", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
+                                        <li> @Html.ActionLink("Excluir comentário", "Delete2", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
+                                    }*@
+                                </ol>
+                            </details>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                </span>
+                                <span class="form-control"> invalid-user </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                </span>
+                                @Html.EditorFor(modelItem => item.Data, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                </span>
+                                @Html.EditorFor(modelItem => item.Texto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                            </div>
+                        </div>
+
+                    </div>
                 }
                 else
                 {
@@ -56,9 +135,17 @@
                             <details>
                                 <summary> Configurações </summary>
                                 <ol>
-                                    <li> @Html.ActionLink("Ver comentário", "Details", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null) </li>
-                                    <li> @Html.ActionLink("Editar comentário", "Edit", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
-                                    <li> @Html.ActionLink("Excluir comentário", "Delete", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
+                                    <li> @Html.ActionLink("Ver comentário", "Details", "Comentarios", new { area = "Comportamentos", idComentario = item.ComentarioId, idIndex = idIndex }, null) </li>
+                                    @if (idIndex == 1)
+                                    {
+                                        <li> @Html.ActionLink("Editar comentário", "Edit1", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
+                                        <li> @Html.ActionLink("Excluir comentário", "Delete1", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
+                                    }
+                                    @if (idIndex == 2)
+                                    {
+                                        <li> @Html.ActionLink("Editar comentário", "Edit2", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
+                                        <li> @Html.ActionLink("Excluir comentário", "Delete2", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
+                                    }
                                 </ol>
                             </details>
                         </div>
@@ -95,7 +182,11 @@
                     <br />
                 }
             }
+            }
         </div>
     </div>
+    <script src="@Url.Content("~/scripts/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
 </body>
 </html>

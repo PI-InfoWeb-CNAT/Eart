@@ -22,7 +22,7 @@ namespace Eart.Persistencia.DAL
         {
             return context.Postagens.Include(m => m.Membro).OrderByDescending(p => p.Data);
         }
-        
+    
         public Postagem ObterPostagemPorId(long id)
         {
             return context.Postagens.Where(p => p.PostagemId == id).Include(m => m.Membro).First();

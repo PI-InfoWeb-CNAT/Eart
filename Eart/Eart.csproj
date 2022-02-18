@@ -184,6 +184,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Css\editarPerfil.css" />
+    <Content Include="Css\modal.css" />
     <Content Include="Css\styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -208,11 +209,16 @@
     <Content Include="Areas\Postagens\Views\Postagens\Delete.cshtml" />
     <Content Include="Areas\Comportamentos\Views\web.config" />
     <Content Include="Areas\Comportamentos\Views\Comentarios\Index.cshtml" />
-    <Content Include="Areas\Comportamentos\Views\Comentarios\Create.cshtml" />
-    <Content Include="Areas\Comportamentos\Views\Comentarios\Edit.cshtml" />
+    <Content Include="Areas\Comportamentos\Views\Comentarios\Edit1.cshtml" />
     <Content Include="Areas\Comportamentos\Views\Comentarios\Details.cshtml" />
-    <Content Include="Areas\Comportamentos\Views\Comentarios\Delete.cshtml" />
     <Content Include="Areas\Membros\Views\Membros\_PartialPostagens.cshtml" />
+    <Content Include="Areas\Postagens\Views\Postagens\FeedMembrosSeguidos.cshtml" />
+    <Content Include="Areas\Postagens\Views\Postagens\FeedPorRelevancia.cshtml" />
+    <Content Include="Areas\Comportamentos\Views\Comentarios\Create1.cshtml" />
+    <Content Include="Areas\Comportamentos\Views\Comentarios\Delete1.cshtml" />
+    <Content Include="Areas\Comportamentos\Views\Comentarios\Create2.cshtml" />
+    <Content Include="Areas\Comportamentos\Views\Comentarios\Edit2.cshtml" />
+    <Content Include="Areas\Comportamentos\Views\Comentarios\Delete2.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

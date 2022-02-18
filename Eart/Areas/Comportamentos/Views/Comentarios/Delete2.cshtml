@@ -1,9 +1,13 @@
-﻿@model Eart.Areas.Postagens.Models.Postagem
+﻿@model Eart.Areas.Comportamentos.Models.Comentario
 
+@{
+    long Id = (long)Model.PostagemId;
+    var idIndex = ViewBag.IdIndex;
+}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <title> Deletar postagem </title>
+    <title> Deletar comentário </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
     <link rel="stylesheet" href="~/Css/styles.css">
@@ -11,7 +15,7 @@
     <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
     <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
     <style>
-        .postagem {
+        .comentario {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -25,6 +29,8 @@
 </head>
 <body>
     @Html.HiddenFor(model => model.PostagemId)
+    @Html.HiddenFor(model => model.MembroId)
+    @Html.HiddenFor(model => model.ComentarioId)
     <div class="panel panel-primary">
         <div class="panel-heading">
             <div class="logo">
@@ -33,7 +39,7 @@
             </div>
         </div>
         <div class="panel-body">
-            <div class="postagem">
+            <div class="comentario">
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon">
@@ -59,21 +65,11 @@
                         @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
                     </div>
                 </div>
-                <div class="fotoPerfil">
-                    @if (Model.Foto != null)
-                    {
-                        <div class="panel-body">
-                            <a>
-                                <img class="img-thumbnail" src="@Url.Action("GetFoto", "Postagens", new { id = Model.PostagemId })" style="display: block; margin-left: auto; margin-right: auto; width: 300px; height: 200px;" />
-                            </a>
-                        </div>
-                    }
-                </div>
             </div>
         </div>
         <div class="panel-footer panel-info">
-            <a href="#" class="editar-perfil" data-toggle="modal" data-target="#deleteConfirmationModal"> Deletar postagem </a>
-            @Html.ActionLink("Cancelar", "FeedMembrosSeguidos", "Postagens", new { Area = "Postagens" }, new { @class = "btn btn-warning" })
+            <a href="#" class="editar-perfil" data-toggle="modal" data-target="#deleteConfirmationModal">Deletar Comentário</a>
+            @Html.ActionLink("Cancelar", "Index", "Comentarios", new { Area = "Comportamentos", id = Id, idIndex = idIndex }, new { @class = "btn btn-warning" })
         </div>
     </div>
     <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-hidden="true" style="color:black">
@@ -81,30 +77,32 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">
-                        Confirmação de exclusão da POSTAGEM
+                        Confirmação de exclusão do COMENTÁRIO
                     </h4>
                 </div>
                 <div class="modal-body">
                     <p>
-                        Você está prestes a deletar essa postagem.
+                        Você está prestes a deletar esse comentário.
                     </p>
                     <p>
                         <strong>
                             Você está certo que deseja prosseguir?
                         </strong>
                     </p>
-                    @using (Html.BeginForm("Delete", "Postagens", FormMethod.Post, new { @id = "delete-form", role = "form" }))
+                    @using (Html.BeginForm("Delete2", "Comentarios", FormMethod.Post, new { @id = "delete-form", role = "form" }))
                     {
                         @Html.HiddenFor(model => model.PostagemId)
+                        @Html.HiddenFor(model => model.MembroId)
+                        @Html.HiddenFor(model => model.ComentarioId)
                         @Html.AntiForgeryToken()
                     }
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" onclick="$('#delete-form').submit();">
-                        Sim, exclua esta postagem.
+                        Sim, exclua este comentário.
                     </button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal">
-                        Não, não exclua esta postagem.
+                        Não, não exclua este comentário.
                     </button>
                 </div>
             </div>

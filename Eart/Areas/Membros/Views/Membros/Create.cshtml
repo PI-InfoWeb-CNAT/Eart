@@ -7,10 +7,40 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
     <link rel="stylesheet" href="~/Css/styles.css">
+    <link rel="stylesheet" href="~/Css/modal.css">
     <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
     <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
 </head>
 <body>
+    <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-hidden="true" style="color:black">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        Mensagem de confirmação
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    @TempData["Message"]
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                        Ok
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (@TempData["Message"] != null)
+    {
+        <script src="@Url.Content("~/scripts/jquery-3.4.1.js")"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('#Modal').modal('show');
+            });
+        </script>
+    }
     <div class="container">
         <div class="box">
             @using (Html.BeginForm())
@@ -57,7 +87,7 @@
                         <button> Cadastre-se </button>
                     </div>
                     <div class="login">
-                        <p> Já tem uma conta? @Html.ActionLink("Faça Login!", "Login", "Account", new { area = "Membros"}, null)</p>
+                        <p> Já tem uma conta? @Html.ActionLink("Faça Login!", "Login", "Account", new { area = "Membros" }, null)</p>
                     </div>
                 </div>
                 <br />
@@ -65,5 +95,8 @@
             }
         </div>
     </div>
+    <script src="@Url.Content("~/scripts/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
 </body>
 </html> 

@@ -29,9 +29,13 @@ namespace Eart.Areas.Postagens.Models
 
         public long FotoTamanho { get; set; }
 
+        public long Cont_Comentarios { get; set; }
+
         public bool Curtida { get; set; }
 
-        public long Cont_Curtida { get; set; }
+        public long Cont_Curtidas { get; set; }
+
+        public long Relevancia { get; set; }
 
         [DisplayName("Membro")]
         public long? MembroId { get; set; }

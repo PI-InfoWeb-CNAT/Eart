@@ -75,9 +75,11 @@
                     <a>
                         <img class="imgPost" src="@Url.Action("GetFoto", "Postagens", new { id = item.PostagemId })"/>
                     </a>
-                </div>}
+                </div>
+                }
                     <br />
                     @Html.ActionLink("Comentários", "Index", "Comentarios", new { area = "Comportamentos", id = item.PostagemId }, new { @class = "cancelar" })
+                    @item.Cont_Comentarios
                     @if (item.Curtida != true)
                     {
                         @Html.ActionLink("Curtir", "Curtir", "Curtidas", new { area = "Comportamentos", id = item.PostagemId }, new { @class = "cancelar" }) 
@@ -86,12 +88,12 @@
                         {
                             @Html.ActionLink("Descurtir", "Descurtir", "Curtidas", new { area = "Comportamentos", id = item.PostagemId }, new { @class = "editar-perfil" })
                     }
-                    @item.Cont_Curtida
-                            <br />
-                            </div>
-                            <br />
-                            <br />            
-                        }
+                    @item.Cont_Curtidas
+                    <br />
+                    </div>
+                    <br />
+                    <br />            
+                }
         </div>
     </div>
 </body>

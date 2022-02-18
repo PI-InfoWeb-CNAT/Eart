@@ -1,9 +1,13 @@
-﻿@model Eart.Areas.Postagens.Models.Postagem
+﻿@model Eart.Areas.Comportamentos.Models.Comentario
+
+@{
+    var idIndex = ViewBag.IdIndex;
+}
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <title> Criar postagem </title>
+    <title> Criar comentário </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
     <link rel="stylesheet" href="~/Css/styles.css">
@@ -13,7 +17,7 @@
 <body>
     <div class="container">
         <div class="box">
-            @using (Html.BeginForm("Create", "Postagens", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
                 <div class="logo">
@@ -21,29 +25,21 @@
                     <h1 id="logo_nome">Eart</h1>
                 </div>
                 <div class="form-horizontal">
-                    @Html.HiddenFor(model => model.FotoType)
-                    @Html.HiddenFor(model => model.Foto)
+                    @Html.HiddenFor(model => model.PostagemId)
                     @Html.HiddenFor(model => model.MembroId)
 
                     <div class="form-group">
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "input", placeholder = "Adicionar legenda..." } })
+                            @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "input", placeholder = "Adicionar comentário..." } })
                             @Html.ValidationMessageFor(model => model.Texto, "", new { @class = "error" })
-                        </div>
-                    </div>
-                    <div class="foto">
-                        <div class="form-group">
-                            <div class="col-md-10 button">
-                                @Html.TextBox("foto", "", new { type = "file" }) <br />
-                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-offset-2 col-md-10">
                     <div class="button">
-                        <button> Publicar </button>
+                        <button> Adicionar comentário </button>
                     </div>
-                    @Html.ActionLink("Cancelar", "FeedMembrosSeguidos", "Postagens", new { Area = "Postagens" }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Cancelar", "Index", "Comentarios", new { area = "Comportamentos", id = Model.PostagemId, idIndex = idIndex }, new { @class = "btn btn-warning" })
                 </div>
                 <br />
                 <br />

@@ -1,5 +1,9 @@
 ﻿@model Eart.Areas.Comportamentos.Models.Comentario
 
+@{
+    var idIndex = ViewBag.IdIndex;
+}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -59,7 +63,15 @@
                 </div>
 
             </div>
-            @Html.ActionLink("Voltar", "Index", "Comentarios", new { area = "Comportamentos", id = Model.PostagemId }, null)
+            @if (idIndex == 1)
+            {
+                @Html.ActionLink("Voltar", "Index", "Comentarios", new { area = "Comportamentos", idPostagem = Model.PostagemId, idIndex = 1 }, null)
+            }
+            @if (idIndex == 2)
+            {
+                @Html.ActionLink("Voltar", "Index", "Comentarios", new { area = "Comportamentos", idPostagem = Model.PostagemId, idIndex = 2 }, null)
+            }
+
         </div>
     </div>
 </body>

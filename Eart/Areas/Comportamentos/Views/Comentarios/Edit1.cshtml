@@ -1,9 +1,13 @@
 ﻿@model Eart.Areas.Comportamentos.Models.Comentario
 
+@{
+    var idIndex = ViewBag.IdIndex;
+}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <title> Criar comentário </title>
+    <title> Editar comentário </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
     <link rel="stylesheet" href="~/Css/styles.css">
@@ -21,9 +25,9 @@
                     <h1 id="logo_nome">Eart</h1>
                 </div>
                 <div class="form-horizontal">
-                    @Html.HiddenFor(model => model.PostagemId)
-                    @Html.HiddenFor(model => model.MembroId)
-
+                    @Html.HiddenFor(model => model.PostagemId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.HiddenFor(model => model.MembroId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.HiddenFor(model => model.ComentarioId, new { htmlAttributes = new { @class = "form-control" } })
                     <div class="form-group">
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "input", placeholder = "Adicionar comentário..." } })
@@ -32,10 +36,10 @@
                     </div>
                 </div>
                 <div class="col-md-offset-2 col-md-10">
+                    @Html.ActionLink("Cancelar", "Index", "Comentarios", new { area = "Comportamentos", id = Model.PostagemId, idIndex = idIndex }, new { @class = "cancelar" })
                     <div class="button">
-                        <button> Adicionar comentário </button>
+                        <button> Salvar alterações </button>
                     </div>
-                    @Html.ActionLink("Cancelar", "Index", "Comentarios", new { area = "Comportamentos", id = Model.PostagemId }, new { @class = "btn btn-warning" })
                 </div>
                 <br />
                 <br />
@@ -44,3 +48,4 @@
     </div>
 </body>
 </html>
+

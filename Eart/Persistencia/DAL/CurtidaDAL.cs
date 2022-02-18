@@ -49,7 +49,6 @@ namespace Eart.Persistencia.DAL
             }
         }
 
-
         public Curtida EliminarCurtidaPorId(long postagemid, long membroid)
         {
             Curtida curtida = context.Curtidas.Where(m => m.MembroId == membroid).Where(p => p.PostagemId == postagemid).First();

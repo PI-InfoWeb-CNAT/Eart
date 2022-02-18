@@ -1,5 +1,9 @@
 ﻿@model Eart.Areas.Comportamentos.Models.Comentario
 
+@{
+    var idIndex = ViewBag.IdIndex;
+}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -32,7 +36,7 @@
                     </div>
                 </div>
                 <div class="col-md-offset-2 col-md-10">
-                    @Html.ActionLink("Cancelar", "Index", "Comentarios", new { area = "Comportamentos", id = Model.PostagemId }, new { @class = "cancelar" })
+                    @Html.ActionLink("Cancelar", "Index", "Comentarios", new { area = "Comportamentos", id = Model.PostagemId, idIndex = idIndex }, new { @class = "cancelar" })
                     <div class="button">
                         <button> Salvar alterações </button>
                     </div>

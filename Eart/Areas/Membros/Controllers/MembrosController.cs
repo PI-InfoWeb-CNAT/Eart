@@ -170,7 +170,7 @@ namespace Eart.Areas.Membros.Controllers
             {
                 GravarMembro(membro, fotoPerfil, fotoCapa);
                 HttpContext.Session["membroLogin"] = membro;
-                return RedirectToAction("Edit", new { area = "Membros", id = membro.MembroId });
+                return RedirectToAction("Details", "Membros", new { Area = "Membros", id = membro.MembroId });
             }
             else
             {
@@ -189,8 +189,15 @@ namespace Eart.Areas.Membros.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Membro membro, HttpPostedFileBase fotoPerfil = null, HttpPostedFileBase fotoCapa = null)
         {
-            GravarMembro(membro, fotoPerfil, fotoCapa);
-            return RedirectToAction("Details", "Membros", new { Area = "Membros", id = membro.MembroId });
+            if (ModelState.IsValid)
+            {
+                GravarMembro(membro, fotoPerfil, fotoCapa);
+                return RedirectToAction("Details", "Membros", new { Area = "Membros", id = membro.MembroId });
+            }
+            else
+            {
+                return GravarMembro(membro, fotoPerfil, fotoCapa);
+            }
         }
 
         public ActionResult Details(long? id)
@@ -208,20 +215,13 @@ namespace Eart.Areas.Membros.Controllers
         // POST: Produtos/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(long id, FormCollection collection)
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    Membro membro = membroDAL.EliminarMembroPorId(id);
-                    //TempData["Message"] = "Membro " + membro.Nome.ToUpper() + " foi removido";
-                    return RedirectToAction("Create", "Membros", new { Area = "Membros" });
-                }
-                else
-                {
-                    return RedirectToAction("../Usuario_não_encontrado");
-                }
+                Membro membro = membroDAL.EliminarMembroPorId(id);
+                TempData["Message"] = "Membro " + membro.Nome.ToUpper() + " foi removido";
+                return RedirectToAction("Create", "Membros", new { Area = "Membros" });
             }
             catch
             {

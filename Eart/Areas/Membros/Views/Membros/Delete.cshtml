@@ -7,13 +7,16 @@
         <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
         @*<link rel="stylesheet" href="~/Css/editarPerfil.css">*@
         <link rel="stylesheet" href="~/Css/styles.css">
-        <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
+        <link rel="stylesheet" href="~/Css/modal.css">
+        <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
         <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
     </head>
     <body class="details_body">
+        @Html.HiddenFor(model => model.MembroId)
         @{ string arroba = "@";
             var capa_img = "";
-            if(Model != null) {
+            if (Model != null)
+            {
                 var id = new { id = Model.MembroId };
                 if (Model.FotoCapa == null)
                 {
@@ -24,7 +27,7 @@
                     capa_img = @Url.Action("GetFotoCapa", "Membros", id);
                 }
             }
-             }
+        }
 
         <div class="panel panel-primary">
             <div class="panel-heading" style="background: url(@capa_img) !important; background-size: cover !important;">
@@ -92,13 +95,10 @@
                 @Html.ActionLink("Cancelar", "Details", new { area = "Membros", id = Model.MembroId }, new { @class = "cancelar" })
             </div>
         </div>
-        <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-hidden="true" style="color:black">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            &times;
-                        </button>
                         <h4 class="modal-title">
                             Confirmação de exclusão de USUÁRIO
                         </h4>
@@ -112,9 +112,9 @@
                                 Você está certo que deseja prosseguir?
                             </strong>
                         </p>
-                        @using (Html.BeginForm("Delete", "Membros", FormMethod.Post, new { @id = "delete-form", role = "form" }))
+                        @using (Html.BeginForm("Delete", "Membros", FormMethod.Post, new { enctype = "multipart/form-data", @id = "delete-form", role = "form" }))
                         {
-                            @Html.HiddenFor(m => m.MembroId)
+                            @Html.HiddenFor(model => model.MembroId)
                             @Html.AntiForgeryToken()
                         }
                     </div>

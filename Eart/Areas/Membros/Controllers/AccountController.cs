@@ -44,7 +44,7 @@ namespace Eart.Areas.Membros.Controllers
                     if (details.Usuario == membro.Usuario && details.Senha == membro.Senha)
                     {
                         HttpContext.Session["membroLogin"] = membro;
-                        return RedirectToAction("Index", "Postagens", new { area = "Postagens" });
+                        return RedirectToAction("FeedMembrosSeguidos", "Postagens", new { area = "Postagens" });
                     }
                     else
                     {
