@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Eart.Areas.Postagens.Models;
 using Eart.Areas.Membros.Models;
+using Eart.Areas.Comportamentos.Models;
 using Eart.Persistencia.DAL;
 
 namespace Eart.Areas.Postagens.Controllers
@@ -15,6 +16,7 @@ namespace Eart.Areas.Postagens.Controllers
     public class PostagensController : Controller
     {
         PostagemDAL postagemDAL = new PostagemDAL();
+        ComentarioDAL comentarioDAL = new ComentarioDAL();
         CurtidaDAL curtidaDAL = new CurtidaDAL();
 
         private ActionResult ObterVisaoPostagemPorId(long? id)
@@ -168,8 +170,18 @@ namespace Eart.Areas.Postagens.Controllers
         {
             try
             {
-                 Postagem postagem = postagemDAL.EliminarPostagemPorId(id);
-                 TempData["Message"] = "Postagem excluída com sucesso";
+                IQueryable<Comentario> comentarios = comentarioDAL.ObterComentariosClassificadosPorPostagem(id);
+                foreach (var comentario in comentarios)
+                {
+                    comentarioDAL.EliminarComentario(comentario);
+                }
+                IQueryable<Curtida> curtidas = curtidaDAL.ObterCurtidasClassificadasPorPostagem(id);
+                foreach (var curtida in curtidas)
+                {
+                    curtidaDAL.EliminarCurtida(curtida);
+                }
+                Postagem postagem = postagemDAL.EliminarPostagemPorId(id);
+                TempData["Message"] = "Postagem excluída com sucesso";
                  return RedirectToAction("FeedMembrosSeguidos", "Postagens", new { area = "Postagens" });
             }
             catch

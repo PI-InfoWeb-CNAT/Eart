@@ -36,6 +36,17 @@ namespace Eart.Persistencia.DAL
         {
             return context.Curtidas.Where(c => c.CurtidaId == id).First();
         }
+
+        public IQueryable<Curtida> ObterCurtidasClassificadasPorMembro(long id)
+        {
+            return context.Curtidas.Where(m => m.MembroId == id);
+        }
+
+        public IQueryable<Curtida> ObterCurtidasClassificadasPorPostagem(long id)
+        {
+            return context.Curtidas.Where(p => p.PostagemId == id);
+        }
+
         public bool ObterPostagensCurtidasPorMembro(long idPostagem, long idMembro)
         {
             IQueryable<Curtida> curtidas = context.Curtidas.Where(p => p.PostagemId == idPostagem).Where(m => m.MembroId == idMembro);
@@ -56,5 +67,12 @@ namespace Eart.Persistencia.DAL
             context.SaveChanges();
             return curtida;
         }
+
+        public void EliminarCurtida(Curtida curtida)
+        {
+            context.Curtidas.Remove(curtida);
+            context.SaveChanges();
+        }
+
     }
 }

@@ -22,6 +22,16 @@ namespace Eart.Persistencia.DAL
             return context.Comentarios.Include(m => m.Membro).Include(p => p.Postagem).OrderByDescending(p => p.Data);
         }
 
+        public IQueryable<Comentario> ObterComentariosClassificadosPorMembro(long id)
+        {
+            return context.Comentarios.Where(m => m.MembroId == id);
+        }
+
+        public IQueryable<Comentario> ObterComentariosClassificadosPorPostagem(long id)
+        {
+            return context.Comentarios.Where(m => m.PostagemId == id);
+        }
+
         public Comentario ObterComentarioPorId(long id)
         {
             return context.Comentarios.Where(c => c.ComentarioId == id).Include(m => m.Membro).First();
@@ -46,6 +56,12 @@ namespace Eart.Persistencia.DAL
             context.Comentarios.Remove(comentario);
             context.SaveChanges();
             return comentario;
+        }
+
+        public void EliminarComentario(Comentario comentario)
+        {
+            context.Comentarios.Remove(comentario);
+            context.SaveChanges();
         }
 
     }

@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Eart.Areas.Membros.Models;
+using Eart.Areas.Comportamentos.Models;
+using Eart.Areas.Postagens.Models;
 using Eart.Persistencia.DAL;
 
 namespace Eart.Areas.Membros.Controllers
@@ -14,6 +16,10 @@ namespace Eart.Areas.Membros.Controllers
     public class MembrosController : Controller
     {
         MembroDAL membroDAL = new MembroDAL();
+        PostagemDAL postagemDAL = new PostagemDAL();
+        ComentarioDAL comentarioDAL = new ComentarioDAL();
+        CurtidaDAL curtidaDAL = new CurtidaDAL();
+
         private ActionResult ObterVisaoMembroPorId(long? id)
         {
             if (id == null)
@@ -219,6 +225,21 @@ namespace Eart.Areas.Membros.Controllers
         {
             try
             {
+                IQueryable<Comentario> comentarios = comentarioDAL.ObterComentariosClassificadosPorMembro(id);
+                foreach (var comentario in comentarios)
+                {
+                    comentarioDAL.EliminarComentario(comentario);
+                }
+                IQueryable<Curtida> curtidas = curtidaDAL.ObterCurtidasClassificadasPorMembro(id);
+                foreach (var curtida in curtidas)
+                {
+                    curtidaDAL.EliminarCurtida(curtida);
+                }
+                IQueryable<Postagem> postagens = postagemDAL.ObterPostagensClassificadasPorMembro(id);
+                foreach (var postagem in postagens)
+                {
+                    postagemDAL.EliminarPostagem(postagem);
+                }
                 Membro membro = membroDAL.EliminarMembroPorId(id);
                 TempData["Message"] = "Membro " + membro.Nome.ToUpper() + " foi removido";
                 return RedirectToAction("Create", "Membros", new { Area = "Membros" });

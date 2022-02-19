@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<Eart.Areas.Postagens.Models.Postagem>
 
-@{ 
-    var membrologado = ViewBag.MembroLogado; 
- }
+@{
+    var membrologado = ViewBag.MembroLogado;
+}
 
 <!DOCTYPE html>
 <html>
@@ -11,11 +11,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
     <link rel="stylesheet" href="~/Css/styles.css">
-    <link rel="stylesheet" href="~/Css/modal.css">
+    <link rel="stylesheet" href="~/Css/modal.css" defer>
     <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
     <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
 </head>
 <body class="bodyPostagens">
+    <script src="@Url.Content("~/scripts/jquery-3.4.1.js")"></script>
     <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-hidden="true" style="color:black">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -55,145 +56,90 @@
             <br />
             @foreach (var item in Model)
             {
-                if (item.MembroId == null)
-                {
-                    <div class="postagem">
-                        <hr />
-                        <br />
-                        <div>
-                            <div class="usuario">
-                                <span class="input-group-addon">
-                                    <i class="glyphicon glyphicon-user"></i>
-                                </span>
+                <div class="postagem">
+                    <hr />
+                    <br />
+                    <div>
+                        <div class="usuario">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </span>
+                            @if (item.Membro.FotoPerfil == null)
+                            {
                                 <div class="imgPerfPostag">
                                     <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
-                                </div> 
-                                <details class="configPost">
-                                    <summary> Configurações </summary>
-                                    <ol>
-                                        <li> @Html.ActionLink("Ver publicação", "Details", "Postagens", new { area = "Postagens", id = item.PostagemId }, null) </li>
-                                        @*@if (item.MembroId == membrologado)
-                                        {
-                                            <li> @Html.ActionLink("Editar publicação", "Edit", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
-                                            <li> @Html.ActionLink("Excluir publicação", "Delete", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
-                                        }*@
-                                        @if (item.Foto != null)
-                                        {
-                                            <li> @Html.ActionLink("Fazer download do arquivo", "DownloadFoto", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
-                                        }
-                                    </ol>
-                                </details>
-                                <div class="dadosPostagem">
-                                    <span class="nomeUsuario"> invalid-user </span>
-                                    <span class="dataPostagem">@item.Data.ToShortDateString() às @item.Data.Hour:@item.Data.Minute</span>
+                                </div> }
+                            else
+                            {
+                                <div class="imgPerfPostag">
+                                    <a>
+                                        <img class="img-thumbnail" src="~/Membros/Membros/GetFotoPerfil/@item.Membro.MembroId" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                                    </a>
                                 </div>
-
-                                <div style="margin-bottom: 10px;">@item.Texto</div>
+                            }
+                            <details class="configPost">
+                                <summary> Configurações </summary>
+                                <ol>
+                                    <li> @Html.ActionLink("Ver publicação", "Details", "Postagens", new { area = "Postagens", id = item.PostagemId }, null) </li>
+                                    @if (item.MembroId == membrologado)
+                                    {
+                                        <li> @Html.ActionLink("Editar publicação", "Edit", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
+                                        <li> @Html.ActionLink("Excluir publicação", "Delete", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
+                                    }
+                                    @if (item.Foto != null)
+                                    {
+                                        <li> @Html.ActionLink("Fazer download do arquivo", "DownloadFoto", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
+                                    }
+                                </ol>
+                            </details>
+                            <div class="dadosPostagem">
+                                <span>@Html.ActionLink(item.Membro.Nome, "Details", "Membros", new { Area = "Membros", id = item.MembroId }, new { @class = "nomeUsuario" })</span>
+                                <span class="dataPostagem">@item.Data.ToShortDateString() às @item.Data.Hour:@item.Data.Minute</span>
                             </div>
+
+                            <div style="margin-bottom: 10px;">@item.Texto</div>
                         </div>
-
-                        @if (item.Foto != null)
-                        {
-                            <div class="midiaPost">
-                                <a>
-                                    <img class="imgPost" src="@Url.Action("GetFoto", "Postagens", new { id = item.PostagemId })" />
-                                </a>
-                            </div>
-                        }
-                        <br />
-                        @Html.ActionLink("Comentários", "Index", "Comentarios", new { area = "Comportamentos", idPostagem = item.PostagemId, idIndex = 1 }, new { @class = "cancelar" })
-                        @item.Cont_Comentarios
-                        @if (item.Curtida != true)
-                        {
-                            @Html.ActionLink("Curtir", "Curtir", "Curtidas", new { area = "Comportamentos", id = item.PostagemId }, new { @class = "cancelar" })
-                        }
-                        else
-                        {
-                            @Html.ActionLink("Descurtir", "Descurtir", "Curtidas", new { area = "Comportamentos", id = item.PostagemId }, new { @class = "editar-perfil" })
-                        }
-                        @item.Cont_Curtidas
-                        <br />
                     </div>
-                    <br />
-                    <br />
-                }
-                else
-                {
-                    <div class="postagem">
-                        <hr />
-                        <br />
-                        <div>
-                            <div class="usuario">
-                                <span class="input-group-addon">
-                                    <i class="glyphicon glyphicon-user"></i>
-                                </span>
-                                @if (item.Membro.FotoPerfil == null)
-                                {
-                                    <div class="imgPerfPostag">
-                                        <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
-                                    </div> }
-                                else
-                                {
-                                    <div class="imgPerfPostag">
-                                        <a>
-                                            <img class="img-thumbnail" src="~/Membros/Membros/GetFotoPerfil/@item.Membro.MembroId" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
-                                        </a>
-                                    </div>
-                                }
-                                <details class="configPost">
-                                    <summary> Configurações </summary>
-                                    <ol>
-                                        <li> @Html.ActionLink("Ver publicação", "Details", "Postagens", new { area = "Postagens", id = item.PostagemId }, null) </li>
-                                        @if (item.MembroId == membrologado)
-                                        {
-                                            <li> @Html.ActionLink("Editar publicação", "Edit", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
-                                            <li> @Html.ActionLink("Excluir publicação", "Delete", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
-                                        }
-                                        @if (item.Foto != null)
-                                        {
-                                            <li> @Html.ActionLink("Fazer download do arquivo", "DownloadFoto", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
-                                        }
-                                    </ol>
-                                </details>
-                                <div class="dadosPostagem">
-                                    <span>@Html.ActionLink(item.Membro.Nome, "Details", "Membros", new { Area = "Membros", id = item.MembroId }, new { @class = "nomeUsuario" })</span>
-                                    <span class="dataPostagem">@item.Data.ToShortDateString() às @item.Data.Hour:@item.Data.Minute</span>
-                                </div>
 
-                                <div style="margin-bottom: 10px;">@item.Texto</div>
-                            </div>
+                    @if (item.Foto != null)
+                    {
+                        <div class="midiaPost">
+                            <a>
+                                <img class="imgPost" src="@Url.Action("GetFoto", "Postagens", new { id = item.PostagemId })" />
+                            </a>
                         </div>
-
-                        @if (item.Foto != null)
-                        {
-                            <div class="midiaPost">
-                                <a>
-                                    <img class="imgPost" src="@Url.Action("GetFoto", "Postagens", new { id = item.PostagemId })" />
-                                </a>
-                            </div>
-                        }
-                        <br />
-                        @Html.ActionLink("Comentários", "Index", "Comentarios", new { area = "Comportamentos", idPostagem = item.PostagemId, idIndex = 1 }, new { @class = "cancelar" })
-                        @item.Cont_Comentarios
-                        @if (item.Curtida != true)
-                        {
-                            @Html.ActionLink("Curtir", "Curtir", "Curtidas", new { area = "Comportamentos", id = item.PostagemId }, new { @class = "cancelar" })
-                        }
-                        else
-                        {
-                            @Html.ActionLink("Descurtir", "Descurtir", "Curtidas", new { area = "Comportamentos", id = item.PostagemId }, new { @class = "editar-perfil" })
-                        }
-                        @item.Cont_Curtidas
-                        <br />
-                    </div>
+                    }
                     <br />
+                    @Html.ActionLink("Comentários", "Index", "Comentarios", new { area = "Comportamentos", idPostagem = item.PostagemId, idIndex = 1 }, new { @class = "cancelar" })
+                    @item.Cont_Comentarios
+                    @if (item.Curtida != true)
+                    {
+                        @Html.ActionLink("Curtir", "Curtir", "Curtidas", new { area = "Comportamentos", id = item.PostagemId }, new { @class = "cancelar" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Descurtir", "Descurtir", "Curtidas", new { area = "Comportamentos", id = item.PostagemId }, new { @class = "editar-perfil" })
+                    }
+                    @item.Cont_Curtidas
+                    <button type="button" class="cancelar" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Maaar">
+                        Compartilhar
+                    </button>
                     <br />
-                }
+                </div>
+                <br />
+                <br />
             }
         </div>
     </div>
+    <script src="@Url.Content("~/Scripts/popper.min.js")"></script>
     <script src="@Url.Content("~/scripts/bootstrap.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
+
 </body>
 </html>
+
+
+@*
+    @Url.Action("Details", "Postagens", new { area = "Postagens", id = item.PostagemId });
+*@

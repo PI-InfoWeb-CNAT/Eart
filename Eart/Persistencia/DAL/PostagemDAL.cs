@@ -22,7 +22,12 @@ namespace Eart.Persistencia.DAL
         {
             return context.Postagens.Include(m => m.Membro).OrderByDescending(p => p.Data);
         }
-    
+
+        public IQueryable<Postagem> ObterPostagensClassificadasPorMembro(long id)
+        {
+            return context.Postagens.Where(m => m.MembroId == id);
+        }
+
         public Postagem ObterPostagemPorId(long id)
         {
             return context.Postagens.Where(p => p.PostagemId == id).Include(m => m.Membro).First();
@@ -48,5 +53,12 @@ namespace Eart.Persistencia.DAL
             context.SaveChanges();
             return postagem;
         }
+
+        public void EliminarPostagem(Postagem postagem)
+        {
+            context.Postagens.Remove(postagem);
+            context.SaveChanges();
+        }
+
     }
 }
