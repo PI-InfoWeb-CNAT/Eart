@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Eart.Persistencia.Contexts;
 using System.Data.Entity;
 using Eart.Areas.Membros.Models;
+using Eart.Areas.Comportamentos.Models;
 
 namespace Eart.Persistencia.DAL
 {
@@ -36,6 +37,20 @@ namespace Eart.Persistencia.DAL
                 return null;
             }
         }
+
+        public bool ObterMembroSeguido(long idMembroLogado, long idMembroSeguido)
+        {
+            IQueryable<Seguir> seguindo = context.Seguindo.Where(ml => ml.Seguindo.MembroId == idMembroLogado).Where(ms => ms.Seguidor.MembroId == idMembroSeguido);
+            if (seguindo.Count() != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
         public void GravarMembro(Membro membro)
         {

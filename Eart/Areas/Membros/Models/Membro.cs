@@ -63,19 +63,21 @@ namespace Eart.Areas.Membros.Models
 
         public long FotoCapaTamanho { get; set; }
 
-        public long Cont_seguindo { get; set; }
+        public bool Seguindo { get; set; }
+
+        public long Cont_Seguindo { get; set; }
 
         public long Cont_Seguidores { get; set; }
 
-        public virtual ICollection<Membro> Seguindo { get; set; }
+        /*public virtual ICollection<Membro> Seguindo { get; set; }
 
-        public virtual ICollection<Membro> Seguidores { get; set; }
+        public virtual ICollection<Membro> Seguidores { get; set; }*/
 
         public virtual ICollection<Postagem> Postagens { get; set; }
 
-        public virtual ICollection<Comentario> Comentarios { get; set; }
+        /*public virtual ICollection<Comentario> Comentarios { get; set; }
 
-        public virtual ICollection<Curtida> Curtidas { get; set; }
+        public virtual ICollection<Curtida> Curtidas { get; set; }*/
     }
 
     public class LoginViewModel

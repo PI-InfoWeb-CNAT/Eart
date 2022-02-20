@@ -42,9 +42,9 @@ namespace Eart.Areas.Postagens.Models
 
         public Membro Membro { get; set; }
 
-        public virtual ICollection<Comentario> Comentarios { get; set; }
+        //public virtual ICollection<Comentario> Comentarios { get; set; }
 
-        public virtual ICollection<Curtida> Curtidas { get; set; }
+        //public virtual ICollection<Curtida> Curtidas { get; set; }
     }
 }
 

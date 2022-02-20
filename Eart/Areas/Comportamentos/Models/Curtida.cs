@@ -17,12 +17,10 @@ namespace Eart.Areas.Comportamentos.Models
         [DisplayName("Data da curtida")]
         public DateTime Data { get; set; }
 
-        //public bool Curtir { get; set; }
-
         [DisplayName("Postagem")]
         public long? PostagemId { get; set; }
 
-        public Postagem Postagem { get; set; }
+        //public Postagem Postagem { get; set; }
 
         [DisplayName("Membro")]
         public long? MembroId { get; set; }

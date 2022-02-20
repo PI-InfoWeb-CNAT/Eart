@@ -112,7 +112,7 @@ namespace Eart.Areas.Membros.Controllers
             }
             catch
             {
-                return View(membro);
+                return View();
             }
         }
 
@@ -121,7 +121,7 @@ namespace Eart.Areas.Membros.Controllers
             return View(membroDAL.ObterMembrosClassificadosPorNome());
         }
 
-        public ActionResult Follow(long id)
+        /*public ActionResult Follow(long id)
         {
             Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
             if (membroLogin == null)
@@ -159,7 +159,7 @@ namespace Eart.Areas.Membros.Controllers
                 GravarMembro(membroLogado);
                 return RedirectToAction("Index", "Postagens", new { area = "Postagens" });
             }
-        }
+        }*/
 
         // GET: Create
         public ActionResult Create()
@@ -226,19 +226,28 @@ namespace Eart.Areas.Membros.Controllers
             try
             {
                 IQueryable<Comentario> comentarios = comentarioDAL.ObterComentariosClassificadosPorMembro(id);
-                foreach (var comentario in comentarios)
+                if (comentarios.Count() != 0)
                 {
-                    comentarioDAL.EliminarComentario(comentario);
+                    foreach (Comentario comentario in comentarios)
+                    {
+                        Comentario coment = comentarioDAL.EliminarComentarioPorId((long) comentario.ComentarioId);
+                    }
                 }
                 IQueryable<Curtida> curtidas = curtidaDAL.ObterCurtidasClassificadasPorMembro(id);
-                foreach (var curtida in curtidas)
+                if (curtidas.Count() != 0)
                 {
-                    curtidaDAL.EliminarCurtida(curtida);
+                    foreach (Curtida curtida in curtidas)
+                    {
+                        Curtida curt = curtidaDAL.EliminarCurtidaPorId((long) curtida.PostagemId, (long) curtida.MembroId);
+                    }
                 }
                 IQueryable<Postagem> postagens = postagemDAL.ObterPostagensClassificadasPorMembro(id);
-                foreach (var postagem in postagens)
+                if (postagens.Count() != 0)
                 {
-                    postagemDAL.EliminarPostagem(postagem);
+                    foreach (Postagem postagem in postagens)
+                    {
+                        Postagem post = postagemDAL.EliminarPostagemPorId((long) postagem.PostagemId);
+                    }
                 }
                 Membro membro = membroDAL.EliminarMembroPorId(id);
                 TempData["Message"] = "Membro " + membro.Nome.ToUpper() + " foi removido";

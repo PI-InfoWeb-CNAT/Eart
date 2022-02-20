@@ -16,6 +16,7 @@ namespace Eart.Areas.Postagens.Controllers
     public class PostagensController : Controller
     {
         PostagemDAL postagemDAL = new PostagemDAL();
+        MembroDAL membroDAL = new MembroDAL();
         ComentarioDAL comentarioDAL = new ComentarioDAL();
         CurtidaDAL curtidaDAL = new CurtidaDAL();
 
@@ -95,6 +96,12 @@ namespace Eart.Areas.Postagens.Controllers
             IQueryable<Postagem> postagens = postagemDAL.ObterPostagensClassificadasPorData();
             foreach (var p in postagens) { 
                 p.Curtida = curtidaDAL.ObterPostagensCurtidasPorMembro((long) p.PostagemId, (long) membroLogin.MembroId);
+                p.Membro.Seguindo = membroDAL.ObterMembroSeguido((long)p.MembroId, (long)membroLogin.MembroId);
+                GravarPostagem(p);
+            }
+            foreach (var p in postagens)
+            {
+                p.Membro.Seguindo = curtidaDAL.ObterPostagensCurtidasPorMembro((long)p.PostagemId, (long)membroLogin.MembroId);
                 GravarPostagem(p);
             }
             return View(postagens);
