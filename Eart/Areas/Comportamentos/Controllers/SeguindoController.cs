@@ -14,8 +14,25 @@ namespace Eart.Areas.Comportamentos.Controllers
     public class SeguindoController : Controller
     {
         MembroDAL membroDAL = new MembroDAL();
+        SeguirDAL seguirDAL = new SeguirDAL();
 
         // GET: Comportamentos/Seguindo
+
+        private ActionResult GravarSeguir(Seguir seguir)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    seguirDAL.GravarSeguir(seguir);
+                }
+                return View(seguir);
+            }
+            catch
+            {
+                return View(seguir);
+            }
+        }
 
         private ActionResult GravarMembro(Membro membro)
         {
@@ -49,6 +66,7 @@ namespace Eart.Areas.Comportamentos.Controllers
                 seguindo.Seguidor.Cont_Seguindo++;
                 GravarMembro(seguindo.Seguidor);
                 GravarMembro(seguindo.Seguindo);
+                GravarSeguir(seguindo);
                 return Redirect(Request.UrlReferrer.ToString());
             }
             else
@@ -60,7 +78,7 @@ namespace Eart.Areas.Comportamentos.Controllers
         public ActionResult Unfollow(long id)
         {
             Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
-            if (membroLogin == null)
+            if (membroLogin != null)
             {
                 Seguir seguindo = new Seguir();
                 seguindo.Seguindo = membroDAL.ObterMembroPorId(id);
@@ -69,6 +87,7 @@ namespace Eart.Areas.Comportamentos.Controllers
                 seguindo.Seguidor.Cont_Seguindo--;
                 GravarMembro(seguindo.Seguidor);
                 GravarMembro(seguindo.Seguindo);
+                seguirDAL.EliminarSeguirPorId((long)seguindo.SeguirId);
                 return Redirect(Request.UrlReferrer.ToString());
             }
             else

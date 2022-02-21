@@ -112,7 +112,7 @@ namespace Eart.Areas.Membros.Controllers
             }
             catch
             {
-                return View();
+                return View(membro);
             }
         }
 
@@ -120,46 +120,6 @@ namespace Eart.Areas.Membros.Controllers
         {
             return View(membroDAL.ObterMembrosClassificadosPorNome());
         }
-
-        /*public ActionResult Follow(long id)
-        {
-            Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
-            if (membroLogin == null)
-            {
-                return RedirectToAction("Login", "Account", new { area = "Membros" });
-            }
-            else
-            {
-                Membro membro = membroDAL.ObterMembroPorId(id);
-                Membro membroLogado = membroDAL.ObterMembroPorId((long) membroLogin.MembroId);
-                membroLogado.Seguindo.Add(membro);
-                membroLogado.Cont_seguindo++;
-                membro.Seguidores.Add(membroLogado);
-                membro.Cont_Seguidores++;
-                GravarMembro(membroLogado);
-                return RedirectToAction("Index", "Postagens", new { area = "Postagens" });
-            }
-        }
-
-        public ActionResult Unfollow(long id)
-        {
-            Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
-            if (membroLogin == null)
-            {
-                return RedirectToAction("Login", "Account", new { area = "Membros" });
-            }
-            else
-            {
-                Membro membro = membroDAL.ObterMembroPorId(id);
-                Membro membroLogado = membroDAL.ObterMembroPorId((long)membroLogin.MembroId);
-                membroLogado.Seguindo.Remove(membro);
-                membroLogado.Cont_seguindo--;
-                membro.Seguidores.Remove(membroLogado);
-                membro.Cont_Seguidores--;
-                GravarMembro(membroLogado);
-                return RedirectToAction("Index", "Postagens", new { area = "Postagens" });
-            }
-        }*/
 
         // GET: Create
         public ActionResult Create()

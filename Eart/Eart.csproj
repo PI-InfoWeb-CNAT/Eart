@@ -177,6 +177,7 @@
     <Compile Include="Persistencia\DAL\CurtidaDAL.cs" />
     <Compile Include="Persistencia\DAL\MembroDAL.cs" />
     <Compile Include="Persistencia\DAL\PostagemDAL.cs" />
+    <Compile Include="Persistencia\DAL\SeguirDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -99,11 +99,6 @@ namespace Eart.Areas.Postagens.Controllers
                 p.Membro.Seguindo = membroDAL.ObterMembroSeguido((long)p.MembroId, (long)membroLogin.MembroId);
                 GravarPostagem(p);
             }
-            foreach (var p in postagens)
-            {
-                p.Membro.Seguindo = curtidaDAL.ObterPostagensCurtidasPorMembro((long)p.PostagemId, (long)membroLogin.MembroId);
-                GravarPostagem(p);
-            }
             return View(postagens);
         }
         public ActionResult FeedPorRelevancia()
