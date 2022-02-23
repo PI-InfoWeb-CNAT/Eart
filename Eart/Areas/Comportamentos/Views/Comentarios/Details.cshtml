@@ -35,34 +35,69 @@
             </div>
         </div>
         <div class="panel-body">
-            <div class="comentario">
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-user"></i>
-                        </span>
-                        @Html.EditorFor(model => model.Membro.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            @if (Model.Membro.Ativo == false)
+            {
+                <div class="comentario">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </span>
+                            <span class="form-control"> invalid-user </span>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-user"></i>
-                        </span>
-                        @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </span>
+                            @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-user"></i>
-                        </span>
-                        @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </span>
+                            @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        </div>
                     </div>
-                </div>
 
-            </div>
+                </div>
+            }
+            else
+            {
+                <div class="comentario">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </span>
+                            @Html.EditorFor(model => model.Membro.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </span>
+                            @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </span>
+                            @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        </div>
+                    </div>
+
+                </div>
+            }
+
             @if (idIndex == 1)
             {
                 @Html.ActionLink("Voltar", "Index", "Comentarios", new { area = "Comportamentos", idPostagem = Model.PostagemId, idIndex = 1 }, null)

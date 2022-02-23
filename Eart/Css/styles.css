@@ -90,7 +90,7 @@ button, .salvar {
     margin-top: 20px;
     cursor: pointer;
 }
-/* */
+
 input[type=file] .image_input {
     background-color: var(--cor4);
     color: var(--cor5);
@@ -116,7 +116,6 @@ input[type=file] .image_input {
 .form-group {
     display: inline-block;
 }
-/**/
 
 .login {
     display: flex;
@@ -237,7 +236,6 @@ a {
     color: #8A8484;
 }
 
-
 @media (min-width: 320px) and (max-width: 767px) {
     body {
         background-color: var(--cor2);
@@ -272,10 +270,92 @@ a {
 
     #botao-criar {
         padding: 7px 20px 7px 20px;
-        font-size: 26px;
+        font-size: 22px;
+        font-weight: bold;
         background-color: #F0818E;
         color: white;
         border-radius: 36px;
+    }
+
+    .iconBox {
+        width: 80px;
+        height: 35px;
+        border: 2px solid var(--cor1);
+        border-radius: 8px;
+        float: left;
+        margin-top: 5px;
+    }
+
+    .legenda {
+        margin-bottom: 10px;
+    }
+
+    footer {
+        position: fixed;
+        width: 100%;
+        height: 54px;
+        background-color: var(--cor1);
+        bottom: 0;
+        left: 0;
+        z-index: 10;
+    }
+
+    nav li {
+        float: left;
+        list-style: none;
+        width: 30px;
+        height: 30px;
+    }
+
+    nav {
+        padding: 12px 0 12px 0;
+    }
+
+    .navBox {
+    }
+
+    textarea {
+        padding-bottom: 120px;
+        padding-top: 15px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        padding-left: 13px;
+        padding-right: 13px;
+        background-color: var(--cor1);
+        color: white;
+    }
+
+    .publicar {
+        width: 80px;
+        height: 30px;
+        border-radius: 5px;
+    }
+
+    .cancelar {
+        padding: 6.5px 10px 6.5px 10px !important;
+        margin-right: 10px;
+        border-radius: 5px;
+        color: #B5C9F1;
+        background-color: #556398;
+    }
+
+    .buttons {
+        float: left;
+    }
+
+    .details_body {
+        align-items: start;
+        color: white !important;
+        width: 100%;
+        justify-content: start;
+    }
+
+    .panel-heading {
+        width: 46.2vh;
+    }
+
+    .contadores {
+        margin-bottom: 20px;
     }
 }
 

@@ -69,6 +69,8 @@ namespace Eart.Areas.Membros.Models
 
         public long Cont_Seguidores { get; set; }
 
+        public bool Ativo { get; set; }
+
         /*public virtual ICollection<Membro> Seguindo { get; set; }
 
         public virtual ICollection<Membro> Seguidores { get; set; }*/

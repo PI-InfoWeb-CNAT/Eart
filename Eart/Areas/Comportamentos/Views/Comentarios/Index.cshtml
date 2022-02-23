@@ -78,7 +78,7 @@
             else { 
                 foreach (var item in Model)
                 {
-                if (item.MembroId == null && item.Texto != null)
+                if(item.Membro.Ativo == false)
                 {
                     <div class="comentario">
                         <div class="conf">

@@ -134,6 +134,7 @@ namespace Eart.Areas.Membros.Controllers
         {
             if(ModelState.IsValid)
             {
+                membro.Ativo = true;
                 GravarMembro(membro, fotoPerfil, fotoCapa);
                 HttpContext.Session["membroLogin"] = membro;
                 return RedirectToAction("Details", "Membros", new { Area = "Membros", id = membro.MembroId });
@@ -185,7 +186,13 @@ namespace Eart.Areas.Membros.Controllers
         {
             try
             {
-                IQueryable<Comentario> comentarios = comentarioDAL.ObterComentariosClassificadosPorMembro(id);
+                Membro membro = membroDAL.ObterMembroPorId(id);
+                membro.Ativo = false;
+                GravarMembro(membro);
+                TempData["Message"] = "Membro " + membro.Nome.ToUpper() + " foi removido";
+                return RedirectToAction("Create", "Membros", new { Area = "Membros" });
+
+                /*IQueryable<Comentario> comentarios = comentarioDAL.ObterComentariosClassificadosPorMembro(id);
                 if (comentarios.Count() != 0)
                 {
                     foreach (Comentario comentario in comentarios)
@@ -208,10 +215,7 @@ namespace Eart.Areas.Membros.Controllers
                     {
                         Postagem post = postagemDAL.EliminarPostagemPorId((long) postagem.PostagemId);
                     }
-                }
-                Membro membro = membroDAL.EliminarMembroPorId(id);
-                TempData["Message"] = "Membro " + membro.Nome.ToUpper() + " foi removido";
-                return RedirectToAction("Create", "Membros", new { Area = "Membros" });
+                }*/
             }
             catch
             {

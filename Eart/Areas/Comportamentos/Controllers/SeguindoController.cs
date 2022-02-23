@@ -58,7 +58,7 @@ namespace Eart.Areas.Comportamentos.Controllers
         {
             Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
             if (membroLogin != null)
-            {
+            {                
                 Seguir seguindo = new Seguir();
                 seguindo.Seguindo = membroDAL.ObterMembroPorId(id);
                 seguindo.Seguidor = membroLogin;

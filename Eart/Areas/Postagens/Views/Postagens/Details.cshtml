@@ -1,5 +1,8 @@
 ﻿@model Eart.Areas.Postagens.Models.Postagem
 
+@{
+    var membrologado = ViewBag.MembroLogado;
+}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -31,44 +34,88 @@
             </div>
         </div>
         <div class="panel-body">
-            <div class="postagem">
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-user"></i>
-                        </span>
-                        @Html.EditorFor(model => model.Membro.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-user"></i>
-                        </span>
-                        @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-user"></i>
-                        </span>
-                        @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                    </div>
-                </div>
-                <div class="fotoPerfil">
-                    @if (Model.Foto != null)
-                    {
-                        <div class="panel-body">
-                            <a>
-                                @Html.ActionLink("Baixar o arquivo: " + Model.FotoNome, "DownloadFoto", "Postagens", new { area = "Postagens", id = Model.PostagemId }, null)
-                                <img class="img-thumbnail" src="@Url.Action("GetFoto", "Postagens", new { id = Model.PostagemId })" style="display: block; margin-left: auto; margin-right: auto; width: 300px; height: 200px;" />
-                            </a>
+            @if (Model.Membro.Ativo == false)
+            {
+                <div class="postagem">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </span>
+                            <span class="form-control"> invalid-user </span>
                         </div>
-                    }
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </span>
+                            @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </span>
+                            @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        </div>
+                    </div>
+                    <div class="fotoPerfil">
+                        @if (Model.Foto != null)
+                        {
+                            <div class="panel-body">
+                                <a>
+                                    @Html.ActionLink("Baixar o arquivo: " + Model.FotoNome, "DownloadFoto", "Postagens", new { area = "Postagens", id = Model.PostagemId }, null)
+                                    <img class="img-thumbnail" src="@Url.Action("GetFoto", "Postagens", new { id = Model.PostagemId })" style="display: block; margin-left: auto; margin-right: auto; width: 300px; height: 200px;" />
+                                </a>
+                            </div>
+                        }
+                    </div>
                 </div>
-            </div>
+            }
+            else
+            {
+                <div class="postagem">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </span>
+                            @Html.EditorFor(model => model.Membro.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </span>
+                            @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </span>
+                            @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        </div>
+                    </div>
+                    <div class="fotoPerfil">
+                        @if (Model.Foto != null)
+                        {
+                            <div class="panel-body">
+                                <a>
+                                    @Html.ActionLink("Baixar o arquivo: " + Model.FotoNome, "DownloadFoto", "Postagens", new { area = "Postagens", id = Model.PostagemId }, null)
+                                    <img class="img-thumbnail" src="@Url.Action("GetFoto", "Postagens", new { id = Model.PostagemId })" style="display: block; margin-left: auto; margin-right: auto; width: 300px; height: 200px;" />
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
             @Html.ActionLink("Voltar", "FeedMembrosSeguidos", "Postagens", new { area = "Postagens" }, null)
         </div>
     </div>
