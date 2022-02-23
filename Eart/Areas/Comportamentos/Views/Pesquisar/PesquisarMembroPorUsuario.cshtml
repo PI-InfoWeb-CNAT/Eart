@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Eart.Areas.Membros.Models.Membro>
+@{ string arroba = "@"; }
+
+<div class="panel-body">
+    @foreach (var item in Model)
+    {
+        <div class="membro">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-user"></i>
+                    </span>
+
+                    @if (item.FotoPerfil is null)
+                    {
+                        <img class="img-thumbnail" src="~/Imagens/avatar.png" style="display:block;margin-left:auto; margin-right:auto; width:100px; height:100px; border-radius:75px" />
+                    }
+                    else
+                    {
+                        <img class="img-thumbnail" src="@Url.Action("GetFotoPerfil", "Membros", new { area = "Membros", id = item.MembroId })" style="display: block; margin-left: auto; margin-right: auto; width: 100px; height: 100px; border-radius: 75px" />
+                    }
+                    <span>@Html.ActionLink(item.Nome, "Details", "Membros", new { Area = "Membros", id = item.MembroId }, new { @class = "nomeUsuario" })</span>
+                    <span> @arroba@item.Usuario </span>
+                </div>
+            </div>
+            <br />
+        </div>
+        <br />
+        <br />
+    }
+</div>
