@@ -23,9 +23,9 @@ namespace Eart.Persistencia.DAL
             return context.Postagens.Include(m => m.Membro).OrderByDescending(p => p.Data);
         }
 
-        public IQueryable<Postagem> ObterPostagensClassificadasPorMembro(long id)
+        public IList<Postagem> ObterPostagensClassificadasPorMembro(long id)
         {
-            return context.Postagens.Where(m => m.MembroId == id);
+            return context.Postagens.Where(m => m.MembroId == id).ToList();
         }
 
         public Postagem ObterPostagemPorId(long id)

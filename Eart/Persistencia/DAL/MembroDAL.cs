@@ -38,20 +38,6 @@ namespace Eart.Persistencia.DAL
             }
         }
 
-        public bool ObterMembroSeguido(long idMembroLogado, long idMembroSeguido)
-        {
-            IQueryable<Seguir> seguindo = context.Seguindo.Where(ml => ml.Seguindo.MembroId == idMembroLogado).Where(ms => ms.Seguidor.MembroId == idMembroSeguido);
-            if (seguindo.Count() != 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-
         public void GravarMembro(Membro membro)
         {
             if (membro.MembroId is null)

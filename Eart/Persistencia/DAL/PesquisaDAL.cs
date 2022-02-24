@@ -19,14 +19,10 @@ namespace Eart.Persistencia.DAL
             return context.Postagens.Include(t => t.Texto.Contains(texto));
         }
 
-        public IQueryable<Membro> PesquisarMembrosPorUsuario(string usuario)
+        public IQueryable<Membro> PesquisarMembros(string pesquisa)
         {
-            return context.Membros.Where(u => u.Usuario == usuario);
+            return context.Membros.Where(u => (u.Usuario == pesquisa) || (u.Nome == pesquisa));
         }
 
-        public IQueryable<Membro> PesquisarMembrosPorNome(string nome)
-        {
-            return context.Membros.Where(n => n.Nome == nome);
-        }
     }
 }

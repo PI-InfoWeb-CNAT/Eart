@@ -20,7 +20,7 @@ namespace Eart.Persistencia.DAL
 
         public bool ObterMembroSeguido(long idMembroLogado, long idMembroSeguido)
         {
-            IQueryable<Seguir> seguindo = context.Seguindo.Where(ml => ml.Seguindo.MembroId == idMembroSeguido).Where(ms => ms.Seguidor.MembroId == idMembroLogado);
+            IQueryable<Seguir> seguindo = context.Seguindo.Where(ml => ml.SeguindoId == idMembroSeguido).Where(ms => ms.SeguidorId == idMembroLogado);
             if (seguindo.Count() != 0)
             {
                 return true;

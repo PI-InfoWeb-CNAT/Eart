@@ -22,14 +22,14 @@ namespace Eart.Persistencia.DAL
             return context.Comentarios.Include(m => m.Membro).Include(p => p.Postagem).OrderByDescending(p => p.Data);
         }
 
-        public IQueryable<Comentario> ObterComentariosClassificadosPorMembro(long id)
+        public IList<Comentario> ObterComentariosClassificadosPorMembro(long id)
         {
-            return context.Comentarios.Where(m => m.MembroId == id);
+            return context.Comentarios.Where(m => m.MembroId == id).ToList();
         }
 
-        public IQueryable<Comentario> ObterComentariosClassificadosPorPostagem(long id)
+        public IList<Comentario> ObterComentariosClassificadosPorPostagem(long id)
         {
-            return context.Comentarios.Where(m => m.PostagemId == id);
+            return context.Comentarios.Where(m => m.PostagemId == id).ToList();
         }
 
         public Comentario ObterComentarioPorId(long id)

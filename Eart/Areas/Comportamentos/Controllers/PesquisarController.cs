@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Eart.Areas.Postagens.Models;
 using Eart.Areas.Membros.Models;
-using Eart.Areas.Comportamentos.Models;
 using Eart.Persistencia.DAL;
 
 namespace Eart.Areas.Comportamentos.Controllers
@@ -19,29 +18,20 @@ namespace Eart.Areas.Comportamentos.Controllers
             return View();
         }
 
-        // GET: Comportamentos/Pesquisar
-        public ActionResult PesquisarMembroPorNome()
+        public ActionResult PesquisarMembros(string pesquisa)
         {
-            Pesquisa pesquisa = new Pesquisa();
-            IQueryable<Membro> resultados = pesquisaDAL.PesquisarMembrosPorNome(pesquisa.ItemPesquisa);
+            IQueryable<Membro> resultados = pesquisaDAL.PesquisarMembros(pesquisa);
             return View(resultados);
         }
 
-        public ActionResult PesquisarMembroPorUsuario()
-        {
-            Pesquisa pesquisa = new Pesquisa();
-            IQueryable<Membro> resultados = pesquisaDAL.PesquisarMembrosPorUsuario(pesquisa.ItemPesquisa);
-            return View(resultados);
-        }
-
-        public ActionResult PesquisarPostagensPorConteudo(string texto)
+        /*public ActionResult PesquisarPostagensPorConteudo(string texto)
         {
             Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
             ViewBag.MembroLogado = membroLogin.MembroId;
             Pesquisa pesquisa = new Pesquisa();
             IQueryable<Postagem> resultados = pesquisaDAL.PesquisarPostagensPorConteudo(pesquisa.ItemPesquisa);
             return View(resultados);
-        }
+        }*/
 
     }
 }

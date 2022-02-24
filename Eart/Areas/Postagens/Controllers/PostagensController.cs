@@ -178,12 +178,12 @@ namespace Eart.Areas.Postagens.Controllers
         {
             try
             {
-                IQueryable<Comentario> comentarios = comentarioDAL.ObterComentariosClassificadosPorPostagem(id);
+                IList<Comentario> comentarios = comentarioDAL.ObterComentariosClassificadosPorPostagem(id);
                 foreach (var comentario in comentarios)
                 {
                     comentarioDAL.EliminarComentario(comentario);
                 }
-                IQueryable<Curtida> curtidas = curtidaDAL.ObterCurtidasClassificadasPorPostagem(id);
+                IList<Curtida> curtidas = curtidaDAL.ObterCurtidasClassificadasPorPostagem(id);
                 foreach (var curtida in curtidas)
                 {
                     curtidaDAL.EliminarCurtida(curtida);

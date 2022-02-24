@@ -179,7 +179,7 @@
                                     <span>@Html.ActionLink(item.Membro.Nome, "Details", "Membros", new { Area = "Membros", id = item.MembroId }, new { @class = "nomeUsuario" })</span>
                                     @if (item.MembroId != membrologado)
                                     {
-                                        if (item.Membro.Seguindo == true)
+                                        if (item.Membro.Seguindo == false)
                                         {
                                             @Html.ActionLink("Seguir", "Follow", "Seguindo", new { area = "Comportamentos", id = item.MembroId }, new { @class = "nomeUsuario" })
                                         }
