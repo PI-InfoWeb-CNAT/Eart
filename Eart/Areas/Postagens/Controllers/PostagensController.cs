@@ -95,13 +95,18 @@ namespace Eart.Areas.Postagens.Controllers
                 ViewBag.MembroLogado = membroLogin.MembroId;
             }
             IQueryable<Postagem> postagens = postagemDAL.ObterPostagensClassificadasPorData();
+            List<Postagem> nova_lista = new List<Postagem>();
             foreach (var p in postagens) { 
                 p.Curtida = curtidaDAL.ObterPostagensCurtidasPorMembro((long) p.PostagemId, (long) membroLogin.MembroId);
-                p.Membro.Seguindo = seguirDAL.ObterMembroSeguido((long)p.MembroId, (long)membroLogin.MembroId);
                 GravarPostagem(p);
+                if (p.Membro.Seguindo == true || p.MembroId == membroLogin.MembroId)
+                {
+                    nova_lista.Add(p);
+                }
             }
-            return View(postagens);
+            return View(nova_lista);
         }
+
         public ActionResult FeedPorRelevancia()
         {
             Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
@@ -114,6 +119,7 @@ namespace Eart.Areas.Postagens.Controllers
             foreach (var p in postagens)
             {
                 p.Curtida = curtidaDAL.ObterPostagensCurtidasPorMembro((long)p.PostagemId, (long)membroLogin.MembroId);
+                p.Membro.Seguindo = seguirDAL.ObterMembroSeguido((long)p.MembroId, (long)membroLogin.MembroId);
                 GravarPostagem(p);
                 if (p.Relevancia >= 5)
                 {

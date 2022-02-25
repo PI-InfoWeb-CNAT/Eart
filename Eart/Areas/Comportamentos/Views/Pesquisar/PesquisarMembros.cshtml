@@ -1,26 +1,52 @@
-﻿@model Eart.Areas.Membros.Models.Membro
+﻿@model IEnumerable<Eart.Areas.Membros.Models.Membro>
+@{ 
+    string arroba = "@"; 
+}
 
 <!DOCTYPE html>
-
-<html>
+<html lang="pt-br">
 <head>
     <title> Pesquisar </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
     <link rel="stylesheet" href="~/Css/styles.css">
-    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
     <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
+    <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
 </head>
 <body>
-    @using (Html.BeginForm("PesquisarMembro")) { }
-        <input type="text" id="pesquisar" name="pesquisar" placeholder="Pesquisar" />
-        <input type="submit" value="Pesquisar"/>
-    }
-    <br /><br />
-    
-    <div class="nome">
-        @Html.Partial("~/Areas/Comportamentos/Views/Pesquisar/_PesquisarMembro.cshtml", Model);
-    </div>
+    @using (Html.BeginForm("PesquisarMembros", "Pesquisar", FormMethod.Post))
+    {
+        <input type="text" id="pesquisar" name="pesquisa" placeholder="Pesquisar" />
+        <input type="submit" value="Pesquisar" />}
+        <br /><br/>
+        <div class="nome">
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <div class="membro">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </span>
 
-    </body>
+                            @if (item.FotoPerfil is null)
+                            {
+                                <img class="img-thumbnail" src="~/Imagens/avatar.png" style="display:block;margin-left:auto; margin-right:auto; width:100px; height:100px; border-radius:75px" /> }
+                            else
+                            {
+                                <img class="img-thumbnail" src="@Url.Action("GetFotoPerfil", "Membros", new { area = "Membros", id = item.MembroId })" style="display: block; margin-left: auto; margin-right: auto; width: 100px; height: 100px; border-radius: 75px" />
+                            }
+                            <span>@Html.ActionLink(item.Nome, "Details", "Membros", new { Area = "Membros", id = item.MembroId }, new { @class = "nomeUsuario" })</span>
+                            <span> @arroba@item.Usuario </span>
+                        </div>
+                    </div>
+                    <br />
+                </div>
+                <br/><br/>
+            }
+         }
+    </div>
+</body>
 </html>

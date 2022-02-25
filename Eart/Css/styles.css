@@ -315,12 +315,9 @@ a {
     }
 
     textarea {
-        padding-bottom: 120px;
-        padding-top: 15px;
+        padding: 15px 13px 120px 13px;
         border-radius: 10px;
         margin-bottom: 10px;
-        padding-left: 13px;
-        padding-right: 13px;
         background-color: var(--cor1);
         color: white;
     }
@@ -356,6 +353,27 @@ a {
 
     .contadores {
         margin-bottom: 20px;
+    }
+
+    .legendaComent {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+        text-align: center;
+        padding: 20px 0 20px 0;
+        background-color: var(--cor1);
+    }
+
+    .comentBox {
+        width: 85%;
+        background-color: #3D4872;
+        height: 33px;
+        margin-left: auto;
+        margin-right: auto;
+        align-content: center;
+        border-radius: 30px;
+        padding: 6px 10px 0 10px;
     }
 }
 

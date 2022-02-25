@@ -338,3 +338,4 @@ C:\Users\Mariana\Projeto-Integrador\Eart\Eart\bin\System.Memory.xml
 C:\Users\Mariana\Projeto-Integrador\Eart\Eart\bin\System.Numerics.Vectors.xml
 C:\Users\Mariana\Projeto-Integrador\Eart\Eart\bin\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Mariana\Projeto-Integrador\Eart\Eart\bin\System.Text.Encodings.Web.xml
+C:\Users\Mariana\Projeto-Integrador\Eart\Eart\obj\Debug\Eart.csproj.AssemblyReference.cache

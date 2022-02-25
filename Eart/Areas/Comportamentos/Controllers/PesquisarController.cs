@@ -18,20 +18,16 @@ namespace Eart.Areas.Comportamentos.Controllers
             return View();
         }
 
+        public ActionResult PesquisarMembros()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public ActionResult PesquisarMembros(string pesquisa)
         {
             IQueryable<Membro> resultados = pesquisaDAL.PesquisarMembros(pesquisa);
             return View(resultados);
         }
-
-        /*public ActionResult PesquisarPostagensPorConteudo(string texto)
-        {
-            Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
-            ViewBag.MembroLogado = membroLogin.MembroId;
-            Pesquisa pesquisa = new Pesquisa();
-            IQueryable<Postagem> resultados = pesquisaDAL.PesquisarPostagensPorConteudo(pesquisa.ItemPesquisa);
-            return View(resultados);
-        }*/
-
     }
 }

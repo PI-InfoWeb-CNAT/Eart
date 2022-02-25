@@ -1,43 +1,59 @@
 ﻿<!DOCTYPE html>
+@{ var pageName = ViewContext.RouteData.Values["action"].ToString();
+                var membrologado = ViewBag.MembroLogado;
+                var membrofoto = ViewBag.MembroFoto; }
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Meu Aplicativo ASP.NET</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
+    <link rel="stylesheet" href="~/Css/styles.css">
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Nome do aplicativo", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Início", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Sobre", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
-                </ul>
-            </div>
+    <footer>
+        <nav>
+            <ul>
+                <li>
+                    <a href="@Url.Action("FeedPorRelevancia", "Postagens", new { area = "Postagens" })">
+                        @if (pageName != "FeedPorRelevancia")
+                        {
+            <span class="iconify" data-icon="ant-design:fire-outlined" style="color: white; font-size: 30px; margin-left: 15px;"></span> }
+                        else
+                        {
+            <span class="iconify" data-icon="ant-design:fire-filled" style="color: white; font-size: 30px; margin-left: 15px;"></span>}
+                    </a>
+                </li>
+                <li>
+                    <a style="margin-left: auto; margin-right: auto;" href="@Url.Action("FeedMembrosSeguidos", "Postagens", new { area = "Postagens" })">
+                        @if (pageName != "FeedMembrosSeguidos")
+                        {
+            <span class="iconify" data-icon="ant-design:home-outlined" style="color: white; font-size: 30px;"></span> }
+                        else
+                        {
+            <span class="iconify" data-icon="ant-design:home-filled" style="color: white; font-size: 30px;"></span>}
+                    </a>
+                </li>
+                @if (membrofoto == null)
+                {
+    <li style="float: right;">
+        <div>
+            <a>
+                <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 30px; height: 30px; border-radius: 50%; border: solid 1px #F0818E;" />
+            </a>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Meu Aplicativo ASP.NET</p>
-        </footer>
-    </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    </li> }
+                else
+                {
+    <li style="float: right;">
+        <div>
+            <a>
+                <img class="img-thumbnail" src="~/Membros/Membros/GetFotoPerfil/@membrologado" style="display: block; margin-left: auto; margin-right: auto; width: 30px; height: 30px; border-radius: 50%; border: solid 1px #F0818E;" />
+            </a>
+        </div>
+    </li>}
+            </ul>
+        </nav>
+    </footer>
+    @RenderBody()
+    <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
 </body>
 </html>

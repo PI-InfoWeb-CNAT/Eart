@@ -58,15 +58,15 @@ namespace Eart.Areas.Comportamentos.Controllers
         {
             Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
             if (membroLogin != null)
-            {                
+            {
                 Seguir seguir = new Seguir();
                 seguir.SeguindoId = id;
                 seguir.SeguidorId = membroLogin.MembroId;
-                Membro seguindo = membroDAL.ObterMembroPorId(id);
+                Membro seguido = membroDAL.ObterMembroPorId(id);
                 Membro seguidor = membroLogin;
-                seguindo.Cont_Seguidores++;
+                seguido.Cont_Seguidores++;
                 seguidor.Cont_Seguindo++;
-                GravarMembro(seguindo);
+                GravarMembro(seguido);
                 GravarMembro(seguidor);
                 GravarSeguir(seguir);
                 return Redirect(Request.UrlReferrer.ToString());
@@ -91,7 +91,7 @@ namespace Eart.Areas.Comportamentos.Controllers
                 seguidor.Cont_Seguindo--;
                 GravarMembro(seguindo);
                 GravarMembro(seguidor);
-                seguirDAL.EliminarSeguirPorId((long)seguir.SeguirId);
+                seguirDAL.EliminarSeguirPorId((long)seguir.SeguidorId, (long)seguir.SeguindoId);
                 return Redirect(Request.UrlReferrer.ToString());
             }
             else

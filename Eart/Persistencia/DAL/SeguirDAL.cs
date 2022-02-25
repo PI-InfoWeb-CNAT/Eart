@@ -44,13 +44,12 @@ namespace Eart.Persistencia.DAL
             }
             context.SaveChanges();
         }
-
-        public Seguir EliminarSeguirPorId(long id)
+        public Seguir EliminarSeguirPorId(long idMembroLogado, long idMembroSeguido)
         {
-            Seguir seguir = ObterSeguirPorId(id);
-            context.Seguindo.Remove(seguir);
+            Seguir seguindo = context.Seguindo.Where(ml => ml.SeguindoId == idMembroSeguido).Where(ms => ms.SeguidorId == idMembroLogado).First();
+            context.Seguindo.Remove(seguindo);
             context.SaveChanges();
-            return seguir;
+            return seguindo;
         }
     }
 }

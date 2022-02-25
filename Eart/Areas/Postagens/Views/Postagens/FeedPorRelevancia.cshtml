@@ -51,6 +51,8 @@
                 @Html.ActionLink("Criar Publicação", "Create", "Postagens", new { area = "Postagens", id = membrologado }, new { @id = "botao-criar" })
                 <br /><br />
                 @Html.ActionLink("Feed", "FeedMembrosSeguidos", "Postagens", new { area = "Postagens" }, new { @id = "botao-criar" })
+                <br /><br />
+                @Html.ActionLink("Pesquisar", "PesquisarMembros", "Pesquisar", new { area = "Comportamentos" }, new { @id = "botao-criar" })
             </div>
             <br />
             @if (Model.Count() == 0)
@@ -174,13 +176,13 @@
                                     <span>@Html.ActionLink(item.Membro.Nome, "Details", "Membros", new { Area = "Membros", id = item.MembroId }, new { @class = "nomeUsuario" })</span>
                                     @if (item.MembroId != membrologado)
                                     {
-                                        if (item.Membro.Seguindo != true)
+                                        if (item.Membro.Seguindo == false)
                                         {
-                                            @Html.ActionLink(" - Deixar de seguir", "Unfollow", "Comportamentos", new { Area = "Comportamentos", id = item.MembroId }, new { @class = "nomeUsuario" })
+                                            @Html.ActionLink("Seguir", "Follow", "Seguindo", new { area = "Comportamentos", id = item.MembroId }, new { @class = "nomeUsuario" })
                                         }
                                         else
                                         {
-                                            @Html.ActionLink("Seguir", "Follow", "Comportamentos", new { Area = "Comportamentos", id = item.MembroId }, new { @class = "nomeUsuario" })
+                                            @Html.ActionLink(" - Deixar de seguir", "Unfollow", "Seguindo", new { area = "Comportamentos", id = item.MembroId }, new { @class = "nomeUsuario" })
                                         }
                                     }
                                     <span class="dataPostagem">@item.Data.ToShortDateString() às @item.Data.Hour:@item.Data.Minute</span>

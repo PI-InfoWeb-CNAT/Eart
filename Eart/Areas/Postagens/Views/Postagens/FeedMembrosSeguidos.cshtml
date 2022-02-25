@@ -19,6 +19,11 @@
 </head>
 <body class="bodyPostagens">
     <script src="@Url.Content("~/scripts/jquery-3.4.1.js")"></script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
     <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-hidden="true" style="color:black">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -40,12 +45,13 @@
     </div>
     @if (@TempData["Message"] != null)
     {
-<script src="@Url.Content("~/scripts/jquery-3.4.1.js")"></script>
-                <script>
-                    $(document).ready(function () {
-                        $('#Modal').modal('show');
-                    });
-                </script>}
+        <script src="@Url.Content("~/scripts/jquery-3.4.1.js")"></script>
+        <script>
+            $(document).ready(function () {
+                $('#Modal').modal('show');
+            });
+        </script>
+    }
     <div>
         <div>
             <br />
@@ -53,6 +59,8 @@
                 @Html.ActionLink("Criar Publicação", "Create", "Postagens", new { area = "Postagens", id = ViewBag.MembroId }, new { @id = "botao-criar" })
                 <br /><br />
                 @Html.ActionLink("Feed Em Alta", "FeedPorRelevancia", "Postagens", new { area = "Postagens" }, new { @id = "botao-criar" })
+                <br /><br />
+                @Html.ActionLink("Pesquisar", "PesquisarMembros", "Pesquisar", new { area = "Comportamentos" }, new { @id = "botao-criar" })
             </div>
             <br />
             @foreach (var item in Model)
@@ -69,28 +77,29 @@
                                 </span>
                                 @if (item.Membro.FotoPerfil == null)
                                 {
-                    <div class="imgPerfPostag">
-                        <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
-                    </div> }
-                    else
-                    {
-                    <div class="imgPerfPostag">
-                        <a>
-                            <img class="img-thumbnail" src="~/Membros/Membros/GetFotoPerfil/@item.Membro.MembroId" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
-                        </a>
-                    </div>}
+                                    <div class="imgPerfPostag">
+                                        <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                                    </div> }
+                                else
+                                {
+                                    <div class="imgPerfPostag">
+                                        <a>
+                                            <img class="img-thumbnail" src="~/Membros/Membros/GetFotoPerfil/@item.Membro.MembroId" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                                        </a>
+                                    </div>}
                                 <details class="configPost">
                                     <summary style="list-style: none;"> <span class="iconify" data-icon="simple-line-icons:options" style="color: #f0818e; font-size: 30px;"></span> </summary>
                                     <ol style="list-style: none;">
                                         <li> @Html.ActionLink("Ver publicação", "Details", "Postagens", new { area = "Postagens", id = item.PostagemId }, null) </li>
                                         @*@if (item.MembroId == membrologado)
-                                        {
-                                            <li> @Html.ActionLink("Editar publicação", "Edit", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
-                                            <li> @Html.ActionLink("Excluir publicação", "Delete", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
-                                            }*@
+                                            {
+                                                <li> @Html.ActionLink("Editar publicação", "Edit", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
+                                                <li> @Html.ActionLink("Excluir publicação", "Delete", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
+                                                }*@
                                         @if (item.Foto != null)
                                         {
-                                            <li> @Html.ActionLink("Fazer download do arquivo", "DownloadFoto", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>}
+                                            <li> @Html.ActionLink("Fazer download do arquivo", "DownloadFoto", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
+                                        }
                                     </ol>
                                 </details>
                                 <div class="dadosPostagem">
@@ -104,27 +113,27 @@
 
                         @if (item.Foto != null)
                         {
-                    <div class="midiaPost">
-                        <a>
-                            <img class="imgPost" src="@Url.Action("GetFoto", "Postagens", new { id = item.PostagemId })" />
-                        </a>
-                    </div>}
+                            <div class="midiaPost">
+                                <a>
+                                    <img class="imgPost" src="@Url.Action("GetFoto", "Postagens", new { id = item.PostagemId })" />
+                                </a>
+                            </div>}
                         @if (item.Curtida != true)
                         {
-                    <a href="@Url.Action("Curtir", "Curtidas", new { area = "Comportamentos", id = item.PostagemId })">
-                        <div class="iconBox" style="margin-left: 20px;">
-                            <span class="iconify" data-icon="ant-design:heart-outlined" style="color: white; font-size: 30px; margin-left: 23px;"></span>
-                            @item.Cont_Curtidas
-                        </div>
-                    </a> }
-                                    else
-                                    {
-                    <a href="@Url.Action("Descurtir", "Curtidas", new { area = "Comportamentos", id = item.PostagemId })">
-                        <div class="iconBox" style="margin-left: 20px;">
-                            <span class="iconify" data-icon="ant-design:heart-filled" style="color: #f0818e; font-size: 30px; margin-left: 23px;"></span>
-                            @item.Cont_Curtidas
-                        </div>
-                    </a>}
+                            <a href="@Url.Action("Curtir", "Curtidas", new { area = "Comportamentos", id = item.PostagemId })">
+                                <div class="iconBox" style="margin-left: 20px;">
+                                    <span class="iconify" data-icon="ant-design:heart-outlined" style="color: white; font-size: 30px; margin-left: 23px;"></span>
+                                    @item.Cont_Curtidas
+                                </div>
+                            </a> }
+                        else
+                        {
+                            <a href="@Url.Action("Descurtir", "Curtidas", new { area = "Comportamentos", id = item.PostagemId })">
+                                <div class="iconBox" style="margin-left: 20px;">
+                                    <span class="iconify" data-icon="ant-design:heart-filled" style="color: #f0818e; font-size: 30px; margin-left: 23px;"></span>
+                                    @item.Cont_Curtidas
+                                </div>
+                            </a>}
                         <div class="iconBox" style="float: right; margin-right: 20px;" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Maaar">
                             <span class="iconify" data-icon="fa-solid:share-square" style="color: white; font-size: 24px; margin-left: 27px; margin-top: 3px;"></span>
                         </div>
@@ -136,7 +145,7 @@
                                 </div>
                             </div>
                         </a>
-                    </div>  
+                    </div>
                     <br />
                     <br />
                 }
@@ -152,16 +161,16 @@
                                 </span>
                                 @if (item.Membro.FotoPerfil == null)
                                 {
-                    <div class="imgPerfPostag">
-                        <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
-                    </div> }
-                    else
-                    {
-                    <div class="imgPerfPostag">
-                        <a>
-                            <img class="img-thumbnail" src="~/Membros/Membros/GetFotoPerfil/@item.Membro.MembroId" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
-                        </a>
-                    </div>}
+                                    <div class="imgPerfPostag">
+                                        <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                                    </div> }
+                                else
+                                {
+                                    <div class="imgPerfPostag">
+                                        <a>
+                                            <img class="img-thumbnail" src="~/Membros/Membros/GetFotoPerfil/@item.Membro.MembroId" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                                        </a>
+                                    </div>}
                                 <details class="configPost">
                                     <summary style="list-style: none;"> <span class="iconify" data-icon="simple-line-icons:options" style="color: #f0818e; font-size: 30px;"></span> </summary>
                                     <ol style="list-style: none;">
@@ -169,25 +178,16 @@
                                         @if (item.MembroId == membrologado)
                                         {
                                             <li> @Html.ActionLink("Editar publicação", "Edit", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
-                                            <li> @Html.ActionLink("Excluir publicação", "Delete", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>}
+                                            <li> @Html.ActionLink("Excluir publicação", "Delete", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
+                                        }
                                         @if (item.Foto != null)
                                         {
-                                             <li> @Html.ActionLink("Fazer download do arquivo", "DownloadFoto", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>}
+                                            <li> @Html.ActionLink("Fazer download do arquivo", "DownloadFoto", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
+                                        }
                                     </ol>
                                 </details>
                                 <div class="dadosPostagem">
                                     <span>@Html.ActionLink(item.Membro.Nome, "Details", "Membros", new { Area = "Membros", id = item.MembroId }, new { @class = "nomeUsuario" })</span>
-                                    @if (item.MembroId != membrologado)
-                                    {
-                                        if (item.Membro.Seguindo == false)
-                                        {
-                                            @Html.ActionLink("Seguir", "Follow", "Seguindo", new { area = "Comportamentos", id = item.MembroId }, new { @class = "nomeUsuario" })
-                                        }
-                                        else
-                                        {
-                                            @Html.ActionLink(" - Deixar de seguir", "Unfollow", "Seguindo", new { area = "Comportamentos", id = item.MembroId }, new { @class = "nomeUsuario" })
-                                        }
-                                    }
                                     <span class="dataPostagem">@item.Data.ToShortDateString() às @item.Data.Hour:@item.Data.Minute</span>
                                 </div>
                                 <br />
@@ -197,27 +197,27 @@
 
                         @if (item.Foto != null)
                         {
-                    <div class="midiaPost">
-                        <a>
-                            <img class="imgPost" src="@Url.Action("GetFoto", "Postagens", new { id = item.PostagemId })" />
-                        </a>
-                    </div>}
+                            <div class="midiaPost">
+                                <a>
+                                    <img class="imgPost" src="@Url.Action("GetFoto", "Postagens", new { id = item.PostagemId })" />
+                                </a>
+                            </div>}
                         @if (item.Curtida != true)
                         {
-                    <a href="@Url.Action("Curtir", "Curtidas", new { area = "Comportamentos", id = item.PostagemId })">
-                        <div class="iconBox" style="margin-left: 20px;">
-                            <span class="iconify" data-icon="ant-design:heart-outlined" style="color: white; font-size: 30px; margin-left: 23px;"></span>
-                            @item.Cont_Curtidas
-                        </div>
-                    </a> }
-                                    else
-                                    {
-                    <a href="@Url.Action("Descurtir", "Curtidas", new { area = "Comportamentos", id = item.PostagemId })">
-                        <div class="iconBox" style="margin-left: 20px;">
-                            <span class="iconify" data-icon="ant-design:heart-filled" style="color: #f0818e; font-size: 30px; margin-left: 23px;"></span>
-                            @item.Cont_Curtidas
-                        </div>
-                    </a>}
+                            <a href="@Url.Action("Curtir", "Curtidas", new { area = "Comportamentos", id = item.PostagemId })">
+                                <div class="iconBox" style="margin-left: 20px;">
+                                    <span class="iconify" data-icon="ant-design:heart-outlined" style="color: white; font-size: 30px; margin-left: 23px;"></span>
+                                    @item.Cont_Curtidas
+                                </div>
+                            </a> }
+                        else
+                        {
+                            <a href="@Url.Action("Descurtir", "Curtidas", new { area = "Comportamentos", id = item.PostagemId })">
+                                <div class="iconBox" style="margin-left: 20px;">
+                                    <span class="iconify" data-icon="ant-design:heart-filled" style="color: #f0818e; font-size: 30px; margin-left: 23px;"></span>
+                                    @item.Cont_Curtidas
+                                </div>
+                            </a>}
                         <div class="iconBox" style="float: right; margin-right: 20px;" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Maaar">
                             <span class="iconify" data-icon="fa-solid:share-square" style="color: white; font-size: 24px; margin-left: 27px; margin-top: 3px;"></span>
                         </div>
@@ -229,15 +229,17 @@
                                 </div>
                             </div>
                         </a>
-                    </div>  
+                    </div>
                     <br />
                     <br />
                 }
-          
+
             }
         </div>
     </div>
     <br /><br /><br />
+
+    <script src="@Url.Content("~/scripts/jquery-3.4.1.js")"></script>
     <script src="@Url.Content("~/Scripts/popper.min.js")"></script>
     <script src="@Url.Content("~/scripts/bootstrap.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
