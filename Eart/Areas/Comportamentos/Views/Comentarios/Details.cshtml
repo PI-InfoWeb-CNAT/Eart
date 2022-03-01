@@ -2,6 +2,7 @@
 
 @{
     var idIndex = ViewBag.IdIndex;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -98,15 +99,7 @@
                 </div>
             }
 
-            @if (idIndex == 1)
-            {
-                @Html.ActionLink("Voltar", "Index", "Comentarios", new { area = "Comportamentos", idPostagem = Model.PostagemId, idIndex = 1 }, null)
-            }
-            @if (idIndex == 2)
-            {
-                @Html.ActionLink("Voltar", "Index", "Comentarios", new { area = "Comportamentos", idPostagem = Model.PostagemId, idIndex = 2 }, null)
-            }
-
+            @Html.ActionLink("Voltar", "Index", "Comentarios", new { area = "Comportamentos", idPostagem = Model.PostagemId, idIndex = idIndex }, null)
         </div>
     </div>
 </body>

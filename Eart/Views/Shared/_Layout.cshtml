@@ -1,12 +1,20 @@
 ﻿<!DOCTYPE html>
-@{ var pageName = ViewContext.RouteData.Values["action"].ToString();
-                var membrologado = ViewBag.MembroLogado;
-                var membrofoto = ViewBag.MembroFoto; }
+
+@{
+    var pageName = ViewContext.RouteData.Values["action"].ToString();
+    var membrologado = ViewBag.MembroLogado;
+    var membrofoto = ViewBag.MembroFoto;
+}
+
 <html>
 <head>
+    <title> @ViewBag.Title </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
+    <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
     <link rel="stylesheet" href="~/Css/styles.css">
+    <link rel="stylesheet" href="~/Css/modal.css">
+    <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
 </head>
 <body>
     <footer>
@@ -16,44 +24,58 @@
                     <a href="@Url.Action("FeedPorRelevancia", "Postagens", new { area = "Postagens" })">
                         @if (pageName != "FeedPorRelevancia")
                         {
-            <span class="iconify" data-icon="ant-design:fire-outlined" style="color: white; font-size: 30px; margin-left: 15px;"></span> }
+                            <span class="iconify" data-icon="ant-design:fire-outlined" style="color: white; font-size: 30px; margin-left: 15px;"></span> }
                         else
                         {
-            <span class="iconify" data-icon="ant-design:fire-filled" style="color: white; font-size: 30px; margin-left: 15px;"></span>}
+                            <span class="iconify" data-icon="ant-design:fire-filled" style="color: white; font-size: 30px; margin-left: 15px;"></span>}
                     </a>
                 </li>
                 <li>
                     <a style="margin-left: auto; margin-right: auto;" href="@Url.Action("FeedMembrosSeguidos", "Postagens", new { area = "Postagens" })">
                         @if (pageName != "FeedMembrosSeguidos")
                         {
-            <span class="iconify" data-icon="ant-design:home-outlined" style="color: white; font-size: 30px;"></span> }
+                            <span class="iconify" data-icon="ant-design:home-outlined" style="color: white; font-size: 30px;"></span> }
                         else
                         {
-            <span class="iconify" data-icon="ant-design:home-filled" style="color: white; font-size: 30px;"></span>}
+                            <span class="iconify" data-icon="ant-design:home-filled" style="color: white; font-size: 30px;"></span>}
                     </a>
                 </li>
-                @if (membrofoto == null)
-                {
-    <li style="float: right;">
-        <div>
-            <a>
-                <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 30px; height: 30px; border-radius: 50%; border: solid 1px #F0818E;" />
-            </a>
-        </div>
-    </li> }
-                else
-                {
-    <li style="float: right;">
-        <div>
-            <a>
-                <img class="img-thumbnail" src="~/Membros/Membros/GetFotoPerfil/@membrologado" style="display: block; margin-left: auto; margin-right: auto; width: 30px; height: 30px; border-radius: 50%; border: solid 1px #F0818E;" />
-            </a>
-        </div>
-    </li>}
+                <li style="float: right;">
+                    <a style="margin: inherit;" href="@Url.Action("Details", "Membros", new { area = "Membros", id = membrologado })">
+                        @if (pageName != "Details")
+                        {
+                            if (membrofoto == null)
+                            {
+
+                                <div><img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 30px; height: 30px; border-radius: 50%; border: solid 1px #F0818E;" /></div>
+                            }
+                            else
+                            {
+                                <div><img class="img-thumbnail" src="@Url.Action("GetFotoPerfil", "Membros", new { id = membrologado })" style="display: block; margin-left: auto; margin-right: auto; width: 90px; height: 90px; border-radius: 50%; border: solid 3px #F0818E;" /></div>
+                            }
+                        }
+                        else
+                        {
+                            if (membrofoto == null)
+                            {
+
+                                <div><img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 30px; height: 30px; border-radius: 50%; border: solid 2px #F0818E;" /></div>
+                            }
+                            else
+                            {
+                                <div><img class="img-thumbnail" src="~/Membros/Membros/GetFotoPerfil/@membrologado" style="display: block; margin-left: auto; margin-right: auto; width: 30px; height: 30px; border-radius: 50%; border: solid 2px #F0818E;" /></div>
+                            }
+                        }
+                    </a>
+                </li>
             </ul>
         </nav>
     </footer>
     @RenderBody()
     <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
+    <script src="@Url.Content("~/scripts/jquery-3.4.1.js")"></script>
+    <script src="@Url.Content("~/scripts/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
 </body>
 </html>

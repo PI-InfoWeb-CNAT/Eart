@@ -2,11 +2,11 @@
 
 @{ var membrologado = ViewBag.MembroLogado;
    var seguindo = ViewBag.Seguindo;
-
-   @*Layout = "~/Views/Shared/_Layout.cshtml"; *@
+   Layout = "~/Views/Shared/_Layout.cshtml";
+   ViewBag.Title = "Home";
 }
 
-<!DOCTYPE html>
+@*<!DOCTYPE html>
 <html>
 <head>
     <title> Feed Membros Seguidos </title>
@@ -16,8 +16,8 @@
     <link rel="stylesheet" href="~/Css/modal.css" defer>
     <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
     <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
-</head>
-<body class="bodyPostagens">
+</head>*@
+<div class="bodyPostagens">
     <script src="@Url.Content("~/scripts/jquery-3.4.1.js")"></script>
     <script>
         $(function () {
@@ -218,9 +218,10 @@
                                     @item.Cont_Curtidas
                                 </div>
                             </a>}
-                        <div class="iconBox" style="float: right; margin-right: 20px;" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Maaar">
+                        <div class="iconBox" style="float: right; margin-right: 20px;" data-container="body" data-toggle="popover" data-placement="bottom" rel="popover" data-content="Maaar">
                             <span class="iconify" data-icon="fa-solid:share-square" style="color: white; font-size: 24px; margin-left: 27px; margin-top: 3px;"></span>
                         </div>
+
                         <a href="@Url.Action("Index", "Comentarios", new { area = "Comportamentos", idPostagem = item.PostagemId, idIndex = 1 })">
                             <div style="display: flex; align-items: center; justify-content: center;">
                                 <div class="iconBox">
@@ -238,6 +239,8 @@
         </div>
     </div>
     <br /><br /><br />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
 
     <script src="@Url.Content("~/scripts/jquery-3.4.1.js")"></script>
     <script src="@Url.Content("~/Scripts/popper.min.js")"></script>
@@ -246,8 +249,7 @@
     <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
     <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
 
-</body>
-</html>
+</div>
 
 @*
     @Url.Action("Details", "Postagens", new { area = "Postagens", id = item.PostagemId });

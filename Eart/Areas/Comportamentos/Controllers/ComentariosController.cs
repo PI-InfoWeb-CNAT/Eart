@@ -90,47 +90,18 @@ namespace Eart.Areas.Comportamentos.Controllers
             return View(nova_lista);
         }
 
-        public ActionResult Create1(long id)
+        public ActionResult Create(long idPostagem, long idIndex)
         {
-            ViewBag.IdIndex = 1;
-            Comentario comentario = new Comentario();
-            comentario.PostagemId = id;
-            Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
-            if (membroLogin != null)
-            {
-                comentario.MembroId = membroLogin.MembroId;
-            }
-            else
-            {
-                return RedirectToAction("Login", "Account", new { area = "Membros" });
-            }
-            return View(comentario);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create1(Comentario comentario)
-        {
-            if (ModelState.IsValid)
+            if (idIndex == 1)
             {
                 ViewBag.IdIndex = 1;
-                Postagem postagem = postagemDAL.ObterPostagemPorId((long)comentario.PostagemId);
-                postagem.Cont_Comentarios += 1;
-                GravarPostagem(postagem);
-                GravarComentario(comentario);
-                return RedirectToAction("Index", "Comentarios", new { area = "Comportamentos", idPostagem = comentario.PostagemId, idIndex = 1 });
             }
-            else
+            if (idIndex == 2)
             {
-                return GravarComentario(comentario);
+                ViewBag.IdIndex = 2;
             }
-        }
-
-        public ActionResult Create2(long id)
-        {
-            ViewBag.IdIndex = 2;
             Comentario comentario = new Comentario();
-            comentario.PostagemId = id;
+            comentario.PostagemId = idPostagem;
             Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
             if (membroLogin != null)
             {
@@ -145,16 +116,15 @@ namespace Eart.Areas.Comportamentos.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create2(Comentario comentario, long idIndex)
+        public ActionResult Create(Comentario comentario, long idIndex)
         {
             if (ModelState.IsValid)
             {
-                ViewBag.IdIndex = 2;
                 Postagem postagem = postagemDAL.ObterPostagemPorId((long)comentario.PostagemId);
                 postagem.Cont_Comentarios += 1;
                 GravarPostagem(postagem);
                 GravarComentario(comentario);
-                return RedirectToAction("Index", "Comentarios", new { area = "Comportamentos", idPostagem = comentario.PostagemId, idIndex = 2 });
+                return RedirectToAction("Index", "Comentarios", new { area = "Comportamentos", idPostagem = comentario.PostagemId, idIndex = idIndex });
             }
             else
             {
@@ -162,49 +132,37 @@ namespace Eart.Areas.Comportamentos.Controllers
             }
         }
 
-        public ActionResult Edit1(long? id)
-        {
-            ViewBag.IdIndex = 1;
-            return ObterVisaoComentarioPorId(id);
-        }
+        
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit1(Comentario comentario)
+        public ActionResult Edit(long? idComentario, long idIndex)
         {
-            ViewBag.IdIndex = 1;
-            if (ModelState.IsValid)
+            if (idIndex == 1)
             {
-                GravarComentario(comentario);
-                return RedirectToAction("Index", "Comentarios", new { area = "Comportamentos", idPostagem = comentario.PostagemId, idIndex = 1 });
+                ViewBag.IdIndex = 1;
             }
-            else
-            {
-                return GravarComentario(comentario);
-            }
-        }
-
-        public ActionResult Edit2(long? id)
-        {
-            ViewBag.IdIndex = 2;
-            return ObterVisaoComentarioPorId(id);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit2(Comentario comentario)
-        {
-            if (ModelState.IsValid)
+            if (idIndex == 2)
             {
                 ViewBag.IdIndex = 2;
+            }
+            return ObterVisaoComentarioPorId(idComentario);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Comentario comentario, long idIndex)
+        {
+            if (ModelState.IsValid)
+            {
                 GravarComentario(comentario);
-                return RedirectToAction("Index", "Comentarios", new { area = "Comportamentos", idPostagem = comentario.PostagemId, idIndex = 2 });
+                return RedirectToAction("Index", "Comentarios", new { area = "Comportamentos", idPostagem = comentario.PostagemId, idIndex = idIndex });
             }
             else
             {
                 return GravarComentario(comentario);
             }
         }
+
+        
 
         public ActionResult Details(long? idComentario, long idIndex)
         {
@@ -219,61 +177,38 @@ namespace Eart.Areas.Comportamentos.Controllers
             return ObterVisaoComentarioPorId(idComentario);
         }
 
-        public ActionResult Delete1(long? id)
+        public ActionResult Delete(long? idComentario, long idIndex)
         {
-            ViewBag.IdIndex = 1;
-            return ObterVisaoComentarioPorId(id);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete1(int id, FormCollection collection)
-        {
-            try
+            if (idIndex == 1)
             {
                 ViewBag.IdIndex = 1;
-                Comentario comentario_id = comentarioDAL.ObterComentarioPorId(id);
-                long postagemId = (long) comentario_id.PostagemId;
-                Comentario comentario = comentarioDAL.EliminarComentarioPorId(id);
-                Postagem postagem = postagemDAL.ObterPostagemPorId((long) postagemId);
-                postagem.Cont_Comentarios -= 1;
-                GravarPostagem(postagem);
-                TempData["Message"] = "Comentário excluído com sucesso";
-                return RedirectToAction("Index", "Comentarios", new { area = "Comportamentos", idPostagem = postagemId, idIndex = 1  });
             }
-            catch
+            if (idIndex == 2)
             {
-                return View();
+                ViewBag.IdIndex = 2;
             }
-        }
-
-        public ActionResult Delete2(long? id)
-        {
-            ViewBag.IdIndex = 2;
-            return ObterVisaoComentarioPorId(id);
+            return ObterVisaoComentarioPorId(idComentario);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete2(int id, FormCollection collection)
+        public ActionResult Delete(int idComentario, long idIndex, FormCollection collection)
         {
             try
             {
-                ViewBag.IdIndex = 2;
-                Comentario comentario_id = comentarioDAL.ObterComentarioPorId(id);
-                long postagemId = (long)comentario_id.PostagemId;
-                Comentario comentario = comentarioDAL.EliminarComentarioPorId(id);
-                Postagem postagem = postagemDAL.ObterPostagemPorId((long)postagemId);
+                Comentario comentario_id = comentarioDAL.ObterComentarioPorId(idComentario);
+                long postagemId = (long) comentario_id.PostagemId;
+                Comentario comentario = comentarioDAL.EliminarComentarioPorId(idComentario);
+                Postagem postagem = postagemDAL.ObterPostagemPorId(postagemId);
                 postagem.Cont_Comentarios -= 1;
                 GravarPostagem(postagem);
                 TempData["Message"] = "Comentário excluído com sucesso";
-                return RedirectToAction("Index", "Comentarios", new { area = "Comportamentos", idPostagem = postagemId, idIndex = 2 });
+                return RedirectToAction("Index", "Comentarios", new { area = "Comportamentos", idPostagem = postagemId, idIndex = idIndex });
             }
             catch
             {
                 return View();
             }
         }
-
     }
 }

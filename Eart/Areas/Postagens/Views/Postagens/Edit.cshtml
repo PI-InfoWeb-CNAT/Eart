@@ -1,55 +1,46 @@
 ﻿@model Eart.Areas.Postagens.Models.Postagem
 
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+@{ 
+   Layout = "~/Views/Shared/_Layout.cshtml";
+   ViewBag.Title = "Editar Postagem";
 }
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <title> Criar postagem </title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
-    <link rel="stylesheet" href="~/Css/styles.css">
-    <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
-    <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
-</head>
-<body>
-    <div class="container">
-        <div>
-            @using (Html.BeginForm("Edit", "Postagens", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-                @Html.AntiForgeryToken()
-                <div class="form-horizontal">
-                    @Html.HiddenFor(model => model.PostagemId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.HiddenFor(model => model.MembroId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.HiddenFor(model => model.FotoType)
-                    @Html.HiddenFor(model => model.Foto)
-                    @Html.HiddenFor(model => model.FotoNome)
-                    @Html.HiddenFor(model => model.FotoTamanho)
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            @Html.TextAreaFor(model => model.Texto, new { @cols = 44, htmlAttributes = new { placeholder = "Adicionar legenda..." } })
-                            @Html.ValidationMessageFor(model => model.Texto, "", new { @class = "error" })
-                        </div>
-                    </div>
-                    <div class="foto">
-                        <div>
-                            <div>
-                                @Html.TextBox("foto", "", new { type = "file" }) <br />
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="buttons">
-                    @Html.ActionLink("Cancelar", "FeedMembrosSeguidos", "Postagens", new { area = "Postagens" }, new { @class = "cancelar" })
-                    <button class="publicar"> Publicar </button>
-                </div>
-                <br />
-                <br />
-            }
+@*<!DOCTYPE html>
+    <html lang="pt-br">
+    <head>
+        <title> Criar postagem </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
+        <link rel="stylesheet" href="~/Css/styles.css">
+        <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
+        <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
+    </head>
+    <body>*@    
+<div class="container">
+    @using (Html.BeginForm("Edit", "Postagens", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+        @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.HiddenFor(model => model.PostagemId, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(model => model.MembroId, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(model => model.FotoType)
+        @Html.HiddenFor(model => model.Foto)
+        @Html.HiddenFor(model => model.FotoNome)
+        @Html.HiddenFor(model => model.FotoTamanho)
+        @Html.HiddenFor(model => model.Cont_Curtidas)
+        @Html.HiddenFor(model => model.Cont_Comentarios)
+        <div class="form-group">
+            @Html.TextAreaFor(model => model.Texto, new { @cols = 44, htmlAttributes = new { placeholder = "Adicionar legenda..." } })
+            @Html.ValidationMessageFor(model => model.Texto, "", new { @class = "error" })
+        </div>
+        <br>
+        <div class="foto">
+            @Html.TextBox("foto", "", new { type = "file" }) <br />
         </div>
     </div>
-</body>
-</html>
+        <div class="buttons">
+            @Html.ActionLink("Cancelar", "FeedMembrosSeguidos", "Postagens", new { area = "Postagens" }, new { @class = "cancelar" })
+            <button class="publicar"> Publicar </button>
+        </div>
+        <br /><br />
+     }
+</div>

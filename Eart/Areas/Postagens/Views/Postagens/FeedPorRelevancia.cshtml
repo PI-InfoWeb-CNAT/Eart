@@ -1,10 +1,12 @@
 ﻿@model IEnumerable<Eart.Areas.Postagens.Models.Postagem>
 
 @{ 
-    var membrologado = ViewBag.MembroLogado; 
- }
+    var membrologado = ViewBag.MembroLogado;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Em Alta";
+}
 
-<!DOCTYPE html>
+@*<!DOCTYPE html>
 <html>
 <head>
     <title> Feed em Alta </title>
@@ -15,7 +17,8 @@
     <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
     <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
 </head>
-<body class="bodyPostagens">
+<body class="bodyPostagens">*@
+<div class="bodyPostagens">
     <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-hidden="true" style="color:black">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -223,5 +226,4 @@
     <script src="@Url.Content("~/scripts/bootstrap.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
-</body>
-</html>
+</div>

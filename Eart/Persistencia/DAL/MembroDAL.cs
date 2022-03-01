@@ -26,7 +26,7 @@ namespace Eart.Persistencia.DAL
 
         public Membro ObterMembroPorUsuario(string usuario)
         {
-            IQueryable<Membro> membros = context.Membros.Where(u => u.Usuario == usuario).Where(m => m.Ativo == true);
+            IQueryable<Membro> membros = context.Membros.Where(u => (u.Usuario == usuario &&  u.Ativo == true));
 
             if (membros.Count() != 0)
             {

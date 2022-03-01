@@ -1,9 +1,11 @@
 ﻿@model IEnumerable<Eart.Areas.Membros.Models.Membro>
 @{ 
-    string arroba = "@"; 
+    string arroba = "@";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Pesquisar membros";
 }
 
-<!DOCTYPE html>
+@*<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <title> Pesquisar </title>
@@ -12,41 +14,46 @@
     <link rel="stylesheet" href="~/Css/styles.css">
     <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
     <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
-</head>
-<body>
+</head>*@
+<div>
+    @Html.ActionLink("Voltar", "FeedMembrosSeguidos", "Postagens", new { area = "Postagens" })
+    <br /><br /><br />
     @using (Html.BeginForm("PesquisarMembros", "Pesquisar", FormMethod.Post))
     {
         <input type="text" id="pesquisar" name="pesquisa" placeholder="Pesquisar" />
-        <input type="submit" value="Pesquisar" />}
-        <br /><br/>
-        <div class="nome">
+        <input type="submit" value="Pesquisar" />
+    }
+    <br /><br />
+    <div class="resultados">
         @if (Model != null)
         {
-            foreach (var item in Model)
+            if (Model.Count() != 0)
             {
-                <div class="membro">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="glyphicon glyphicon-user"></i>
-                            </span>
-
-                            @if (item.FotoPerfil is null)
-                            {
-                                <img class="img-thumbnail" src="~/Imagens/avatar.png" style="display:block;margin-left:auto; margin-right:auto; width:100px; height:100px; border-radius:75px" /> }
-                            else
-                            {
-                                <img class="img-thumbnail" src="@Url.Action("GetFotoPerfil", "Membros", new { area = "Membros", id = item.MembroId })" style="display: block; margin-left: auto; margin-right: auto; width: 100px; height: 100px; border-radius: 75px" />
-                            }
-                            <span>@Html.ActionLink(item.Nome, "Details", "Membros", new { Area = "Membros", id = item.MembroId }, new { @class = "nomeUsuario" })</span>
-                            <span> @arroba@item.Usuario </span>
-                        </div>
+                foreach (var item in Model)
+                {
+                    <div class="membro">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-user"></i>
+                        </span>
+                        @if (item.FotoPerfil is null)
+                        {
+                            <img class="img-thumbnail" src="~/Imagens/avatar.png" style="display:block;margin-left:auto; margin-right:auto; width:45px; height:45px; border-radius:75px" />
+                        }
+                        else
+                        {
+                            <img class="img-thumbnail" src="@Url.Action("GetFotoPerfil", "Membros", new { area = "Membros", id = item.MembroId })" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 75px" />
+                        }
+                        <span>@Html.ActionLink(item.Nome, "Details", "Membros", new { Area = "Membros", id = item.MembroId }, new { @class = "nomeUsuario" })</span>
+                        <span> @arroba@item.Usuario </span>
+                        <br />
                     </div>
-                    <br />
-                </div>
-                <br/><br/>
+                    <br /><br />
+                }
             }
-         }
+            else
+            {
+                <p> Não foi possível achar nada correspondente a sua busca! </p>
+            }
+        }
     </div>
-</body>
-</html>
+</div>

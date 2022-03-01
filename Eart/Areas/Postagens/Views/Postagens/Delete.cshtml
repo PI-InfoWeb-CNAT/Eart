@@ -1,6 +1,11 @@
 ﻿@model Eart.Areas.Postagens.Models.Postagem
 
-<!DOCTYPE html>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Deletar postagem";
+}
+
+@*<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <title> Deletar postagem </title>
@@ -23,96 +28,112 @@
         }
     </style>
 </head>
-<body>
+<body>*@
+<div>
     @Html.HiddenFor(model => model.PostagemId)
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <div class="logo">
+    <div class="logo">
                 <img alt="Logo" src="~/Imagens/logo.png" heigth="50" width="50" />
                 <h1 class="logo"> Eart </h1>
+    </div>
+    <div class="postagem">
+        <hr /> <br />
+        <div class="usuario">
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-user"></i>
+            </span>
+            @if (Model.Membro.FotoPerfil == null)
+            {
+                <div class="imgPerfPostag">
+                    <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                </div>
+            }
+            else
+            {
+                <div class="imgPerfPostag">
+                    <a><img class="img-thumbnail" src="~/Membros/Membros/GetFotoPerfil/@Model.Membro.MembroId" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" /> </a>
+                </div>
+            }
+            <span>@Html.ActionLink(Model.Membro.Nome, "Details", "Membros", new { Area = "Membros", id = Model.MembroId }, new { @class = "nomeUsuario" })r</span>
+        </div>
+        <div class="dadosPostagem">
+            <span class="dataPostagem">@Model.Data.ToShortDateString() às @Model.Data.Hour:@Model.Data.Minute</span>
+            <br />
+            <div style="margin-bottom: 10px;">@Model.Texto</div>
+            @if (Model.Foto != null)
+            {
+                <div class="midiaPost">
+                    <a> <img class="imgPost" src="@Url.Action("GetFoto", "Postagens", new { id = Model.PostagemId })" /> </a>
+                </div>
+            }
+            @if (Model.Curtida != true)
+            {
+                <a href="@Url.Action("Curtir", "Curtidas", new { area = "Comportamentos", id = Model.PostagemId })">
+                    <div class="iconBox" style="margin-left: 20px;">
+                        <span class="iconify" data-icon="ant-design:heart-outlined" style="color: white; font-size: 30px; margin-left: 23px;"></span>
+                        @Model.Cont_Curtidas
+                    </div>
+                </a>
+            }
+            else
+            {
+                <a href="@Url.Action("Descurtir", "Curtidas", new { area = "Comportamentos", id = Model.PostagemId })">
+                    <div class="iconBox" style="margin-left: 20px;">
+                        <span class="iconify" data-icon="ant-design:heart-filled" style="color: #f0818e; font-size: 30px; margin-left: 23px;"></span>
+                        @Model.Cont_Curtidas
+                    </div>
+                </a>
+            }
+            <div class="iconBox" style="float: right; margin-right: 20px;" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Maaar">
+                <span class="iconify" data-icon="fa-solid:share-square" style="color: white; font-size: 24px; margin-left: 27px; margin-top: 3px;"></span>
+            </div>
+            <a href="@Url.Action("Index", "Comentarios", new { area = "Comportamentos", idPostagem = Model.PostagemId, idIndex = 1 })">
+                <div style="display: flex; align-items: center; justify-content: center;">
+                    <div class="iconBox">
+                        <span class="iconify" data-icon="akar-icons:comment" style="color: white; font-size: 25px; margin-top: 3px; margin-left: 25px;"></span>
+                        <span class="contadores">@Model.Cont_Comentarios</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>     
+    <div class="panel-footer panel-info">
+        <a href="#" class="editar-perfil" data-toggle="modal" data-target="#deleteConfirmationModal"> Deletar postagem </a>
+        @Html.ActionLink("Cancelar", "FeedMembrosSeguidos", "Postagens", new { Area = "Postagens" }, new { @class = "btn btn-warning" })
+    </div>
+</div>
+<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-hidden="true" style="color:black">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    Confirmação de exclusão da POSTAGEM
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Você está prestes a deletar essa postagem.
+                </p>
+                <p>
+                    <strong>
+                        Você está certo que deseja prosseguir?
+                    </strong>
+                </p>
+                @using (Html.BeginForm("Delete", "Postagens", FormMethod.Post, new { @id = "delete-form", role = "form" }))
+                {
+                    @Html.HiddenFor(model => model.PostagemId)
+                    @Html.AntiForgeryToken()
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" onclick="$('#delete-form').submit();">
+                    Sim, exclua esta postagem.
+                </button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">
+                    Não, não exclua esta postagem.
+                </button>
             </div>
         </div>
-        <div class="panel-body">
-            <div class="postagem">
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-user"></i>
-                        </span>
-                        @Html.EditorFor(model => model.Membro.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-user"></i>
-                        </span>
-                        @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                    </div>
-                </div>
+    </div>
+</div>    
+    
 
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-user"></i>
-                        </span>
-                        @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                    </div>
-                </div>
-                <div class="fotoPerfil">
-                    @if (Model.Foto != null)
-                    {
-                        <div class="panel-body">
-                            <a>
-                                <img class="img-thumbnail" src="@Url.Action("GetFoto", "Postagens", new { id = Model.PostagemId })" style="display: block; margin-left: auto; margin-right: auto; width: 300px; height: 200px;" />
-                            </a>
-                        </div>
-                    }
-                </div>
-            </div>
-        </div>
-        <div class="panel-footer panel-info">
-            <a href="#" class="editar-perfil" data-toggle="modal" data-target="#deleteConfirmationModal"> Deletar postagem </a>
-            @Html.ActionLink("Cancelar", "FeedMembrosSeguidos", "Postagens", new { Area = "Postagens" }, new { @class = "btn btn-warning" })
-        </div>
-    </div>
-    <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-hidden="true" style="color:black">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">
-                        Confirmação de exclusão da POSTAGEM
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <p>
-                        Você está prestes a deletar essa postagem.
-                    </p>
-                    <p>
-                        <strong>
-                            Você está certo que deseja prosseguir?
-                        </strong>
-                    </p>
-                    @using (Html.BeginForm("Delete", "Postagens", FormMethod.Post, new { @id = "delete-form", role = "form" }))
-                    {
-                        @Html.HiddenFor(model => model.PostagemId)
-                        @Html.AntiForgeryToken()
-                    }
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" onclick="$('#delete-form').submit();">
-                        Sim, exclua esta postagem.
-                    </button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">
-                        Não, não exclua esta postagem.
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="@Url.Content("~/scripts/jquery-3.4.1.js")"></script>
-    <script src="@Url.Content("~/scripts/bootstrap.js")"></script>
-    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
-    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
-</body>
-</html>

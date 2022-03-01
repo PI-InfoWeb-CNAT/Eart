@@ -67,7 +67,6 @@ namespace Eart.Areas.Postagens.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    postagem.Data = DateTime.Now;
                     postagem.Relevancia = ((postagem.Cont_Curtidas * 3)+ (postagem.Cont_Comentarios * 2)) / 5;
                     if (foto != null)
                     {
@@ -93,18 +92,23 @@ namespace Eart.Areas.Postagens.Controllers
             if (membroLogin != null)
             {
                 ViewBag.MembroLogado = membroLogin.MembroId;
-            }
-            IQueryable<Postagem> postagens = postagemDAL.ObterPostagensClassificadasPorData();
-            List<Postagem> nova_lista = new List<Postagem>();
-            foreach (var p in postagens) { 
-                p.Curtida = curtidaDAL.ObterPostagensCurtidasPorMembro((long) p.PostagemId, (long) membroLogin.MembroId);
-                GravarPostagem(p);
-                if (p.Membro.Seguindo == true || p.MembroId == membroLogin.MembroId)
+                IQueryable<Postagem> postagens = postagemDAL.ObterPostagensClassificadasPorData();
+                List<Postagem> nova_lista = new List<Postagem>();
+                foreach (var p in postagens)
                 {
-                    nova_lista.Add(p);
+                    p.Curtida = curtidaDAL.ObterPostagensCurtidasPorMembro((long)p.PostagemId, (long)membroLogin.MembroId);
+                    GravarPostagem(p);
+                    if (p.Membro.Seguindo == true || p.MembroId == membroLogin.MembroId)
+                    {
+                        nova_lista.Add(p);
+                    }
                 }
+                return View(nova_lista);
             }
-            return View(nova_lista);
+            else
+            {
+                return RedirectToAction("Login", "Account", new { area = "Membros" });
+            }
         }
 
         public ActionResult FeedPorRelevancia()
@@ -141,6 +145,8 @@ namespace Eart.Areas.Postagens.Controllers
             {
                 return RedirectToAction("Login", "Account", new { area = "Membros" });
             }
+
+            postagem.Data = DateTime.Now;
             return View(postagem);
         }
 
@@ -196,7 +202,7 @@ namespace Eart.Areas.Postagens.Controllers
                 }
                 Postagem postagem = postagemDAL.EliminarPostagemPorId(id);
                 TempData["Message"] = "Postagem excluída com sucesso";
-                 return RedirectToAction("FeedMembrosSeguidos", "Postagens", new { area = "Postagens" });
+                return RedirectToAction("FeedMembrosSeguidos", "Postagens", new { area = "Postagens" });
             }
             catch
             {

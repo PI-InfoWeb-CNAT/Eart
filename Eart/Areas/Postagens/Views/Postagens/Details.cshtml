@@ -2,8 +2,11 @@
 
 @{
     var membrologado = ViewBag.MembroLogado;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Details";
 }
-<!DOCTYPE html>
+
+@*<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <title> Ver postagem </title>
@@ -25,99 +28,153 @@
         }
     </style>
 </head>
-<body>
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <div class="logo">
-                <img alt="Logo" src="~/Imagens/logo.png" heigth="50" width="50" />
-                <h1 class="logo"> Eart </h1>
+<body>*@
+<div class="logo">
+   <img alt="Logo" src="~/Imagens/logo.png" heigth="50" width="50" />
+   <h1 class="logo"> Eart </h1>
+</div>
+<div class="panel-body">
+    @if (Model.Membro.Ativo == false) {
+        <div class="postagem">
+            <hr /> <br />
+            <div class="usuario">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                </span>
+                @if (Model.Membro.FotoPerfil == null) {
+                    <div class="imgPerfPostag">
+                        <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                    </div> 
+                 }
+                 else {
+                     <div class="imgPerfPostag">
+                        <a><img class="img-thumbnail" src="~/Membros/Membros/GetFotoPerfil/@Model.Membro.MembroId" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" /> </a>
+                     </div>
+                 }
+                 <details class="configPost">
+                    <summary style="list-style: none;"> <span class="iconify" data-icon="simple-line-icons:options" style="color: #f0818e; font-size: 30px;"></span> </summary>
+                    <ol style="list-style: none;">
+                        <li> @Html.ActionLink("Ver publicação", "Details", "Postagens", new { area = "Postagens", id = Model.PostagemId }, null) </li>
+                        @if (Model.MembroId == membrologado) {
+                            <li> @Html.ActionLink("Editar publicação", "Edit", "Postagens", new { area = "Postagens", id = Model.PostagemId }, null)</li>
+                            <li> @Html.ActionLink("Excluir publicação", "Delete", "Postagens", new { area = "Postagens", id = Model.PostagemId }, null)</li>
+                         }
+                         @if (Model.Foto != null) {
+                            <li> @Html.ActionLink("Fazer download do arquivo", "DownloadFoto", "Postagens", new { area = "Postagens", id = Model.PostagemId }, null)</li>
+                          }
+                    </ol>
+                 </details>
+                 <span>invalid-user</span>
+            </div>
+            <div class="dadosPostagem">
+                <span class="dataPostagem">@Model.Data.ToShortDateString() às @Model.Data.Hour:@Model.Data.Minute</span>
+                <br />
+                <div style="margin-bottom: 10px;">@Model.Texto</div>
+                @if (Model.Foto != null) {
+                    <div class="midiaPost">
+                        <a> <img class="imgPost" src="@Url.Action("GetFoto", "Postagens", new { id = Model.PostagemId })" /> </a>
+                    </div>
+                 }
+                 @if (Model.Curtida != true) {
+                      <a href="@Url.Action("Curtir", "Curtidas", new { area = "Comportamentos", id = Model.PostagemId })">
+                        <div class="iconBox" style="margin-left: 20px;">
+                            <span class="iconify" data-icon="ant-design:heart-outlined" style="color: white; font-size: 30px; margin-left: 23px;"></span>
+                            @Model.Cont_Curtidas
+                        </div>
+                      </a> 
+                  }
+                  else {
+                      <a href="@Url.Action("Descurtir", "Curtidas", new { area = "Comportamentos", id = Model.PostagemId })">
+                        <div class="iconBox" style="margin-left: 20px;">
+                            <span class="iconify" data-icon="ant-design:heart-filled" style="color: #f0818e; font-size: 30px; margin-left: 23px;"></span>
+                            @Model.Cont_Curtidas
+                        </div>
+                      </a>
+                  }
+                  <div class="iconBox" style="float: right; margin-right: 20px;" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Maaar">
+                     <span class="iconify" data-icon="fa-solid:share-square" style="color: white; font-size: 24px; margin-left: 27px; margin-top: 3px;"></span>
+                  </div>
+                  <a href="@Url.Action("Index", "Comentarios", new { area = "Comportamentos", idPostagem = Model.PostagemId, idIndex = 1 })">
+                     <div style="display: flex; align-items: center; justify-content: center;">
+                        <div class="iconBox">
+                            <span class="iconify" data-icon="akar-icons:comment" style="color: white; font-size: 25px; margin-top: 3px; margin-left: 25px;"></span>
+                            <span class="contadores">@Model.Cont_Comentarios</span>
+                        </div>
+                     </div>
+                  </a>
             </div>
         </div>
-        <div class="panel-body">
-            @if (Model.Membro.Ativo == false)
-            {
-                <div class="postagem">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="glyphicon glyphicon-user"></i>
-                            </span>
-                            <span class="form-control"> invalid-user </span>
+     }
+     else {
+        <div class="postagem">
+            <hr /> <br />
+            <div class="usuario">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                </span>
+                @if (Model.Membro.FotoPerfil == null) {
+                    <div class="imgPerfPostag">
+                        <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                    </div> 
+                 }
+                 else {
+                     <div class="imgPerfPostag">
+                        <a><img class="img-thumbnail" src="~/Membros/Membros/GetFotoPerfil/@Model.Membro.MembroId" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" /> </a>
+                     </div>
+                 }
+                 <details class="configPost">
+                    <summary style="list-style: none;"> <span class="iconify" data-icon="simple-line-icons:options" style="color: #f0818e; font-size: 30px;"></span> </summary>
+                    <ol style="list-style: none;">
+                        <li> @Html.ActionLink("Ver publicação", "Details", "Postagens", new { area = "Postagens", id = Model.PostagemId }, null) </li>
+                        @if (Model.MembroId == membrologado) {
+                            <li> @Html.ActionLink("Editar publicação", "Edit", "Postagens", new { area = "Postagens", id = Model.PostagemId }, null)</li>
+                            <li> @Html.ActionLink("Excluir publicação", "Delete", "Postagens", new { area = "Postagens", id = Model.PostagemId }, null)</li>
+                         }
+                         @if (Model.Foto != null) {
+                            <li> @Html.ActionLink("Fazer download do arquivo", "DownloadFoto", "Postagens", new { area = "Postagens", id = Model.PostagemId }, null)</li>
+                          }
+                    </ol>
+                 </details>
+                 <span>@Html.ActionLink(Model.Membro.Nome, "Details", "Membros", new { Area = "Membros", id = Model.MembroId }, new { @class = "nomeUsuario" })r</span>
+            </div>
+            <div class="dadosPostagem">
+                <span class="dataPostagem">@Model.Data.ToShortDateString() às @Model.Data.Hour:@Model.Data.Minute</span>
+                <br />
+                <div style="margin-bottom: 10px;">@Model.Texto</div>
+                @if (Model.Foto != null) {
+                    <div class="midiaPost">
+                        <a> <img class="imgPost" src="@Url.Action("GetFoto", "Postagens", new { id = Model.PostagemId })" /> </a>
+                    </div>
+                 }
+                 @if (Model.Curtida != true) {
+                      <a href="@Url.Action("Curtir", "Curtidas", new { area = "Comportamentos", id = Model.PostagemId })">
+                        <div class="iconBox" style="margin-left: 20px;">
+                            <span class="iconify" data-icon="ant-design:heart-outlined" style="color: white; font-size: 30px; margin-left: 23px;"></span>
+                            @Model.Cont_Curtidas
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="glyphicon glyphicon-user"></i>
-                            </span>
-                            @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                      </a> 
+                  }
+                  else {
+                      <a href="@Url.Action("Descurtir", "Curtidas", new { area = "Comportamentos", id = Model.PostagemId })">
+                        <div class="iconBox" style="margin-left: 20px;">
+                            <span class="iconify" data-icon="ant-design:heart-filled" style="color: #f0818e; font-size: 30px; margin-left: 23px;"></span>
+                            @Model.Cont_Curtidas
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="glyphicon glyphicon-user"></i>
-                            </span>
-                            @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                      </a>
+                  }
+                  <div class="iconBox" style="float: right; margin-right: 20px;" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Maaar">
+                     <span class="iconify" data-icon="fa-solid:share-square" style="color: white; font-size: 24px; margin-left: 27px; margin-top: 3px;"></span>
+                  </div>
+                  <a href="@Url.Action("Index", "Comentarios", new { area = "Comportamentos", idPostagem = Model.PostagemId, idIndex = 1 })">
+                     <div style="display: flex; align-items: center; justify-content: center;">
+                        <div class="iconBox">
+                            <span class="iconify" data-icon="akar-icons:comment" style="color: white; font-size: 25px; margin-top: 3px; margin-left: 25px;"></span>
+                            <span class="contadores">@Model.Cont_Comentarios</span>
                         </div>
-                    </div>
-                    <div class="fotoPerfil">
-                        @if (Model.Foto != null)
-                        {
-                            <div class="panel-body">
-                                <a>
-                                    @Html.ActionLink("Baixar o arquivo: " + Model.FotoNome, "DownloadFoto", "Postagens", new { area = "Postagens", id = Model.PostagemId }, null)
-                                    <img class="img-thumbnail" src="@Url.Action("GetFoto", "Postagens", new { id = Model.PostagemId })" style="display: block; margin-left: auto; margin-right: auto; width: 300px; height: 200px;" />
-                                </a>
-                            </div>
-                        }
-                    </div>
-                </div>
-            }
-            else
-            {
-                <div class="postagem">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="glyphicon glyphicon-user"></i>
-                            </span>
-                            @Html.EditorFor(model => model.Membro.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="glyphicon glyphicon-user"></i>
-                            </span>
-                            @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="glyphicon glyphicon-user"></i>
-                            </span>
-                            @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                        </div>
-                    </div>
-                    <div class="fotoPerfil">
-                        @if (Model.Foto != null)
-                        {
-                            <div class="panel-body">
-                                <a>
-                                    @Html.ActionLink("Baixar o arquivo: " + Model.FotoNome, "DownloadFoto", "Postagens", new { area = "Postagens", id = Model.PostagemId }, null)
-                                    <img class="img-thumbnail" src="@Url.Action("GetFoto", "Postagens", new { id = Model.PostagemId })" style="display: block; margin-left: auto; margin-right: auto; width: 300px; height: 200px;" />
-                                </a>
-                            </div>
-                        }
-                    </div>
-                </div>
-            }
-            @Html.ActionLink("Voltar", "FeedMembrosSeguidos", "Postagens", new { area = "Postagens" }, null)
+                     </div>
+                  </a>
+            </div>
         </div>
-    </div>
-</body>
-</html>
+     }
+    @Html.ActionLink("Voltar", "FeedMembrosSeguidos", "Postagens", new { area = "Postagens" }, null)
+</div>
