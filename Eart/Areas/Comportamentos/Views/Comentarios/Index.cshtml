@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<Eart.Areas.Comportamentos.Models.Comentario>
 
-@{ var idPostagem = ViewBag.IdPostagem;
-                var urlanterior = ViewBag.UrlAnterior;
-                var idIndex = ViewBag.IdIndex; }
+@{
+    var idPostagem = ViewBag.IdPostagem;
+    var urlanterior = ViewBag.UrlAnterior;
+    var idIndex = ViewBag.IdIndex;
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,149 +38,110 @@
     </div>
     @if (@TempData["Message"] != null)
     {
-<script src="@Url.Content("~/scripts/jquery-3.4.1.js")"></script>
-                <script>
-                    $(document).ready(function () {
-                        $('#Modal').modal('show');
-                    });
-                </script>}
-    <div class="panel panel-primary">
+        <script src="@Url.Content("~/scripts/jquery-3.4.1.js")"></script>
+        <script>
+            $(document).ready(function () {
+                $('#Modal').modal('show');
+            });
+        </script>
+    }
+    <div class="panel panel-primary" style="width: 100%;">
         <div class="legendaComent">
             <a href="@Url.Content(@urlanterior)" style="float: left; margin-left: 10px;"><span class="iconify" data-icon="akar-icons:arrow-left" style="color: white; font-size: 24px;"></span></a>
             <h3 style="margin-right: 20px; font-size: 20px;">Comentários</h3>
         </div>
-        <br /><br /><br /><br />
         <div class="panel-body">
-            <br /><br />
-            @if (idIndex == 1)
-            {
-@Html.ActionLink("Criar Comentário", "Create1", "Comentarios", new { Area = "Comportamentos", id = idPostagem }, new { @class = "cancelar" })            }
-            @if (idIndex == 2)
-            {
-@Html.ActionLink("Criar Comentário", "Create2", "Comentarios", new { Area = "Comportamentos", id = idPostagem }, new { @class = "cancelar" })            }
-            <br /><br />
-            <br /><br />
             @if (Model.Count() == 0)
             {
-<p> Esta postagem não possui comentários. Seja o primeiro a comentar! </p> }
+                <p> Esta postagem não possui comentários. Seja o primeiro a comentar! </p>
+            }
             else
             {
                 foreach (var item in Model)
                 {
-                    if (item.MembroId == null && item.Texto != null)
+                    if (item.Membro.Ativo == false && item.Texto != null)
                     {
-<div class="comentario">
-    <div class="conf">
-        <details>
-            <summary> Configurações </summary>
-            <ol>
-                <li> @Html.ActionLink("Ver comentário", "Details", "Comentarios", new { area = "Comportamentos", idComentario = item.ComentarioId, idIndex = idIndex }, null) </li>
-                @*@if (idIndex == 1)
-                    {
-                        <li> @Html.ActionLink("Editar comentário", "Edit1", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
-                        <li> @Html.ActionLink("Excluir comentário", "Delete1", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
+                        <div class="comentario">
+                            @if (item.Membro.FotoPerfil == null)
+                            {
+                            <div class="imgPerfPostag" style="margin-left: 5px;">
+                                <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                            </div> 
+                            }
+                            else
+                            {
+                            <div class="imgPerfPostag" style="margin-left: 5px;">
+                                <a>
+                                    <img class="img-thumbnail" src="~/Membros/Membros/GetFotoPerfil/@item.Membro.MembroId" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                                </a>
+                            </div>
+                            }
+                            <details class="configPost" style="margin-right: 10px;">
+                                <summary style="list-style: none;"> <span class="iconify" data-icon="simple-line-icons:options" style="color: #f0818e; font-size: 25px;"></span> </summary>
+                            <ol style="list-style: none;">
+                                    <li> @Html.ActionLink("Ver comentário", "Details", "Comentarios", new { area = "Comportamentos", idComentario = item.ComentarioId, idIndex = idIndex }, null) </li>
+                                    @*@if (idIndex == 1)
+                                        {
+                                            <li> @Html.ActionLink("Editar comentário", "Edit1", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
+                                            <li> @Html.ActionLink("Excluir comentário", "Delete1", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
+                                        }
+                                        @if (idIndex == 2)
+                                        {
+                                            <li> @Html.ActionLink("Editar comentário", "Edit2", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
+                                            <li> @Html.ActionLink("Excluir comentário", "Delete2", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
+                                        }*@
+                                </ol>
+                            </details>
+                            <div class="boxComent">
+                                <span>@Html.ActionLink(item.Membro.Nome, "Details", "Membros", new { Area = "Membros", id = item.MembroId }, new { @class = "nomeUsuario" })</span>
+                                <br />
+                                <span>@item.Texto</span>
+                            </div>
+                            <span class="dataPostagem" style="margin-left: 15%;">@item.Data</span>
+                        </div>
+                        <br />
                     }
-                    @if (idIndex == 2)
-                    {
-                        <li> @Html.ActionLink("Editar comentário", "Edit2", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
-                        <li> @Html.ActionLink("Excluir comentário", "Delete2", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
-                    }*@
-            </ol>
-        </details>
-    </div>
-    <div class="form-group">
-        <div class="input-group">
-            <span class="input-group-addon">
-                <i class="glyphicon glyphicon-user"></i>
-            </span>
-            <span class="form-control"> invalid-user </span>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="input-group">
-            <span class="input-group-addon">
-                <i class="glyphicon glyphicon-user"></i>
-            </span>
-            @Html.EditorFor(modelItem => item.Data, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="input-group">
-            <span class="input-group-addon">
-                <i class="glyphicon glyphicon-user"></i>
-            </span>
-            @Html.EditorFor(modelItem => item.Texto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-        </div>
-    </div>
-
-</div> }
                     else
                     {
-<div class="comentario">
-    <div class="conf">
-        <details>
-            <summary> Configurações </summary>
-            <ol>
-                <li> @Html.ActionLink("Ver comentário", "Details", "Comentarios", new { area = "Comportamentos", idComentario = item.ComentarioId, idIndex = idIndex }, null) </li>
-                @if (idIndex == 1)
-                {
-<li> @Html.ActionLink("Editar comentário", "Edit1", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
-                            <li> @Html.ActionLink("Excluir comentário", "Delete1", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>}
-                @if (idIndex == 2)
-                {
-<li> @Html.ActionLink("Editar comentário", "Edit2", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
-                            <li> @Html.ActionLink("Excluir comentário", "Delete2", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>}
-            </ol>
-        </details>
-    </div>
-    <div class="form-group">
-        <div class="input-group">
-            <span class="input-group-addon">
-                <i class="glyphicon glyphicon-user"></i>
-            </span>
-            @Html.EditorFor(modelItem => item.Membro.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-            @Html.ActionLink(" - Ver perfil", "Details", "Membros", new { Area = "Membros", id = item.MembroId }, null);
-            @Html.EditorFor(modelItem => item.Texto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="input-group">
-            <span class="input-group-addon">
-                <i class="glyphicon glyphicon-user"></i>
-            </span>
-            @Html.EditorFor(modelItem => item.Data, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="input-group">
-            <span class="input-group-addon">
-                <i class="glyphicon glyphicon-user"></i>
-            </span>
-        </div>
-    </div>
-
-</div>
+                <div class="comentario">
+                    @if (item.Membro.FotoPerfil == null)
+                    {
+                        <div class="imgPerfPostag" style="margin-left: 5px;">
+                            <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                        </div> }
+                    else
+                    {
+                        <div class="imgPerfPostag" style="margin-left: 5px;">
+                            <a>
+                                <img class="img-thumbnail" src="~/Membros/Membros/GetFotoPerfil/@item.Membro.MembroId" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                            </a>
+                        </div>
+                    }
+                    <div class="boxComent">
+                        <details class="configPost" style="margin-right: 10px;">
+                            <summary style="list-style: none;"> <span class="iconify" data-icon="simple-line-icons:options" style="color: #f0818e; font-size: 25px;"></span> </summary>
+                            <ol style="list-style: none;">
+                                <li> @Html.ActionLink("Ver comentário", "Details", "Comentarios", new { area = "Comportamentos", idComentario = item.ComentarioId, idIndex = idIndex }, null) </li>
+                                        <li> @Html.ActionLink("Editar comentário", "Edit", "Comentarios", new { area = "Comportamentos", idComentario = item.ComentarioId, idIndex = idIndex }, null)</li>
+                                        <li> @Html.ActionLink("Excluir comentário", "Delete", "Comentarios", new { area = "Comportamentos", idComentario = item.ComentarioId, idIndex = idIndex }, null)</li>
+                            </ol>
+                        </details>
+                        <span>@Html.ActionLink(item.Membro.Nome, "Details", "Membros", new { Area = "Membros", id = item.MembroId }, new { @class = "nomeUsuario" })</span>
                         <br />
-                                                <br />                    }
-                                                                }
-                                                            }
+                        <p class="comentLeg">@item.Texto</p>
+                    </div>
+                    <span class="dataPostagem" style="margin-left: 15%;">@item.Data.ToShortDateString() às @item.Data.Hour:@item.Data.Minute</span>
+                </div>
+                                <br />  
+                            }
+                        }
+                    }
         </div>
     </div>
     <footer style="background-color: var(--cor1); height: 60px; display: flex; align-items: center;">
-        @if (idIndex == 1)
-        {
-<div class="comentBox">
-    @Html.ActionLink("Escreva um Comentário...", "Create1", "Comentarios", new { Area = "Comportamentos", id = idPostagem }, new { @id = "" })
-</div>}
-        @if (idIndex == 2)
-        {
-<div class="comentBox">
-    @Html.ActionLink("Escreva um Comentário...", "Create1", "Comentarios", new { Area = "Comportamentos", id = idPostagem }, new { @id = "" })
-</div>}
+        <div class="comentBox">
+            @Html.ActionLink("Escreva um Comentário...", "Create", "Comentarios", new { Area = "Comportamentos", idPostagem = idPostagem, idIndex = idIndex }, new { @id = "escreva" })
+        </div>
     </footer>
     <script src="@Url.Content("~/scripts/bootstrap.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>

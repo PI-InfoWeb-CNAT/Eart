@@ -27,6 +27,11 @@ namespace Eart.Areas.Comportamentos.Controllers
         public ActionResult PesquisarMembros(string pesquisa)
         {
             IQueryable<Membro> resultados = pesquisaDAL.PesquisarMembros(pesquisa);
+            if (resultados.Count() == 0)
+            {
+                Membro membro = new Membro();
+                resultados.Append(membro);
+            }
             return View(resultados);
         }
     }

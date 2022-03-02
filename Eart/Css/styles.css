@@ -1,22 +1,19 @@
-﻿:root {
+:root {
     --cor1: #252E4F;
     --cor2: #1E2333;
     --cor3: #7E92BA;
     --cor4: #F0818E;
     --cor5: #ffffff;
 }
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
 }
-
 form {
     width: 360px;
 }
-
 body {
     min-height: 100vh;
     background-color: var(--cor1);
@@ -25,7 +22,6 @@ body {
     align-items: center;
     justify-content: center;
 }
-
 .box {
     background-color: var(--cor2);
     border-radius: 25px;
@@ -36,20 +32,17 @@ body {
     align-items: center;
     justify-content: center;
 }
-
 .logo {
     width: 400px;
     color: var(--cor4);
     font-size: 50px;
 }
-
 #logo_img {
     float: left;
     width: 80px;
     margin-left: 75px;
     margin-top: 25px;
 }
-
 #logo_nome {
     font-size: 50px;
     float: right;
@@ -57,7 +50,6 @@ body {
     margin-right: 140px;
     margin-top: 35px;
 }
-
 .input {
     background-color: var(--cor1);
     color: var(--cor3);
@@ -69,17 +61,14 @@ body {
     margin-top: 15px;
     padding-left: 20px;
 }
-
 ::-webkit-input-placeholder {
     color: var(--cor3);
 }
-
 .button {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
 button, .salvar {
     background-color: var(--cor4);
     color: var(--cor5);
@@ -90,7 +79,6 @@ button, .salvar {
     margin-top: 20px;
     cursor: pointer;
 }
-
 input[type=file] .image_input {
     background-color: var(--cor4);
     color: var(--cor5);
@@ -101,7 +89,6 @@ input[type=file] .image_input {
     margin-top: 20px;
     cursor: pointer;
 }
-
 .cancelar {
     background-color: var(--cor3);
     color: var(--cor2);
@@ -112,56 +99,46 @@ input[type=file] .image_input {
     margin-top: 20px;
     cursor: pointer;
 }
-
 .form-group {
     display: inline-block;
 }
-
 .login {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 10px;
 }
-
 a {
     color: var(--cor4);
 }
-
 .error {
     color: var(--cor4);
     margin-top: 20px;
 }
-
 .label {
     color: var(--cor3);
 }
-
 .details_body {
     align-items: start;
     color: white !important;
 }
-
 .panel-heading {
     height: 19vh;
 }
-
 .panel-body {
     padding-top: 0 !important;
+    background-color: var(--cor2);
 }
-
 .bio {
-    max-width: 400px;
+    width: 300px;
     margin-right: auto;
     margin-left: auto;
     margin-top: 5px;
 }
-
 .fotoPerfil {
     position: relative;
     top: 78%;
 }
-
 .editar-perfil {
     padding: 7px 20px 7px 20px;
     font-size: 16px;
@@ -169,51 +146,41 @@ a {
     color: white;
     border-radius: 22px;
 }
-
-    .editar-perfil:hover {
-        color: white;
-        text-decoration: none;
-    }
-
+.editar-perfil:hover {
+    color: white;
+    text-decoration: none;
+}
 .dados {
     position: relative;
 }
-
 .conf {
     float: right;
     position: relative;
     top: 20%;
 }
-
 .bodyPostagens {
     width: 100%;
 }
-
 .postagem {
     justify-content: left;
     padding: 10px 0 10px 0 !important;
 }
-
 .usuario {
     width: 350px;
     float: left;
     margin-left: 10px;
 }
-
 .nomeUsuario {
     color: white;
     font-weight: bold;
 }
-
 .imgPerfPostag {
     float: left;
     margin-right: 10px;
 }
-
 .configPost {
     float: right;
 }
-
 .imgPost {
     display: block;
     margin-left: auto;
@@ -221,21 +188,17 @@ a {
     width: 360px;
     max-height: 310px;
 }
-
 .legendaPostagem {
     margin-left: 2px;
 }
-
 .dadosPostagem {
     display: flex;
     flex-direction: column;
 }
-
 .dataPostagem {
     font-size: 12px;
     color: #8A8484;
 }
-
 @media (min-width: 320px) and (max-width: 767px) {
     body {
         background-color: var(--cor2);
@@ -310,10 +273,6 @@ a {
     nav {
         padding: 12px 0 12px 0;
     }
-
-    .navBox {
-    }
-
     textarea {
         padding: 15px 13px 120px 13px;
         border-radius: 10px;
@@ -346,11 +305,6 @@ a {
         width: 100%;
         justify-content: start;
     }
-
-    .panel-heading {
-        width: 46.2vh;
-    }
-
     .contadores {
         margin-bottom: 20px;
     }
@@ -366,7 +320,7 @@ a {
     }
 
     .comentBox {
-        width: 85%;
+        width: 270px;
         background-color: #3D4872;
         height: 33px;
         margin-left: auto;
@@ -374,6 +328,48 @@ a {
         align-content: center;
         border-radius: 30px;
         padding: 6px 10px 0 10px;
+    }
+
+    .topBar {
+        width: 100%;
+        height: 70px;
+        background-color: var(--cor1);
+    }
+
+    #logoMenor {
+        height: 50px;
+        margin: 10px 0 0 15px;
+        width: 50px;
+    }
+
+    .pesquisar {
+        float: right;
+        width: 250px;
+        height: 30px;
+        background-color: #3D4872;
+        border-radius: 40px;
+        padding: 5px 0 0 15px;
+        color: gray;
+        margin: 20px 15px 0 0;
+    }
+
+    #escreva {
+        color: white;
+    }
+    .boxComent{
+        width: 85%;
+        border-radius: 15px;
+        padding: 10px 0 10px 10px;
+        margin-left: 50px;
+        background-color: var(--cor1);
+    }
+    .comentLeg{
+        width: 200px;
+    }
+    .resultadoPesquisa{
+        width: 100%;
+        margin-top: 10%;
+        margin-left: 10%;
     }
 }
 

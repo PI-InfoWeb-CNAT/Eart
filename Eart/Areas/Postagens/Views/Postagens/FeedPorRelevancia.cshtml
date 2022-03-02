@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<Eart.Areas.Postagens.Models.Postagem>
 
 @{ 
-    var membrologado = ViewBag.MembroLogado; 
+    var membrologado = ViewBag.MembroLogado;
+    Layout = "~/Views/Shared/_Layout.cshtml";
  }
 
 <!DOCTYPE html>
@@ -16,6 +17,15 @@
     <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
 </head>
 <body class="bodyPostagens">
+    <div class="topBar">
+        <img id="logoMenor" alt="Logo" src="~/Imagens/logo.png" />
+        <a href="@Url.Action("PesquisarMembros", "Pesquisar", new { area = "Comportamentos" })">
+            <div class="pesquisar">
+                <span>Pesquisar</span>
+                <span class="iconify" data-icon="bx:search-alt-2" style="color: white; font-size: 24px; float: right; margin-right: 10px;"></span>
+            </div>
+        </a>
+    </div>
     <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-hidden="true" style="color:black">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -47,17 +57,10 @@
     <div>
         <div>
             <br />
-            <div id="criarPubl">
-                @Html.ActionLink("Criar Publicação", "Create", "Postagens", new { area = "Postagens", id = membrologado }, new { @id = "botao-criar" })
-                <br /><br />
-                @Html.ActionLink("Feed", "FeedMembrosSeguidos", "Postagens", new { area = "Postagens" }, new { @id = "botao-criar" })
-                <br /><br />
-                @Html.ActionLink("Pesquisar", "PesquisarMembros", "Pesquisar", new { area = "Comportamentos" }, new { @id = "botao-criar" })
-            </div>
             <br />
             @if (Model.Count() == 0)
             {
-                <p> Não existem postagens relevantes! </p>
+                <p style="margin-left: 20%;"> Não existem postagens relevantes! </p>
             }
             @foreach (var item in Model)
             {
@@ -90,10 +93,10 @@
                                     <ol>
                                         <li> @Html.ActionLink("Ver publicação", "Details", "Postagens", new { area = "Postagens", id = item.PostagemId }, null) </li>
                                         @*if (item.MembroId == membrologado)
-                                    {
-                                        <li> @Html.ActionLink("Editar publicação", "Edit", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
-                                        <li> @Html.ActionLink("Excluir publicação", "Delete", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
-                                    }*@
+                                            {
+                                                <li> @Html.ActionLink("Editar publicação", "Edit", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
+                                                <li> @Html.ActionLink("Excluir publicação", "Delete", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
+                                            }*@
                                         @if (item.Foto != null)
                                         {
                                             <li> @Html.ActionLink("Fazer download do arquivo", "DownloadFoto", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
