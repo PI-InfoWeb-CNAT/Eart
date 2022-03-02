@@ -1,0 +1,111 @@
+﻿@model Eart.Areas.Comportamentos.Models.Comentario
+
+@{
+    long Id = (long)Model.PostagemId;
+    var idIndex = ViewBag.IdIndex;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Deletar comentário";
+}
+@*<!DOCTYPE html>
+    <html lang="pt-br">
+    <head>
+        <title> Deletar comentário </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
+        <link rel="stylesheet" href="~/Css/styles.css">
+        <link rel="stylesheet" href="~/Css/modal.css">
+        <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
+        <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
+        <style>
+            .comentario {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                border: dashed 1px solid;
+                background-color: #1E2333;
+                padding: 20px;
+                border-radius: 25px;
+            }
+        </style>
+    </head>
+    <body>*@
+<div class="panel panel-primary">
+    @Html.HiddenFor(model => model.PostagemId)
+    @Html.HiddenFor(model => model.MembroId)
+    @Html.HiddenFor(model => model.ComentarioId)
+    <div class="panel-heading">
+        <div class="logo">
+            <img alt="Logo" src="~/Imagens/logo.png" heigth="50" width="50" />
+            <h1 class="logo"> Eart </h1>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="comentario">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-user"></i>
+                    </span>
+                    <span>@Html.ActionLink(Model.Membro.Nome, "Details", "Membros", new { Area = "Membros", id = Model.MembroId }, new { @class = "nomeUsuario" })</span>
+                    @Html.EditorFor(modelItem => Model.Texto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-user"></i>
+                    </span>
+                    @Html.EditorFor(modelItem => Model.Data, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-user"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer panel-info">
+        <a href="#" class="editar-perfil" data-toggle="modal" data-target="#deleteConfirmationModal">Deletar Comentário</a>
+        @Html.ActionLink("Cancelar", "Index", "Comentarios", new { Area = "Comportamentos", idPostagem = Id, idIndex = idIndex }, new { @class = "btn btn-warning" })
+    </div>
+</div>
+<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-hidden="true" style="color:black">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    Confirmação de exclusão do COMENTÁRIO
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Você está prestes a deletar esse comentário.
+                </p>
+                <p>
+                    <strong>
+                        Você está certo que deseja prosseguir?
+                    </strong>
+                </p>
+                @using (Html.BeginForm("Delete", "Comentarios", new { area = "Comportamentos", idComentario = Model.ComentarioId, idIndex = idIndex }, FormMethod.Post, new { @id = "delete-form", role = "form" }))
+                {
+                    @Html.HiddenFor(model => model.PostagemId)
+                    @Html.HiddenFor(model => model.MembroId)
+                    @Html.HiddenFor(model => model.ComentarioId)
+                    @Html.AntiForgeryToken()
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" onclick="$('#delete-form').submit();">
+                    Sim, exclua este comentário.
+                </button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">
+                    Não, não exclua este comentário.
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

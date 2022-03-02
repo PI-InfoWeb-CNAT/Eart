@@ -1,0 +1,18 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Eart",
+    "\\Eart\\Areas",
+    "\\Eart\\Areas\\Comportamentos",
+    "\\Eart\\Areas\\Comportamentos\\Views",
+    "\\Eart\\Areas\\Comportamentos\\Views\\Comentarios",
+    "\\Eart\\Areas\\Membros",
+    "\\Eart\\Areas\\Membros\\Views",
+    "\\Eart\\Areas\\Membros\\Views\\Account",
+    "\\Eart\\Areas\\Postagens",
+    "\\Eart\\Areas\\Postagens\\Views",
+    "\\Eart\\Areas\\Postagens\\Views\\Postagens"
+  ],
+  "SelectedNode": "\\Eart\\Areas\\Postagens\\Views\\Postagens\\FeedMembrosSeguidos.cshtml",
+  "PreviewInSolutionExplorer": false
+}
