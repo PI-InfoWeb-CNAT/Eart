@@ -17,9 +17,9 @@ namespace Eart.Areas.Postagens.Controllers
     {
         PostagemDAL postagemDAL = new PostagemDAL();
         MembroDAL membroDAL = new MembroDAL();
-        ComentarioDAL comentarioDAL = new ComentarioDAL();
         CurtidaDAL curtidaDAL = new CurtidaDAL();
         SeguirDAL seguirDAL = new SeguirDAL();
+        ComentarioDAL comentarioDAL = new ComentarioDAL();
 
         private ActionResult ObterVisaoPostagemPorId(long? id)
         {
@@ -52,13 +52,20 @@ namespace Eart.Areas.Postagens.Controllers
             return null;
         }
 
-        public ActionResult DownloadFoto(long id)
+        private ActionResult GravarMembro(Membro membro)
         {
-            Postagem postagem = postagemDAL.ObterPostagemPorId(id);
-            FileStream fileStream = new FileStream(Server.MapPath("~/App_Data/" + postagem.FotoNome), FileMode.Create, FileAccess.Write);
-            fileStream.Write(postagem.Foto, 0, Convert.ToInt32(postagem.FotoTamanho));
-            fileStream.Close();
-            return File(fileStream.Name, postagem.FotoType, postagem.FotoNome);
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    membroDAL.GravarMembro(membro);
+                }
+                return View(membro);
+            }
+            catch
+            {
+                return View(membro);
+            }
         }
 
         private ActionResult GravarPostagem(Postagem postagem, HttpPostedFileBase foto = null)
@@ -67,14 +74,11 @@ namespace Eart.Areas.Postagens.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    postagem.Data = DateTime.Now;
                     postagem.Relevancia = ((postagem.Cont_Curtidas * 3)+ (postagem.Cont_Comentarios * 2)) / 5;
                     if (foto != null)
                     {
                         postagem.FotoType = foto.ContentType;
                         postagem.Foto = SetFoto(foto);
-                        postagem.FotoNome = foto.FileName;
-                        postagem.FotoTamanho = foto.ContentLength;
                     }
                     postagemDAL.GravarPostagem(postagem);
                     return RedirectToAction("FeedMembrosSeguidos", "Postagens", new { area = "Postagens" });
@@ -102,6 +106,7 @@ namespace Eart.Areas.Postagens.Controllers
             }
             return View(postagens);
         }
+
         public ActionResult FeedPorRelevancia()
         {
             Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
@@ -142,6 +147,10 @@ namespace Eart.Areas.Postagens.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Postagem postagem, HttpPostedFileBase foto = null)
         {
+            postagem.Data = DateTime.Now;
+            Membro membro = membroDAL.ObterMembroPorId((long)postagem.MembroId);
+            membro.Cont_Posts++;
+            GravarMembro(membro);
             return GravarPostagem(postagem, foto);
         }
 
@@ -178,19 +187,23 @@ namespace Eart.Areas.Postagens.Controllers
         {
             try
             {
-                IQueryable<Comentario> comentarios = comentarioDAL.ObterComentariosClassificadosPorPostagem(id);
+                IList<Comentario> comentarios = comentarioDAL.ObterComentariosClassificadosPorPostagem(id);
                 foreach (var comentario in comentarios)
                 {
                     comentarioDAL.EliminarComentario(comentario);
                 }
-                IQueryable<Curtida> curtidas = curtidaDAL.ObterCurtidasClassificadasPorPostagem(id);
+                IList<Curtida> curtidas = curtidaDAL.ObterCurtidasClassificadasPorPostagem(id);
                 foreach (var curtida in curtidas)
                 {
                     curtidaDAL.EliminarCurtida(curtida);
                 }
+                Postagem post = postagemDAL.ObterPostagemPorId(id);
+                Membro membro = membroDAL.ObterMembroPorId((long)post.MembroId);
+                membro.Cont_Posts--;
+                GravarMembro(membro);
                 Postagem postagem = postagemDAL.EliminarPostagemPorId(id);
                 TempData["Message"] = "Postagem excluída com sucesso";
-                 return RedirectToAction("FeedMembrosSeguidos", "Postagens", new { area = "Postagens" });
+                return RedirectToAction("FeedMembrosSeguidos", "Postagens", new { area = "Postagens" });
             }
             catch
             {

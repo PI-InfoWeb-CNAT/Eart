@@ -26,7 +26,7 @@ namespace Eart.Persistencia.DAL
 
         public Membro ObterMembroPorUsuario(string usuario)
         {
-            IQueryable<Membro> membros = context.Membros.Where(u => u.Usuario == usuario).Where(m => m.Ativo == true);
+            IQueryable<Membro> membros = context.Membros.Where(u => (u.Usuario == usuario && u.Ativo == true));
 
             if (membros.Count() != 0)
             {
@@ -37,20 +37,6 @@ namespace Eart.Persistencia.DAL
                 return null;
             }
         }
-
-        public bool ObterMembroSeguido(long idMembroLogado, long idMembroSeguido)
-        {
-            IQueryable<Seguir> seguindo = context.Seguindo.Where(ml => ml.Seguindo.MembroId == idMembroLogado).Where(ms => ms.Seguidor.MembroId == idMembroSeguido);
-            if (seguindo.Count() != 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
 
         public void GravarMembro(Membro membro)
         {

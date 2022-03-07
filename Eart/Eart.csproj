@@ -157,6 +157,7 @@
     <Compile Include="Areas\Comportamentos\ComportamentosAreaRegistration.cs" />
     <Compile Include="Areas\Comportamentos\Controllers\ComentariosController.cs" />
     <Compile Include="Areas\Comportamentos\Controllers\CurtidasController.cs" />
+    <Compile Include="Areas\Comportamentos\Controllers\PesquisaController.cs" />
     <Compile Include="Areas\Comportamentos\Controllers\SeguindoController.cs" />
     <Compile Include="Areas\Comportamentos\Models\Comentario.cs" />
     <Compile Include="Areas\Comportamentos\Models\Curtida.cs" />
@@ -176,6 +177,7 @@
     <Compile Include="Persistencia\DAL\ComentarioDAL.cs" />
     <Compile Include="Persistencia\DAL\CurtidaDAL.cs" />
     <Compile Include="Persistencia\DAL\MembroDAL.cs" />
+    <Compile Include="Persistencia\DAL\PesquisaDAL.cs" />
     <Compile Include="Persistencia\DAL\PostagemDAL.cs" />
     <Compile Include="Persistencia\DAL\SeguirDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -212,16 +214,15 @@
     <Content Include="Areas\Postagens\Views\Postagens\Delete.cshtml" />
     <Content Include="Areas\Comportamentos\Views\web.config" />
     <Content Include="Areas\Comportamentos\Views\Comentarios\Index.cshtml" />
-    <Content Include="Areas\Comportamentos\Views\Comentarios\Edit1.cshtml" />
     <Content Include="Areas\Comportamentos\Views\Comentarios\Details.cshtml" />
     <Content Include="Areas\Membros\Views\Membros\_PartialPostagens.cshtml" />
     <Content Include="Areas\Postagens\Views\Postagens\FeedMembrosSeguidos.cshtml" />
     <Content Include="Areas\Postagens\Views\Postagens\FeedPorRelevancia.cshtml" />
-    <Content Include="Areas\Comportamentos\Views\Comentarios\Create1.cshtml" />
-    <Content Include="Areas\Comportamentos\Views\Comentarios\Delete1.cshtml" />
-    <Content Include="Areas\Comportamentos\Views\Comentarios\Create2.cshtml" />
-    <Content Include="Areas\Comportamentos\Views\Comentarios\Edit2.cshtml" />
-    <Content Include="Areas\Comportamentos\Views\Comentarios\Delete2.cshtml" />
+    <Content Include="Areas\Comportamentos\Views\Pesquisar\PesquisarMembros.cshtml" />
+    <Content Include="Areas\Comportamentos\Views\Comentarios\Create.cshtml" />
+    <Content Include="Areas\Comportamentos\Views\Comentarios\Edit.cshtml" />
+    <Content Include="Areas\Comportamentos\Views\Comentarios\Delete.cshtml" />
+    <Content Include="Areas\Postagens\Views\Postagens\_PartialPostagens.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -248,7 +249,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Comportamentos\Data\" />
-    <Folder Include="Areas\Comportamentos\Views\Seguindo\" />
     <Folder Include="Areas\Comportamentos\Views\Shared\" />
     <Folder Include="Areas\Membros\Data\" />
     <Folder Include="Areas\Membros\Views\Shared\" />

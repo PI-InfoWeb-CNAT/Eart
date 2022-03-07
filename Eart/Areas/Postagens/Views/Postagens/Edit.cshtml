@@ -23,10 +23,9 @@
                 <div class="form-horizontal">
                     @Html.HiddenFor(model => model.PostagemId, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.HiddenFor(model => model.MembroId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.HiddenFor(model => model.Data)
                     @Html.HiddenFor(model => model.FotoType)
                     @Html.HiddenFor(model => model.Foto)
-                    @Html.HiddenFor(model => model.FotoNome)
-                    @Html.HiddenFor(model => model.FotoTamanho)
                     @Html.HiddenFor(model => model.Cont_Curtidas)
                     @Html.HiddenFor(model => model.Cont_Comentarios)
                     <div class="form-group">
@@ -35,6 +34,7 @@
                             @Html.ValidationMessageFor(model => model.Texto, "", new { @class = "error" })
                         </div>
                     </div>
+                    <br /><br />
                     <div class="foto">
                         <div class="form-group">
                             <div class="col-md-10 button">

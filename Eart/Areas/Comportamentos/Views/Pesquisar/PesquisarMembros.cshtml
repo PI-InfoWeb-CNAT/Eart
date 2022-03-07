@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Eart.Areas.Membros.Models.Membro>
+@{
+    string arroba = "@";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Pesquisar membros";
+}
+
+@*<!DOCTYPE html>
+    <html lang="pt-br">
+    <head>
+        <title> Pesquisar </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
+        <link rel="stylesheet" href="~/Css/styles.css">
+        <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
+        <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
+    </head>*@
+<div>
+    @Html.ActionLink("Voltar", "FeedMembrosSeguidos", "Postagens", new { area = "Postagens" }, null)
+    <br /><br /><br />
+    @using (Html.BeginForm("PesquisarMembros", "Pesquisa", FormMethod.Post))
+    {
+        <input type="text" id="pesquisa" name="pesquisa" placeholder="Pesquisar" />
+        <input type="submit" value="Pesquisar" />
+    }
+    <br /><br />
+    <div class="resultados">
+        @if (Model != null)
+        {
+            if (Model.Count() != 0)
+            {
+                foreach (var item in Model)
+                {
+                    <div class="membro">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-user"></i>
+                        </span>
+                        @if (item.FotoPerfil is null)
+                        {
+                            <img class="img-thumbnail" src="~/Imagens/avatar.png" style="display:block;margin-left:auto; margin-right:auto; width:45px; height:45px; border-radius:75px" />
+                        }
+                        else
+                        {
+                            <img class="img-thumbnail" src="@Url.Action("GetFotoPerfil", "Membros", new { area = "Membros", id = item.MembroId })" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 75px" />
+                        }
+                        <span>@Html.ActionLink(item.Nome, "Details", "Membros", new { Area = "Membros", id = item.MembroId }, new { @class = "nomeUsuario" })</span>
+                        <span> @arroba@item.Usuario </span>
+                        <br />
+                    </div>
+                    <br /><br />
+                }
+            }
+            else
+            {
+                <p> Não foi possível achar nada correspondente a sua busca! </p>
+            }
+        }
+    </div>
+</div>

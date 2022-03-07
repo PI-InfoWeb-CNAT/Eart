@@ -25,12 +25,11 @@
                         @Html.HiddenFor(model => model.ConfSenha, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.HiddenFor(model => model.FotoPerfilType)
                         @Html.HiddenFor(model => model.FotoPerfil)
-                        @Html.HiddenFor(model => model.FotoPerfilNome)
-                        @Html.HiddenFor(model => model.FotoPerfilTamanho)
                         @Html.HiddenFor(model => model.FotoCapaType)
                         @Html.HiddenFor(model => model.FotoCapa)
-                        @Html.HiddenFor(model => model.FotoCapaNome)
-                        @Html.HiddenFor(model => model.FotoCapaTamanho)
+                        @Html.HiddenFor(model => model.Cont_Posts)
+                        @Html.HiddenFor(model => model.Cont_Seguidores)
+                        @Html.HiddenFor(model => model.Cont_Seguindo)
                         <div class="fotoPerfil">
                             <div class="form-group">
                                 @Html.LabelFor(model => model.FotoPerfil, htmlAttributes: new { @class = "control-label col-md-2" })

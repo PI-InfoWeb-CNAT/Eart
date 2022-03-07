@@ -92,10 +92,6 @@
                                         <li> @Html.ActionLink("Editar publicação", "Edit", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
                                         <li> @Html.ActionLink("Excluir publicação", "Delete", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
                                     }*@
-                                        @if (item.Foto != null)
-                                        {
-                                            <li> @Html.ActionLink("Fazer download do arquivo", "DownloadFoto", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
-                                        }
                                     </ol>
                                 </details>
                                 <div class="dadosPostagem">
@@ -164,10 +160,6 @@
                                         <li> @Html.ActionLink("Ver publicação", "Details", "Postagens", new { area = "Postagens", id = item.PostagemId }, null) </li>
                                         <li> @Html.ActionLink("Editar publicação", "Edit", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
                                         <li> @Html.ActionLink("Excluir publicação", "Delete", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
-                                        @if (item.Foto != null)
-                                        {
-                                            <li> @Html.ActionLink("Fazer download do arquivo", "DownloadFoto", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
-                                        }
                                     </ol>
                                 </details>
                                 <div class="dadosPostagem">
@@ -180,7 +172,7 @@
                                         }
                                         else
                                         {
-                                            @Html.ActionLink("Seguir", "Follow", "Comportamentos", new { Area = "Comportamentos", id = item.MembroId }, new { @class = "nomeUsuario" })
+                                            @Html.ActionLink(" - Seguir", "Follow", "Comportamentos", new { Area = "Comportamentos", id = item.MembroId }, new { @class = "nomeUsuario" })
                                         }
                                     }
                                     <span class="dataPostagem">@item.Data.ToShortDateString() às @item.Data.Hour:@item.Data.Minute</span>

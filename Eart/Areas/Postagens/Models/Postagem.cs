@@ -25,10 +25,6 @@ namespace Eart.Areas.Postagens.Models
 
         public byte[] Foto { get; set; }
 
-        public string FotoNome { get; set; }
-
-        public long FotoTamanho { get; set; }
-
         public long Cont_Comentarios { get; set; }
 
         public bool Curtida { get; set; }
@@ -41,10 +37,6 @@ namespace Eart.Areas.Postagens.Models
         public long? MembroId { get; set; }
 
         public Membro Membro { get; set; }
-
-        //public virtual ICollection<Comentario> Comentarios { get; set; }
-
-        //public virtual ICollection<Curtida> Curtidas { get; set; }
     }
 }
 

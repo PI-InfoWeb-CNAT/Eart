@@ -11,7 +11,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
     <link rel="stylesheet" href="~/Css/styles.css">
-    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
+    <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
     <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
 </head>
 <body class="details_body">
@@ -66,57 +66,133 @@
                     <span style="font-size: 14px; width: 20px;">@Model.Biografia</span>
                 </div>
                 <br />
-                @if (Model.MembroId == membrologado) { 
+                @if (Model.MembroId == membrologado)
+                {
                     @Html.ActionLink("- Sair", "Logout", "Account", new { area = "Membros" }, new { @class = "editar-perfil" })
-                    <br />
-                    <br />
-                
-                @Html.ActionLink("Excluir perfil", "Delete", "Membros", new { area = "Membros", id = Model.MembroId }, new { @class = "editar-perfil" })
-                <br />
-                <br />
-                @Html.ActionLink("Editar perfil", "Edit", "Membros", new { area = "Membros", id = Model.MembroId }, new { @class = "editar-perfil" })
-                <br />
-                <br />
-                @Html.ActionLink("Criar Postagem", "Create", "Postagens", new { area = "Postagens" }, new { @class = "editar-perfil" })
-                <br />
-                <br />}
+                    <br /> <br />
+                    @Html.ActionLink("Excluir perfil", "Delete", "Membros", new { area = "Membros", id = Model.MembroId }, new { @class = "editar-perfil" })
+                    <br /> <br />
+                    @Html.ActionLink("Editar perfil", "Edit", "Membros", new { area = "Membros", id = Model.MembroId }, new { @class = "editar-perfil" })
+                    <br /> <br />
+                    @Html.ActionLink("Criar Postagem", "Create", "Postagens", new { area = "Postagens" }, new { @class = "editar-perfil" })
+                    <br /> <br />
+                    }
+                else {
+                    if (Model.Seguindo == true)
+                    {
+                        @Html.ActionLink("Seguir", "Follow", "Seguindo", new { area = "Comportamentos", id = Model.MembroId }, new { @class = "editar-perfil" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Deixar de seguir", "Unfollow", "Seguindo", new { area = "Comportamentos", id = Model.MembroId }, new { @class = "editar-perfil" })
+                    }
+                }
                 @Html.ActionLink("Feed", "FeedMembrosSeguidos", "Postagens", new { area = "Postagens" }, new { @class = "editar-perfil" })
                 <br />
                 <br />
             </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Nome)<br />
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-user"></i>
-                    </span>
-                    @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Usuario)<br />
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-user"></i>
-                    </span>
-                    @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Biografia)<br />
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-user"></i>
-                    </span>
-                    @Html.EditorFor(model => model.Biografia, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                </div>
-            </div>
+            
             <br /><br />
+            <div class="cont-posts">
+                <span> @Model.Cont_Posts </span>
+                <span> Posts </span>
+            </div>
+            <div class="cont-seguidores">
+                <span> @Model.Cont_Seguidores </span>
+                <span> Seguidores </span>
+            </div>
+            <div class="cont-seguindo">
+                <span> @Model.Cont_Seguindo </span>
+                <span> Seguindo </span>
+            </div>
         </div>
-        @Html.Partial("~/Areas/Membros/Views/Membros/_PartialPostagens.cshtml", Model.Postagens.ToList());
+        @*if (Model.Postagens.Count > 0)
+        {
+            foreach (var item in Model.Postagens)
+            {
+            <div class="postagem">
+                @if (item.MembroId == membrologado)
+                {
+                    <div class="conf">
+                        <details>
+                            <summary> Configurações </summary>
+                            <ol>
+                                <li> @Html.ActionLink("Ver publicação", "Details", "Postagens", new { area = "Postagens", id = item.PostagemId }, null) </li>
+                                <li> @Html.ActionLink("Editar publicação", "Edit", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
+                                <li> @Html.ActionLink("Excluir publicação", "Delete", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
+                            </ol>
+                        </details>
+                    </div>
+                }
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-user"></i>
+                        </span>
+
+                        @if (item.Membro.FotoPerfil is null)
+                        {
+                            <img class="img-thumbnail" src="~/Imagens/avatar.png" style="display:block;margin-left:auto; margin-right:auto; width:100px; height:100px; border-radius:75px" />
+                        }
+                        else
+                        {
+                            <img class="img-thumbnail" src="@Url.Action("GetFotoPerfil", "Membros", new { area = "Membros", id = item.MembroId })" style="display: block; margin-left: auto; margin-right: auto; width: 100px; height: 100px; border-radius: 75px" />
+                        }
+                        @Html.EditorFor(modelItem => item.Membro.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        @Html.ActionLink(" - Ver perfil", "Details", "Membros", new { Area = "Membros", id = item.MembroId }, null);
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-user"></i>
+                        </span>
+                        @Html.EditorFor(modelItem => item.Data, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                    </div>
+                </div>
+
+                @if (item.Texto != null)
+                {
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </span>
+                            @Html.EditorFor(modelItem => item.Texto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        </div>
+                    </div>
+                }
+                <br />
+                @if (item.Curtida != true)
+                {
+                    <a href="@Url.Action("Curtir", "Curtidas", new { area = "Comportamentos", id = item.PostagemId })">
+                        <div class="iconBox" style="margin-left: 20px;">
+                            <span class="iconify" data-icon="ant-design:heart-outlined" style="color: white; font-size: 30px; margin-left: 23px;"></span>
+                            @item.Cont_Curtidas
+                        </div>
+                    </a> }
+                else
+                {
+                    <a href="@Url.Action("Descurtir", "Curtidas", new { area = "Comportamentos", id = item.PostagemId })">
+                        <div class="iconBox" style="margin-left: 20px;">
+                            <span class="iconify" data-icon="ant-design:heart-filled" style="color: #f0818e; font-size: 30px; margin-left: 23px;"></span>
+                            @item.Cont_Curtidas
+                        </div>
+                    </a>}
+                <div class="iconBox" style="float: right; margin-right: 20px;" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Maaar">
+                    <span class="iconify" data-icon="fa-solid:share-square" style="color: white; font-size: 24px; margin-left: 27px; margin-top: 3px;"></span>
+                </div>
+                <a href="@Url.Action("Index", "Comentarios", new { area = "Comportamentos", idPostagem = item.PostagemId, idIndex = 1 })">
+                    <div style="display: flex; align-items: center; justify-content: center;">
+                        <div class="iconBox">
+                            <span class="iconify" data-icon="akar-icons:comment" style="color: white; font-size: 25px; margin-top: 3px; margin-left: 25px;"></span>
+                            <span class="contadores">@item.Cont_Comentarios</span>
+                        </div>
+                    </div>
+                </a>
+            </div>       
+            }
+        }*@
     </div>
 </body>
 </html>

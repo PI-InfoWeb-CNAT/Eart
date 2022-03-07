@@ -53,6 +53,8 @@
                 @Html.ActionLink("Criar Publicação", "Create", "Postagens", new { area = "Postagens", id = ViewBag.MembroId }, new { @id = "botao-criar" })
                 <br /><br />
                 @Html.ActionLink("Feed Em Alta", "FeedPorRelevancia", "Postagens", new { area = "Postagens" }, new { @id = "botao-criar" })
+                <br /><br />
+                @Html.ActionLink("Pesquisar", "PesquisarMembros", "Pesquisa", new { area = "Comportamentos" }, new { @id = "botao-criar" })
             </div>
             <br />
             @foreach (var item in Model)
@@ -88,9 +90,6 @@
                                             <li> @Html.ActionLink("Editar publicação", "Edit", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
                                             <li> @Html.ActionLink("Excluir publicação", "Delete", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
                                             }*@
-                                        @if (item.Foto != null)
-                                        {
-                                            <li> @Html.ActionLink("Fazer download do arquivo", "DownloadFoto", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>}
                                     </ol>
                                 </details>
                                 <div class="dadosPostagem">
@@ -169,10 +168,8 @@
                                         @if (item.MembroId == membrologado)
                                         {
                                             <li> @Html.ActionLink("Editar publicação", "Edit", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
-                                            <li> @Html.ActionLink("Excluir publicação", "Delete", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>}
-                                        @if (item.Foto != null)
-                                        {
-                                             <li> @Html.ActionLink("Fazer download do arquivo", "DownloadFoto", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>}
+                                            <li> @Html.ActionLink("Excluir publicação", "Delete", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
+                                            }
                                     </ol>
                                 </details>
                                 <div class="dadosPostagem">
@@ -181,7 +178,7 @@
                                     {
                                         if (item.Membro.Seguindo == true)
                                         {
-                                            @Html.ActionLink("Seguir", "Follow", "Seguindo", new { area = "Comportamentos", id = item.MembroId }, new { @class = "nomeUsuario" })
+                                            @Html.ActionLink(" - Seguir", "Follow", "Seguindo", new { area = "Comportamentos", id = item.MembroId }, new { @class = "nomeUsuario" })
                                         }
                                         else
                                         {

@@ -62,17 +62,6 @@
                             @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
                         </div>
                     </div>
-                    <div class="fotoPerfil">
-                        @if (Model.Foto != null)
-                        {
-                            <div class="panel-body">
-                                <a>
-                                    @Html.ActionLink("Baixar o arquivo: " + Model.FotoNome, "DownloadFoto", "Postagens", new { area = "Postagens", id = Model.PostagemId }, null)
-                                    <img class="img-thumbnail" src="@Url.Action("GetFoto", "Postagens", new { id = Model.PostagemId })" style="display: block; margin-left: auto; margin-right: auto; width: 300px; height: 200px;" />
-                                </a>
-                            </div>
-                        }
-                    </div>
                 </div>
             }
             else
@@ -102,17 +91,6 @@
                             </span>
                             @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
                         </div>
-                    </div>
-                    <div class="fotoPerfil">
-                        @if (Model.Foto != null)
-                        {
-                            <div class="panel-body">
-                                <a>
-                                    @Html.ActionLink("Baixar o arquivo: " + Model.FotoNome, "DownloadFoto", "Postagens", new { area = "Postagens", id = Model.PostagemId }, null)
-                                    <img class="img-thumbnail" src="@Url.Action("GetFoto", "Postagens", new { id = Model.PostagemId })" style="display: block; margin-left: auto; margin-right: auto; width: 300px; height: 200px;" />
-                                </a>
-                            </div>
-                        }
                     </div>
                 </div>
             }
