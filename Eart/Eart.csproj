@@ -223,6 +223,7 @@
     <Content Include="Areas\Comportamentos\Views\Comentarios\Edit.cshtml" />
     <Content Include="Areas\Comportamentos\Views\Comentarios\Delete.cshtml" />
     <Content Include="Areas\Postagens\Views\Postagens\_PartialPostagens.cshtml" />
+    <Content Include="Areas\Comportamentos\Views\Pesquisa\PesquisarMembros.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
