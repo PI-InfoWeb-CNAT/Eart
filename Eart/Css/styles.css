@@ -127,7 +127,6 @@ a {
 }
 .panel-body {
     padding-top: 0 !important;
-    background-color: var(--cor2);
 }
 .bio {
     width: 300px;
@@ -337,9 +336,10 @@ a {
     }
 
     #logoMenor {
-        height: 50px;
-        margin: 10px 0 0 15px;
+        height: 50px; 
+        float: left;
         width: 50px;
+        margin-top: 2%;
     }
 
     .pesquisar {
@@ -370,6 +370,16 @@ a {
         width: 100%;
         margin-top: 10%;
         margin-left: 10%;
+    }
+    #nomeMenor{
+        color: var(--cor4);
+        float: left;
+        margin-top: 3.5%;
+    }
+    .logoArea{
+        display: flex;
+        justify-content: center;
+        align-content: center;
     }
 }
 
