@@ -1,6 +1,12 @@
 ﻿@model Eart.Areas.Postagens.Models.Postagem
 
-<!DOCTYPE html>
+@{
+    var membrologado = ViewBag.MembroLogado;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Deletar Postagem";
+}
+
+@*<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <title> Deletar postagem </title>
@@ -9,72 +15,41 @@
     <link rel="stylesheet" href="~/Css/styles.css">
     <link rel="stylesheet" href="~/Css/modal.css">
     <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
-    <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
-    <style>
-        .postagem {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border: dashed 1px solid;
-            background-color: #1E2333;
-            padding: 20px;
-            border-radius: 25px;
-        }
-    </style>
-</head>
-<body>
+</head>*@
+<div style="display: block !important;">
     @Html.HiddenFor(model => model.PostagemId)
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <div class="logo">
-                <img alt="Logo" src="~/Imagens/logo.png" heigth="50" width="50" />
-                <h1 class="logo"> Eart </h1>
+    <div style="margin-top: 25%;">
+        @if (Model.Membro.FotoPerfil == null)
+        {
+            <div class="imgPerfPostag">
+                <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+            </div> }
+        else
+        {
+            <div class="imgPerfPostag">
+                <a>
+                    <img class="img-thumbnail" src="~/Membros/Membros/GetFotoPerfil/@membrologado" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                </a>
             </div>
+        }
+        <div class="dadosPostagem">
+            <span style="font-size: 20px !important;">@Html.ActionLink(Model.Membro.Nome, "Details", "Membros", new { Area = "Membros", id = Model.MembroId }, new { @class = "nomeUsuario" })</span>
+            <span class="dataPostagem" style="font-size: 14px !important;">@Model.Data.ToShortDateString() às @Model.Data.Hour:@Model.Data.Minute</span>
         </div>
-        <div class="panel-body">
-            <div class="postagem">
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-user"></i>
-                        </span>
-                        @Html.EditorFor(model => model.Membro.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-user"></i>
-                        </span>
-                        @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                    </div>
-                </div>
+        <div style="margin-bottom: 10px; max-width: 300px; font-size: 18px;">@Model.Texto</div>
+        @if (Model.Foto != null)
+        {
+            <div class="midiaPost">
+                <a>
+                    <img class="imgPost" src="@Url.Action("GetFoto", "Postagens", new { id = Model.PostagemId })" />
+                </a>
+            </div>
+        }
 
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-user"></i>
-                        </span>
-                        @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                    </div>
-                </div>
-                <div class="fotoPerfil">
-                    @if (Model.Foto != null)
-                    {
-                        <div class="panel-body">
-                            <a>
-                                <img class="img-thumbnail" src="@Url.Action("GetFoto", "Postagens", new { id = Model.PostagemId })" style="display: block; margin-left: auto; margin-right: auto; width: 300px; height: 200px;" />
-                            </a>
-                        </div>
-                    }
-                </div>
-            </div>
-        </div>
-        <div class="panel-footer panel-info">
-            <a href="#" class="editar-perfil" data-toggle="modal" data-target="#deleteConfirmationModal"> Deletar postagem </a>
-            @Html.ActionLink("Cancelar", "FeedMembrosSeguidos", "Postagens", new { Area = "Postagens" }, new { @class = "btn btn-warning" })
-        </div>
+    </div>
+    <div style="margin-top: 20px;">
+        <a href="#" class="editar-perfil" data-toggle="modal" data-target="#deleteConfirmationModal"> Deletar postagem </a>
+        @Html.ActionLink("Cancelar", "FeedMembrosSeguidos", "Postagens", new { Area = "Postagens" }, new { @class = "btn btn-warning" })
     </div>
     <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-hidden="true" style="color:black">
         <div class="modal-dialog">
@@ -110,9 +85,4 @@
             </div>
         </div>
     </div>
-    <script src="@Url.Content("~/scripts/jquery-3.4.1.js")"></script>
-    <script src="@Url.Content("~/scripts/bootstrap.js")"></script>
-    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
-    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
-</body>
-</html>
+</div>

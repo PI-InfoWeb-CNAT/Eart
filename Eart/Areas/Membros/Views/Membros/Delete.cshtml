@@ -1,137 +1,141 @@
 ﻿@model Eart.Areas.Membros.Models.Membro
+
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Deletar usuário";
+}
+
 <!DOCTYPE html>
 <html>
-    <head>
-        <title> Deletar usuário </title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
-        @*<link rel="stylesheet" href="~/Css/editarPerfil.css">*@
-        <link rel="stylesheet" href="~/Css/styles.css">
-        <link rel="stylesheet" href="~/Css/modal.css">
-        <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
-        <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
-    </head>
-    <body class="details_body">
-        @Html.HiddenFor(model => model.MembroId)
-        @{ string arroba = "@";
-            var capa_img = "";
-            if (Model != null)
+<head>
+    <title> Deletar usuário </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
+    <link rel="stylesheet" href="~/Css/styles.css">
+    <link rel="stylesheet" href="~/Css/modal.css">
+    <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
+</head>
+<body class="details_body">
+    @Html.HiddenFor(model => model.MembroId)
+    @{ string arroba = "@";
+        var capa_img = "";
+        if (Model != null)
+        {
+            var id = new { id = Model.MembroId };
+            if (Model.FotoCapa == null)
             {
-                var id = new { id = Model.MembroId };
-                if (Model.FotoCapa == null)
-                {
-                    capa_img = @Url.Content("~/Imagens/capa.png");
-                }
-                else
-                {
-                    capa_img = @Url.Action("GetFotoCapa", "Membros", id);
-                }
+                capa_img = @Url.Content("~/Imagens/capa.png");
+            }
+            else
+            {
+                capa_img = @Url.Action("GetFotoCapa", "Membros", id);
             }
         }
+    }
 
-        <div class="panel panel-primary">
-            <div class="panel-heading" style="background: url(@capa_img) !important; background-size: cover !important;">
-                <div class="fotoPerfil">
-                    @if (Model.FotoPerfil == null)
+    <div class="panel panel-primary">
+        <div class="panel-heading" style="background: url(@capa_img) !important; background-size: cover !important;">
+            <div class="fotoPerfil">
+                @if (Model.FotoPerfil == null)
+                {
+                    <span class="img-perfil">
+                        <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 90px; height: 90px; border-radius: 50%; border: solid 3px #F0818E;" />
+                    </span> }
+                else
+                {
+                    <div class="panel-body">
+                        <a>
+                            <img class="img-thumbnail" src="@Url.Action("GetFotoPerfil", "Membros", new { id = Model.MembroId })" style="display: block; margin-left: auto; margin-right: auto; width: 90px; height: 90px; border-radius: 50%; border: solid 3px #F0818E;" />
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="panel-body" style="text-align: center; background-color: #1E2333;">
+            <br /> <br /> <br />
+            <div class="dados">
+                <span style="font-size: 20px; margin-top: 200px;">@Model.Nome</span>
+                <br />
+                <span> @arroba@Model.Usuario </span>
+                <br />
+                <div class="bio">
+                    <span style="font-size: 14px; width: 20px;">@Model.Biografia</span>
+                </div>
+            </div>
+            <br /><br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Nome)<br />
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-user"></i>
+                    </span>
+                    @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Usuario)<br />
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-user"></i>
+                    </span>
+                    @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Biografia)<br />
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-user"></i>
+                    </span>
+                    @Html.EditorFor(model => model.Biografia, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                </div>
+            </div>
+            <br /><br />
+        </div>
+        <div class="panel-footer panel-info">
+            <a href="#" class="editar-perfil" data-toggle="modal" data-target="#deleteConfirmationModal">Remover Usuário</a>
+            @Html.ActionLink("Cancelar", "Details", new { area = "Membros", id = Model.MembroId }, new { @class = "cancelar" })
+        </div>
+    </div>
+    <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-hidden="true" style="color:black">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        Confirmação de exclusão de USUÁRIO
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Você está prestes a remover o usuário @Model.Nome.ToUpper() do cadastro.
+                    </p>
+                    <p>
+                        <strong>
+                            Você está certo que deseja prosseguir?
+                        </strong>
+                    </p>
+                    @using (Html.BeginForm("Delete", "Membros", FormMethod.Post, new { enctype = "multipart/form-data", @id = "delete-form", role = "form" }))
                     {
-                        <span class="img-perfil">
-                            <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 90px; height: 90px; border-radius: 50%; border: solid 3px #F0818E;" />
-                        </span> }
-                    else
-                    {
-                        <div class="panel-body">
-                            <a>
-                                <img class="img-thumbnail" src="@Url.Action("GetFotoPerfil", "Membros", new { id = Model.MembroId })" style="display: block; margin-left: auto; margin-right: auto; width: 90px; height: 90px; border-radius: 50%; border: solid 3px #F0818E;" />
-                            </a>
-                        </div>
+                        @Html.HiddenFor(model => model.MembroId)
+                        @Html.AntiForgeryToken()
                     }
                 </div>
-            </div>
-            <div class="panel-body" style="text-align: center; background-color: #1E2333;">
-                <br /> <br /> <br />
-                <div class="dados">
-                    <span style="font-size: 20px; margin-top: 200px;">@Model.Nome</span>
-                    <br />
-                    <span> @arroba@Model.Usuario </span>
-                    <br />
-                    <div class="bio">
-                        <span style="font-size: 14px; width: 20px;">@Model.Biografia</span>
-                    </div>
-                </div>
-                <br /><br />
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Nome)<br />
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-user"></i>
-                        </span>
-                        @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Usuario)<br />
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-user"></i>
-                        </span>
-                        @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Biografia)<br />
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-user"></i>
-                        </span>
-                        @Html.EditorFor(model => model.Biografia, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                    </div>
-                </div>
-                <br /><br />
-            </div>
-            <div class="panel-footer panel-info">
-                <a href="#" class="editar-perfil" data-toggle="modal" data-target="#deleteConfirmationModal">Remover Usuário</a>
-                @Html.ActionLink("Cancelar", "Details", new { area = "Membros", id = Model.MembroId }, new { @class = "cancelar" })
-            </div>
-        </div>
-        <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-hidden="true" style="color:black">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">
-                            Confirmação de exclusão de USUÁRIO
-                        </h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            Você está prestes a remover o usuário @Model.Nome.ToUpper() do cadastro.
-                        </p>
-                        <p>
-                            <strong>
-                                Você está certo que deseja prosseguir?
-                            </strong>
-                        </p>
-                        @using (Html.BeginForm("Delete", "Membros", FormMethod.Post, new { enctype = "multipart/form-data", @id = "delete-form", role = "form" }))
-                        {
-                            @Html.HiddenFor(model => model.MembroId)
-                            @Html.AntiForgeryToken()
-                        }
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" onclick="$('#delete-form').submit();">
-                            Sim, exclua este membro.
-                        </button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">
-                            Não, não exclua este membro.
-                        </button>
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" onclick="$('#delete-form').submit();">
+                        Sim, exclua este membro.
+                    </button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                        Não, não exclua este membro.
+                    </button>
                 </div>
             </div>
         </div>
-        <script src="@Url.Content("~/scripts/jquery-3.4.1.js")"></script>
-        <script src="@Url.Content("~/scripts/bootstrap.js")"></script>
-        <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
-        <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
-    </body>
+    </div>
+    <script src="@Url.Content("~/scripts/jquery-3.4.1.js")"></script>
+    <script src="@Url.Content("~/scripts/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
+</body>
 </html>

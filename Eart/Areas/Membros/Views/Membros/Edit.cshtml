@@ -5,97 +5,96 @@
 <head>
     <title> Editar usuário </title>
     <meta charset="utf-8">
-    @*<link rel="stylesheet" href="~/Css/editarPerfil.css">*@
     <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
     <link rel="stylesheet" href="~/Css/styles.css">
     <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
 </head>
-    <body>
-        <div class="box">
-            <div class="container">
-            @using (Html.BeginForm("Edit", "Membros", FormMethod.Post, new{enctype = "multipart/form-data"}))
-             {
+<body>
+    <div class="box">
+        <div class="container">
+            @using (Html.BeginForm("Edit", "Membros", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
                 @Html.AntiForgeryToken()
-             <div class="panel panel-primary">
-                 
-                <div class="panel-body">
-                    <div class="form-horizontal">
-                        @Html.HiddenFor(model => model.MembroId, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.HiddenFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.HiddenFor(model => model.ConfSenha, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.HiddenFor(model => model.FotoPerfilType)
-                        @Html.HiddenFor(model => model.FotoPerfil)
-                        @Html.HiddenFor(model => model.FotoCapaType)
-                        @Html.HiddenFor(model => model.FotoCapa)
-                        @Html.HiddenFor(model => model.Cont_Posts)
-                        @Html.HiddenFor(model => model.Cont_Seguidores)
-                        @Html.HiddenFor(model => model.Cont_Seguindo)
-                        <div class="fotoPerfil">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.FotoPerfil, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10 button">
-                                    @Html.TextBox("fotoPerfil", "", new { type = "file" }) <br />
+                <div class="panel panel-primary">
+
+                    <div class="panel-body">
+                        <div class="form-horizontal">
+                            @Html.HiddenFor(model => model.MembroId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.HiddenFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.HiddenFor(model => model.ConfSenha, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.HiddenFor(model => model.FotoPerfilType)
+                            @Html.HiddenFor(model => model.FotoPerfil)
+                            @Html.HiddenFor(model => model.FotoCapaType)
+                            @Html.HiddenFor(model => model.FotoCapa)
+                            @Html.HiddenFor(model => model.Cont_Posts)
+                            @Html.HiddenFor(model => model.Cont_Seguidores)
+                            @Html.HiddenFor(model => model.Cont_Seguindo)
+                            <div class="fotoPerfil">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.FotoPerfil, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10 button">
+                                        @Html.TextBox("fotoPerfil", "", new { type = "file" }) <br />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="fotoCapa">
+                            <div class="fotoCapa">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.FotoCapa, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBox("fotoCapa", "", new { type = "file", @class = "image_input" })
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="form-group">
-                                @Html.LabelFor(model => model.FotoCapa, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "label control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.TextBox("fotoCapa", "", new { type = "file", @class = "image_input" })
+                                    @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "input" } })
+                                    @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "error" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Usuario, htmlAttributes: new { @class = "label control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "input" } })
+
+                                    @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "error" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "label control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "input" } })
+
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "error" })
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Biografia, htmlAttributes: new { @class = "label control-label col-md-2", maxLenght = "140" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Biografia, new { htmlAttributes = new { @class = "input" } })
+
+                                    @Html.ValidationMessageFor(model => model.Biografia, "", new { @class = "error" })
                                 </div>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "label control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "input" } })
-                                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "error" })
+                    </div>
+                    <div class="botões">
+                        <div class="col-md-offset-2 col-md-10">
+                            @Html.ActionLink("Cancelar", "Details", "Membros", new { area = "Membros", id = Model.MembroId }, new { @class = "cancelar" })
+                            <div class="button">
+                                <button> Salvar alterações </button>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Usuario, htmlAttributes: new { @class = "label control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "input" } })
-
-                                @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "error" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "label control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "input" } })
-
-                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "error" })
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Biografia, htmlAttributes: new { @class = "label control-label col-md-2", maxLenght = "140" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Biografia, new { htmlAttributes = new { @class = "input" } })
-
-                                @Html.ValidationMessageFor(model => model.Biografia, "", new { @class = "error" })
-                            </div>
-                        </div>
+                        <br />
+                        <br />
                     </div>
                 </div>
-                <div class="botões">
-                    <div class="col-md-offset-2 col-md-10">
-                        @Html.ActionLink("Cancelar", "Details", "Membros", new { area = "Membros", id = Model.MembroId }, new { @class = "cancelar" })
-                        <div class="button">
-                            <button> Salvar alterações </button>
-                        </div>
-                    </div>
-                    <br />
-                    <br />
-                </div>
-            </div>
             }
         </div>
     </div>

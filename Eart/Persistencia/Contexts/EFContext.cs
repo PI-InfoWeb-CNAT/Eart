@@ -12,7 +12,7 @@ namespace Eart.Persistencia.Contexts
 {
     public class EFContext : DbContext
     {
-        public EFContext() : base("MembroDB")
+        public EFContext() : base("EartDB")
         {
             Database.SetInitializer<EFContext>(new DropCreateDatabaseIfModelChanges<EFContext>());
         }

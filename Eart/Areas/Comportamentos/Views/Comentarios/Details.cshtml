@@ -3,9 +3,10 @@
 @{
     var idIndex = ViewBag.IdIndex;
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Ver Comentário";
 }
 
-<!DOCTYPE html>
+@*<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <title> Ver comentário </title>
@@ -26,8 +27,8 @@
             border-radius: 25px;
         }
     </style>
-</head>
-<body>
+</head>*@
+<div>
     <div class="panel panel-primary">
         <div class="panel-heading">
             <div class="logo">
@@ -102,5 +103,4 @@
             @Html.ActionLink("Voltar", "Index", "Comentarios", new { area = "Comportamentos", idPostagem = Model.PostagemId, idIndex = idIndex }, null)
         </div>
     </div>
-</body>
-</html>
+</div>

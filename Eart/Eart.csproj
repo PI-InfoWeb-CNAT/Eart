@@ -183,7 +183,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Membros\Views\Membros\Index.cshtml" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -207,7 +206,6 @@
     <Content Include="Areas\Membros\Views\Membros\Details.cshtml" />
     <Content Include="Areas\Membros\Views\Membros\Delete.cshtml" />
     <Content Include="Areas\Postagens\Views\web.config" />
-    <Content Include="Areas\Postagens\Views\Postagens\Index.cshtml" />
     <Content Include="Areas\Postagens\Views\Postagens\Create.cshtml" />
     <Content Include="Areas\Postagens\Views\Postagens\Edit.cshtml" />
     <Content Include="Areas\Postagens\Views\Postagens\Details.cshtml" />
@@ -215,14 +213,11 @@
     <Content Include="Areas\Comportamentos\Views\web.config" />
     <Content Include="Areas\Comportamentos\Views\Comentarios\Index.cshtml" />
     <Content Include="Areas\Comportamentos\Views\Comentarios\Details.cshtml" />
-    <Content Include="Areas\Membros\Views\Membros\_PartialPostagens.cshtml" />
     <Content Include="Areas\Postagens\Views\Postagens\FeedMembrosSeguidos.cshtml" />
     <Content Include="Areas\Postagens\Views\Postagens\FeedPorRelevancia.cshtml" />
-    <Content Include="Areas\Comportamentos\Views\Pesquisar\PesquisarMembros.cshtml" />
     <Content Include="Areas\Comportamentos\Views\Comentarios\Create.cshtml" />
     <Content Include="Areas\Comportamentos\Views\Comentarios\Edit.cshtml" />
     <Content Include="Areas\Comportamentos\Views\Comentarios\Delete.cshtml" />
-    <Content Include="Areas\Postagens\Views\Postagens\_PartialPostagens.cshtml" />
     <Content Include="Areas\Comportamentos\Views\Pesquisa\PesquisarMembros.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
