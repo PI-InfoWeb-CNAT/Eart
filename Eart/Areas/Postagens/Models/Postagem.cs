@@ -25,25 +25,18 @@ namespace Eart.Areas.Postagens.Models
 
         public byte[] Foto { get; set; }
 
-        public string FotoNome { get; set; }
-
-        public long FotoTamanho { get; set; }
+        public long Cont_Comentarios { get; set; }
 
         public bool Curtida { get; set; }
 
-        public long Cont_Curtida { get; set; }
+        public long Cont_Curtidas { get; set; }
 
-        [DisplayName("Curtida")]
-        public long? CurtidaId { get; set; }
+        public long Relevancia { get; set; }
 
         [DisplayName("Membro")]
         public long? MembroId { get; set; }
 
         public Membro Membro { get; set; }
-
-        public virtual ICollection<Comentario> Comentarios { get; set; }
-
-        public virtual ICollection<Curtida> Curtidas { get; set; }
     }
 }
 

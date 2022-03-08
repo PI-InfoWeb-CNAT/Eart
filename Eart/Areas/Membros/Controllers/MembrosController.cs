@@ -14,6 +14,7 @@ namespace Eart.Areas.Membros.Controllers
     public class MembrosController : Controller
     {
         MembroDAL membroDAL = new MembroDAL();
+        SeguirDAL seguirDAL = new SeguirDAL();
 
         private ActionResult ObterVisaoMembroPorId(long? id)
         {
@@ -46,14 +47,6 @@ namespace Eart.Areas.Membros.Controllers
             return null;
         }
 
-        public ActionResult DownloadFotoPerfil(long id)
-        {
-            Membro membro = membroDAL.ObterMembroPorId(id);
-            FileStream fileStream = new FileStream(Server.MapPath("~/App_Data/" + membro.FotoPerfilNome), FileMode.Create, FileAccess.Write);
-            fileStream.Write(membro.FotoPerfil, 0, Convert.ToInt32(membro.FotoPerfilTamanho));
-            fileStream.Close();
-            return File(fileStream.Name, membro.FotoPerfilType, membro.FotoPerfilNome);
-        }
         private byte[] SetFotoCapa(HttpPostedFileBase fotoCapa)
         {
             var bytesFotoCapa = new byte[fotoCapa.ContentLength];
@@ -71,14 +64,6 @@ namespace Eart.Areas.Membros.Controllers
             return null;
         }
 
-        public ActionResult DownloadFotoCapa(long id)
-        {
-            Membro membro = membroDAL.ObterMembroPorId(id);
-            FileStream fileStream = new FileStream(Server.MapPath("~/App_Data/" + membro.FotoCapaNome), FileMode.Create, FileAccess.Write);
-            fileStream.Write(membro.FotoCapa, 0, Convert.ToInt32(membro.FotoCapaTamanho));
-            fileStream.Close();
-            return File(fileStream.Name, membro.FotoCapaType, membro.FotoCapaNome);
-        }
 
         private ActionResult GravarMembro(Membro membro, HttpPostedFileBase fotoPerfil = null, HttpPostedFileBase fotoCapa = null)
         {
@@ -90,15 +75,11 @@ namespace Eart.Areas.Membros.Controllers
                     {
                         membro.FotoPerfilType = fotoPerfil.ContentType;
                         membro.FotoPerfil = SetFotoPerfil(fotoPerfil);
-                        membro.FotoPerfilNome = fotoPerfil.FileName;
-                        membro.FotoPerfilTamanho = fotoPerfil.ContentLength;
                     }
                     if (fotoCapa != null)
                     {
                         membro.FotoCapaType = fotoCapa.ContentType;
                         membro.FotoCapa = SetFotoCapa(fotoCapa);
-                        membro.FotoCapaNome = fotoCapa.FileName;
-                        membro.FotoCapaTamanho = fotoCapa.ContentLength;
                     }
                     membroDAL.GravarMembro(membro);
                 }
@@ -128,9 +109,10 @@ namespace Eart.Areas.Membros.Controllers
         {
             if(ModelState.IsValid)
             {
+                membro.Ativo = true;
                 GravarMembro(membro, fotoPerfil, fotoCapa);
                 HttpContext.Session["membroLogin"] = membro;
-                return RedirectToAction("Edit", new { area = "Membros", id = membro.MembroId });
+                return RedirectToAction("Details", "Membros", new { Area = "Membros", id = membro.MembroId });
             }
             else
             {
@@ -149,14 +131,24 @@ namespace Eart.Areas.Membros.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Membro membro, HttpPostedFileBase fotoPerfil = null, HttpPostedFileBase fotoCapa = null)
         {
-            GravarMembro(membro, fotoPerfil, fotoCapa);
-            return RedirectToAction("Details", "Membros", new { Area = "Membros", id = membro.MembroId });
+            if (ModelState.IsValid)
+            {
+                GravarMembro(membro, fotoPerfil, fotoCapa);
+                return RedirectToAction("Details", "Membros", new { Area = "Membros", id = membro.MembroId });
+            }
+            else
+            {
+                return GravarMembro(membro, fotoPerfil, fotoCapa);
+            }
         }
 
         public ActionResult Details(long? id)
         {
             Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
             ViewBag.MembroLogado = membroLogin.MembroId;
+            ViewBag.MembroVisualizado = id;
+            membroLogin.Seguindo = seguirDAL.ObterMembroSeguido((long)id, (long)membroLogin.MembroId);
+            GravarMembro(membroLogin);
             return ObterVisaoMembroPorId(id);
         }
 
@@ -168,20 +160,15 @@ namespace Eart.Areas.Membros.Controllers
         // POST: Produtos/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(long id, FormCollection collection)
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    Membro membro = membroDAL.EliminarMembroPorId(id);
-                    //TempData["Message"] = "Membro " + membro.Nome.ToUpper() + " foi removido";
-                    return RedirectToAction("Create", "Membros", new { Area = "Membros" });
-                }
-                else
-                {
-                    return RedirectToAction("../Usuario_não_encontrado");
-                }
+                Membro membro = membroDAL.ObterMembroPorId(id);
+                membro.Ativo = false;
+                GravarMembro(membro);
+                TempData["Message"] = "Membro " + membro.Nome.ToUpper() + " foi removido";
+                return RedirectToAction("Create", "Membros", new { Area = "Membros" });
             }
             catch
             {

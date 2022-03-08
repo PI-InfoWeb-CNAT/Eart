@@ -90,7 +90,7 @@ button, .salvar {
     margin-top: 20px;
     cursor: pointer;
 }
-/* */
+
 input[type=file] .image_input {
     background-color: var(--cor4);
     color: var(--cor5);
@@ -116,7 +116,6 @@ input[type=file] .image_input {
 .form-group {
     display: inline-block;
 }
-/**/
 
 .login {
     display: flex;
@@ -138,10 +137,6 @@ a {
     color: var(--cor3);
 }
 
-hr {
-    color: var(--cor5);
-}
-
 .details_body {
     align-items: start;
     color: white !important;
@@ -153,10 +148,11 @@ hr {
 
 .panel-body {
     padding-top: 0 !important;
+    background-color: var(--cor2);
 }
 
 .bio {
-    max-width: 400px;
+    width: 300px;
     margin-right: auto;
     margin-left: auto;
     margin-top: 5px;
@@ -190,164 +186,55 @@ hr {
     top: 20%;
 }
 
-@media (min-width: 320px) and (max-width: 767px) {
-    body {
-        background-color: var(--cor2);
-    }
+.bodyPostagens {
+    width: 100%;
 }
 
-@media (min-width: 320px) and (max-width: 370px) {
-    .input {
-        width: 310px;
-        margin-left: 25px;
-    }
+.postagem {
+    justify-content: left;
+    padding: 10px 0 10px 0 !important;
 }
 
-
-
-
-/*:root {
-    --cor1: #252E4F;
-    --cor2: #1E2333;
-    --cor3: #7E92BA;
-    --cor4: #F0818E;
-    --cor5: #ffffff;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-}
-
-form {
-    width: 360px;
-}
-
-body {
-    background-color: var(--cor1);
-    color: var(--cor5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-.box {
-    background-color: var(--cor2);
-    border-radius: 25px;
-    width: 600px;
-    height: 500px;
-    display: flex;
-    margin-top: 40%;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-.logo {
-    width: 400px;
-    color: var(--cor4);
-    font-size: 50px;
-}
-
-#logo_img {
+.usuario {
+    width: 350px;
     float: left;
-    width: 80px;
-    margin-left: 75px;
-    margin-top: 25px;
+    margin-left: 10px;
 }
 
-#logo_nome {
-    font-size: 50px;
+.nomeUsuario {
+    color: white;
+    font-weight: bold;
+}
+
+.imgPerfPostag {
+    float: left;
+    margin-right: 10px;
+}
+
+.configPost {
     float: right;
-    margin-top: 10px;
-    margin-right: 140px;
-    margin-top: 35px;
 }
 
-.input {
-    background-color: var(--cor1);
-    color: var(--cor3);
-    flex-direction: column;
-    border: none;
-    border-radius: 25px;
-    height: 40px;
+.imgPost {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     width: 360px;
-    margin-top: 15px;
-    padding-left: 20px;
+    max-height: 310px;
 }
 
-::-webkit-input-placeholder {
-    color: var(--cor3);
+.legendaPostagem {
+    margin-left: 2px;
 }
 
-.button {
+.dadosPostagem {
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
-button, .salvar {
-    background-color: var(--cor4);
-    color: var(--cor5);
-    border: none;
-    border-radius: 25px;
-    height: 45px;
-    width: 195px;
-    margin-top: 20px;
-    cursor: pointer;
-}
-/* ----------
-input[type=file] .image_input {
-    background-color: var(--cor4);
-    color: var(--cor5);
-    border: none;
-    border-radius: 25px;
-    height: 45px;
-    width: 195px;
-    margin-top: 20px;
-    cursor: pointer;
-}
-.cancelar {
-    background-color: var(--cor3);
-    color: var(--cor2);
-    border: none;
-    border-radius: 25px;
-    height: 45px;
-    width: 195px;
-    margin-top: 20px;
-    cursor: pointer;
-}
-.form-group {
-    display: inline-block;
-}
-/*------
-
-.login {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
-}
-
-a {
-    color: var(--cor4);
-}
-
-.error {
-    color: var(--cor4);
-    margin-top: 20px;
-}
-
-.label {
-    color: var(--cor3);
-}
-
-hr {
-    color: var(--cor5);
+.dataPostagem {
+    font-size: 12px;
+    color: #8A8484;
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
@@ -355,8 +242,177 @@ hr {
         background-color: var(--cor2);
     }
 
-    .box {
-        margin-top: 15%;
+    hr {
+        height: 1px;
+        border: 1px solid var(--cor1);
+    }
+
+    .bodyPostagens {
+        display: block;
+        width: 100%;
+    }
+
+    .imgPost, .midiaPost {
+        width: 100%;
+        max-height: 1350px;
+    }
+
+    .usuario {
+        margin-left: 0;
+        width: 100%;
+        float: left;
+        padding: 0 15px 0 15px;
+    }
+
+    #criarPubl {
+        text-align: center !important;
+        padding-top: 10px;
+    }
+
+    #botao-criar {
+        padding: 7px 20px 7px 20px;
+        font-size: 22px;
+        font-weight: bold;
+        background-color: #F0818E;
+        color: white;
+        border-radius: 36px;
+    }
+
+    .iconBox {
+        width: 80px;
+        height: 35px;
+        border: 2px solid var(--cor1);
+        border-radius: 8px;
+        float: left;
+        margin-top: 5px;
+    }
+
+    .legenda {
+        margin-bottom: 10px;
+    }
+
+    footer {
+        position: fixed;
+        width: 100%;
+        height: 54px;
+        background-color: var(--cor1);
+        bottom: 0;
+        left: 0;
+        z-index: 10;
+    }
+
+    nav li {
+        float: left;
+        list-style: none;
+        width: 30px;
+        height: 30px;
+    }
+
+    nav {
+        padding: 12px 0 12px 0;
+    }
+
+    textarea {
+        padding: 15px 13px 120px 13px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        background-color: var(--cor1);
+        color: white;
+    }
+
+    .publicar {
+        width: 80px;
+        height: 30px;
+        border-radius: 5px;
+    }
+
+    .cancelar {
+        padding: 6.5px 10px 6.5px 10px !important;
+        margin-right: 10px;
+        border-radius: 5px;
+        color: #B5C9F1;
+        background-color: #556398;
+    }
+
+    .buttons {
+        float: left;
+    }
+
+    .details_body {
+        align-items: start;
+        color: white !important;
+        width: 100%;
+        justify-content: start;
+    }
+
+    .contadores {
+        margin-bottom: 20px;
+    }
+
+    .legendaComent {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+        text-align: center;
+        padding: 20px 0 20px 0;
+        background-color: var(--cor1);
+    }
+
+    .comentBox {
+        width: 270px;
+        background-color: #3D4872;
+        height: 33px;
+        margin-left: auto;
+        margin-right: auto;
+        align-content: center;
+        border-radius: 30px;
+        padding: 6px 10px 0 10px;
+    }
+
+    .topBar {
+        width: 100%;
+        height: 70px;
+        background-color: var(--cor1);
+    }
+
+    #logoMenor {
+        height: 50px;
+        margin: 10px 0 0 15px;
+        width: 50px;
+    }
+
+    .pesquisar {
+        float: right;
+        width: 250px;
+        height: 30px;
+        background-color: #3D4872;
+        border-radius: 40px;
+        padding: 5px 0 0 15px;
+        color: gray;
+        margin: 20px 15px 0 0;
+    }
+
+    #escreva {
+        color: white;
+    }
+
+    .boxComent {
+        width: 85%;
+        border-radius: 15px;
+        padding: 10px 0 10px 10px;
+        margin-left: 50px;
+        background-color: var(--cor1);
+    }
+
+    .comentLeg {
+        width: 200px;
+    }
+
+    .resultadoPesquisa {
+        width: 100%;
+        margin-top: 10%;
+        margin-left: 10%;
     }
 }
 
@@ -366,4 +422,3 @@ hr {
         margin-left: 25px;
     }
 }
-*/

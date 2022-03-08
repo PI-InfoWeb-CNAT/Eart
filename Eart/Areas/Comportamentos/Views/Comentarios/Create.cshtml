@@ -1,46 +1,49 @@
 ﻿@model Eart.Areas.Comportamentos.Models.Comentario
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <title> Criar comentário </title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
-    <link rel="stylesheet" href="~/Css/styles.css">
-    <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
-    <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
-</head>
-<body>
-    <div class="container">
-        <div class="box">
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
-                <div class="logo">
-                    <img id="logo_img" alt="Logo" src="~/Imagens/logo.png" />
-                    <h1 id="logo_nome">Eart</h1>
-                </div>
-                <div class="form-horizontal">
-                    @Html.HiddenFor(model => model.PostagemId)
-                    @Html.HiddenFor(model => model.MembroId)
+@{
+    var idIndex = ViewBag.IdIndex;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Criar comentário";
+}
 
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "input", placeholder = "Adicionar comentário..." } })
-                            @Html.ValidationMessageFor(model => model.Texto, "", new { @class = "error" })
-                        </div>
+@*<!DOCTYPE html>
+    <html lang="pt-br">
+    <head>
+        <title> Criar comentário </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
+        <link rel="stylesheet" href="~/Css/styles.css">
+        <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
+        <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
+    </head>
+    <body>*@
+<div class="container">
+    <div class="box">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="logo">
+                <img id="logo_img" alt="Logo" src="~/Imagens/logo.png" />
+                <h1 id="logo_nome">Eart</h1>
+            </div>
+            <div class="form-horizontal">
+                @Html.HiddenFor(model => model.PostagemId)
+                @Html.HiddenFor(model => model.MembroId)
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "input", placeholder = "Adicionar comentário..." } })
+                        @Html.ValidationMessageFor(model => model.Texto, "", new { @class = "error" })
                     </div>
                 </div>
-                <div class="col-md-offset-2 col-md-10">
-                    <div class="button">
-                        <button> Adicionar comentário </button>
-                    </div>
-                    @Html.ActionLink("Cancelar", "Index", "Comentarios", new { area = "Comportamentos", id = Model.PostagemId }, new { @class = "btn btn-warning" })
+            </div>
+            <div class="col-md-offset-2 col-md-10">
+                <div class="button">
+                    <button> Adicionar comentário </button>
                 </div>
-                <br />
-                <br />
-            }
-        </div>
+                @Html.ActionLink("Cancelar", "Index", "Comentarios", new { area = "Comportamentos", idPostagem = Model.PostagemId, idIndex = idIndex }, new { @class = "btn btn-warning" })
+            </div>
+            <br /> <br />
+        }
     </div>
-</body>
-</html>
+</div>    

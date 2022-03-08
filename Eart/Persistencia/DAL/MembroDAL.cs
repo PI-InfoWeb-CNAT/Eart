@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Eart.Persistencia.Contexts;
 using System.Data.Entity;
 using Eart.Areas.Membros.Models;
+using Eart.Areas.Comportamentos.Models;
 
 namespace Eart.Persistencia.DAL
 {
@@ -25,7 +26,7 @@ namespace Eart.Persistencia.DAL
 
         public Membro ObterMembroPorUsuario(string usuario)
         {
-            IQueryable<Membro> membros = context.Membros.Where(m => m.Usuario == usuario);
+            IQueryable<Membro> membros = context.Membros.Where(u => (u.Usuario == usuario && u.Ativo == true));
 
             if (membros.Count() != 0)
             {

@@ -1,47 +1,50 @@
 ﻿@model Eart.Areas.Comportamentos.Models.Comentario
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <title> Editar comentário </title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
-    <link rel="stylesheet" href="~/Css/styles.css">
-    <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
-    <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
-</head>
-<body>
-    <div class="container">
-        <div class="box">
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
-                <div class="logo">
-                    <img id="logo_img" alt="Logo" src="~/Imagens/logo.png" />
-                    <h1 id="logo_nome">Eart</h1>
-                </div>
-                <div class="form-horizontal">
-                    @Html.HiddenFor(model => model.PostagemId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.HiddenFor(model => model.MembroId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.HiddenFor(model => model.ComentarioId, new { htmlAttributes = new { @class = "form-control" } })
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "input", placeholder = "Adicionar comentário..." } })
-                            @Html.ValidationMessageFor(model => model.Texto, "", new { @class = "error" })
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-offset-2 col-md-10">
-                    @Html.ActionLink("Cancelar", "Index", "Comentarios", new { area = "Comportamentos", id = Model.PostagemId }, new { @class = "cancelar" })
-                    <div class="button">
-                        <button> Salvar alterações </button>
-                    </div>
-                </div>
-                <br />
-                <br />
-            }
-        </div>
-    </div>
-</body>
-</html>
+@{
+    var idIndex = ViewBag.IdIndex;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Editar comentário";
+}
 
+@*<!DOCTYPE html>
+    <html lang="pt-br">
+    <head>
+        <title> Editar comentário </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
+        <link rel="stylesheet" href="~/Css/styles.css">
+        <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
+        <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
+    </head>
+    <body>*@
+<div class="container">
+    <div class="box">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="logo">
+                <img id="logo_img" alt="Logo" src="~/Imagens/logo.png" />
+                <h1 id="logo_nome">Eart</h1>
+            </div>
+            <div class="form-horizontal">
+                @Html.HiddenFor(model => model.PostagemId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.MembroId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.ComentarioId, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Texto, new { htmlAttributes = new { @class = "input", placeholder = "Adicionar comentário..." } })
+                        @Html.ValidationMessageFor(model => model.Texto, "", new { @class = "error" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-offset-2 col-md-10">
+                @Html.ActionLink("Cancelar", "Index", "Comentarios", new { area = "Comportamentos", idPostagem = Model.PostagemId, idIndex = idIndex }, new { @class = "cancelar" })
+                <div class="button">
+                    <button> Salvar alterações </button>
+                </div>
+            </div>
+            <br />
+            <br />
+        }
+    </div>
+</div>  

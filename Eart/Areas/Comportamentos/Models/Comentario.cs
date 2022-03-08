@@ -16,6 +16,7 @@ namespace Eart.Areas.Comportamentos.Models
 
         [DisplayName("Comentário")]
         [StringLength(100, ErrorMessage = "Seu comentário precisa ter no entre {2} e {1} caracteres", MinimumLength = 2)]
+        [Required(ErrorMessage = "Não é possível criar um comentário vazio")]
         public string Texto { get; set; }
 
         [DisplayName("Data do comentário")]

@@ -16,6 +16,7 @@ namespace Eart.Areas.Comportamentos.Controllers
     public class ComentariosController : Controller
     {
         ComentarioDAL comentarioDAL = new ComentarioDAL();
+        PostagemDAL postagemDAL = new PostagemDAL();
 
         private ActionResult ObterVisaoComentarioPorId(long? id)
         {
@@ -31,6 +32,23 @@ namespace Eart.Areas.Comportamentos.Controllers
             return View(comentario);
         }
 
+        private ActionResult GravarPostagem(Postagem postagem)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    postagem.Relevancia = ((postagem.Cont_Curtidas * 3) + (postagem.Cont_Comentarios * 2)) / 5;
+                    postagemDAL.GravarPostagem(postagem);
+                }
+                return View(postagem);
+            }
+            catch
+            {
+                return View(postagem);
+            }
+        }
+
         private ActionResult GravarComentario(Comentario comentario)
         {
             try
@@ -39,7 +57,6 @@ namespace Eart.Areas.Comportamentos.Controllers
                 {
                     comentario.Data = DateTime.Now;
                     comentarioDAL.GravarComentario(comentario);
-                    return RedirectToAction("Index", "Comentarios", new { area = "Comportamentos", id = comentario.PostagemId });
                 }
                 return View(comentario);
             }
@@ -49,30 +66,43 @@ namespace Eart.Areas.Comportamentos.Controllers
             }
         }
 
-        public ActionResult Index(long id)
+        public ActionResult Index(long idPostagem, long idIndex)
         {
-            IQueryable<Comentario> comentarios = comentarioDAL.ObterComentariosClassificadosPorId();
+            if (idIndex == 1)
+            {
+                ViewBag.IdIndex = 1;
+                ViewBag.UrlAnterior = "~/Postagens/Postagens/FeedMembrosSeguidos";
+            }
+            if (idIndex == 2)
+            {
+                ViewBag.IdIndex = 2;
+                ViewBag.UrlAnterior = "~/Postagens/Postagens/FeedPorRelevancia";
+            }
+            ViewBag.IdPostagem = idPostagem;
+            IQueryable<Comentario> comentarios = comentarioDAL.ObterComentariosClassificadosPorData();
             List<Comentario> nova_lista = new List<Comentario>();
             foreach (var item in comentarios)
             {
-                if (item.PostagemId == id) {
+                if (item.PostagemId == idPostagem)
+                {
                     nova_lista.Add(item);
                 }
             }
-            if (nova_lista.Count() == 0)
-            {
-                Comentario comentario = new Comentario();
-                comentario.PostagemId = id;
-                nova_lista.Add(comentario);
-            }
-            
             return View(nova_lista);
         }
 
-        public ActionResult Create(long id)
+        public ActionResult Create(long idPostagem, long idIndex)
         {
+            if (idIndex == 1)
+            {
+                ViewBag.IdIndex = 1;
+            }
+            if (idIndex == 2)
+            {
+                ViewBag.IdIndex = 2;
+            }
             Comentario comentario = new Comentario();
-            comentario.PostagemId = id;
+            comentario.PostagemId = idPostagem;
             Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
             if (membroLogin != null)
             {
@@ -87,57 +117,99 @@ namespace Eart.Areas.Comportamentos.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Comentario comentario)
+        public ActionResult Create(Comentario comentario, long idIndex)
         {
-            return GravarComentario(comentario);
+            if (ModelState.IsValid)
+            {
+                Postagem postagem = postagemDAL.ObterPostagemPorId((long)comentario.PostagemId);
+                postagem.Cont_Comentarios += 1;
+                GravarPostagem(postagem);
+                GravarComentario(comentario);
+                return RedirectToAction("Index", "Comentarios", new { area = "Comportamentos", idPostagem = comentario.PostagemId, idIndex = idIndex });
+            }
+            else
+            {
+                return GravarComentario(comentario);
+            }
         }
 
-        public ActionResult Edit(long? id)
+
+
+        public ActionResult Edit(long? idComentario, long idIndex)
         {
-            return ObterVisaoComentarioPorId(id);
+            if (idIndex == 1)
+            {
+                ViewBag.IdIndex = 1;
+            }
+            if (idIndex == 2)
+            {
+                ViewBag.IdIndex = 2;
+            }
+            return ObterVisaoComentarioPorId(idComentario);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Comentario comentario)
+        public ActionResult Edit(Comentario comentario, long idIndex)
         {
-            return GravarComentario(comentario);
+            if (ModelState.IsValid)
+            {
+                GravarComentario(comentario);
+                return RedirectToAction("Index", "Comentarios", new { area = "Comportamentos", idPostagem = comentario.PostagemId, idIndex = idIndex });
+            }
+            else
+            {
+                return GravarComentario(comentario);
+            }
         }
 
-        public ActionResult Details(long? id)
+
+
+        public ActionResult Details(long? idComentario, long idIndex)
         {
-            return ObterVisaoComentarioPorId(id);
+            if (idIndex == 1)
+            {
+                ViewBag.IdIndex = 1;
+            }
+            if (idIndex == 2)
+            {
+                ViewBag.IdIndex = 2;
+            }
+            return ObterVisaoComentarioPorId(idComentario);
         }
 
-        public ActionResult Delete(long? id)
+        public ActionResult Delete(long? idComentario, long idIndex)
         {
-            return ObterVisaoComentarioPorId(id);
+            if (idIndex == 1)
+            {
+                ViewBag.IdIndex = 1;
+            }
+            if (idIndex == 2)
+            {
+                ViewBag.IdIndex = 2;
+            }
+            return ObterVisaoComentarioPorId(idComentario);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int idComentario, long idIndex, FormCollection collection)
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    Comentario comentario_id = comentarioDAL.ObterComentarioPorId(id);
-                    long postagemId = (long) comentario_id.PostagemId;
-                    Comentario comentario = comentarioDAL.EliminarComentarioPorId(id);
-                    TempData["Message"] = "Comentário excluído com sucesso";
-                    return RedirectToAction("Index", "Comentarios", new { area = "Comportamentos", id = postagemId });
-                }
-                else
-                {
-                    return RedirectToAction("../Comentário_não_encontrado");
-                }
+                Comentario comentario_id = comentarioDAL.ObterComentarioPorId(idComentario);
+                long postagemId = (long)comentario_id.PostagemId;
+                Comentario comentario = comentarioDAL.EliminarComentarioPorId(idComentario);
+                Postagem postagem = postagemDAL.ObterPostagemPorId(postagemId);
+                postagem.Cont_Comentarios -= 1;
+                GravarPostagem(postagem);
+                TempData["Message"] = "Comentário excluído com sucesso";
+                return RedirectToAction("Index", "Comentarios", new { area = "Comportamentos", idPostagem = postagemId, idIndex = idIndex });
             }
             catch
             {
                 return View();
             }
         }
-
     }
 }

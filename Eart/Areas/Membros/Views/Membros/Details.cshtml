@@ -2,6 +2,8 @@
 
 @{
     var membrologado = ViewBag.MembroLogado;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Perfil";
 }
 
 <!DOCTYPE html>
@@ -15,7 +17,8 @@
     <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
 </head>
 <body class="details_body">
-    @{ string arroba = "@";
+    @{
+        string arroba = "@";
         var capa_img = "";
         var id = new { id = Model.MembroId };
         if (Model.FotoCapa == null)
@@ -25,32 +28,24 @@
         else
         {
             capa_img = @Url.Action("GetFotoCapa", "Membros", id);
-        } }
+        }
+    }
 
-    <div class="panel panel-primary">
+    <div class="panel panel-primary" style="width: 100%;">
         <div class="panel-heading" style="background: url(@capa_img) !important; background-size: cover !important;">
             <div class="fotoPerfil">
                 @if (Model.FotoPerfil == null)
                 {
-    <span class="img-perfil">
-        <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 90px; height: 90px; border-radius: 50%; border: solid 3px #F0818E;" />
-    </span> }
+                    <span class="img-perfil">
+                        <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 90px; height: 90px; border-radius: 50%; border: solid 3px #F0818E;" />
+                    </span> }
                 else
                 {
-    <div class="panel-body">
-        <a>
-            <img class="img-thumbnail" src="@Url.Action("GetFotoPerfil", "Membros", new { id = Model.MembroId })" style="display: block; margin-left: auto; margin-right: auto; width: 90px; height: 90px; border-radius: 50%; border: solid 3px #F0818E;" />
-        </a>
-    </div>}
-                <div class="conf">
-                    <details>
-                        <summary> Configurações </summary>
-                        <ol style="color:white">
-                            <li> @Html.ActionLink("Excluir perfil", "Delete", "Membros", new { area = "Membros", id = Model.MembroId }, null)</li>
-                            <li> @Html.ActionLink("- Sair", "Logout", "Account", new { area = "Membros" }, null) </li>
-                        </ol>
-                    </details>
-                </div>
+                    <div class="panel-body">
+                        <a>
+                            <img class="img-thumbnail" src="@Url.Action("GetFotoPerfil", "Membros", new { id = Model.MembroId })" style="display: block; margin-left: auto; margin-right: auto; width: 90px; height: 90px; border-radius: 50%; border: solid 3px #F0818E;" />
+                        </a>
+                    </div>}
             </div>
         </div>
         <div class="panel-body" style="text-align: center; background-color: #1E2333;">
@@ -61,59 +56,51 @@
                 <span> @arroba@Model.Usuario </span>
                 <br />
                 <div class="bio">
-                    <span style="font-size: 14px; width: 20px;">@Model.Biografia</span>
+                    <span style="font-size: 14px; width: 20px;">@Html.Raw(Model.Biografia)</span>
                 </div>
                 <br />
-                @if (Model.MembroId == membrologado) { 
-                    @Html.ActionLink("- Sair", "Logout", "Account", new { area = "Membros" }, new { @class = "editar-perfil" })
+                @if (Model.MembroId == membrologado)
+                {
+                    <div class="conf">
+                        <details>
+                            <summary> <span class="iconify" data-icon="simple-line-icons:options" style="color: #f0818e; font-size: 30px;"></span> </summary>
+                            <ol style="color:white">
+                                <li> @Html.ActionLink("Excluir perfil", "Delete", "Membros", new { area = "Membros", id = Model.MembroId }, null)</li>
+                                <li> @Html.ActionLink("- Sair", "Logout", "Account", new { area = "Membros" }, null) </li>
+                                <li>@Html.ActionLink("Editar perfil", "Edit", "Membros", new { area = "Membros", id = Model.MembroId }, null)</li>
+                            </ol>
+                        </details>
+                    </div>
+                    @Html.ActionLink("Criar Postagem", "Create", "Postagens", new { area = "Postagens" }, new { @class = "editar-perfil" })
                     <br />
                     <br />
                 }
-                @Html.ActionLink("Excluir perfil", "Delete", "Membros", new { area = "Membros", id = Model.MembroId }, new { @class = "editar-perfil" })
-                <br />
-                <br />
-                @Html.ActionLink("Editar perfil", "Edit", "Membros", new { area = "Membros", id = Model.MembroId }, new { @class = "editar-perfil" })
-                <br />
-                <br />
-                @Html.ActionLink("Criar Postagem", "Create", "Postagens", new { area = "Postagens" }, new { @class = "editar-perfil" })
-                <br />
-                <br />
-                @Html.ActionLink("Feed", "Index", "Postagens", new { area = "Postagens" }, new { @class = "editar-perfil" })
-                <br />
-                <br />
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Nome)<br />
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-user"></i>
-                    </span>
-                    @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                else
+                {
+                    if (Model.Seguindo == true)
+                    {
+                        @Html.ActionLink("Seguir", "Follow", "Seguindo", new { area = "Comportamentos", id = Model.MembroId }, new { @class = "editar-perfil" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Deixar de seguir", "Unfollow", "Seguindo", new { area = "Comportamentos", id = Model.MembroId }, new { @class = "editar-perfil" })
+                    }
+                }
+                <div class="cont-posts">
+                    <span> @Model.Cont_Posts </span>
+                    <span> Posts </span>
+                </div>
+                <div class="cont-seguidores">
+                    <span> @Model.Cont_Seguidores </span>
+                    <span> Seguidores </span>
+                </div>
+                <div class="cont-seguindo">
+                    <span> @Model.Cont_Seguindo </span>
+                    <span> Seguindo </span>
                 </div>
             </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Usuario)<br />
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-user"></i>
-                    </span>
-                    @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Biografia)<br />
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-user"></i>
-                    </span>
-                    @Html.EditorFor(model => model.Biografia, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                </div>
-            </div>
-            <br /><br />
         </div>
     </div>
+    <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
 </body>
 </html>

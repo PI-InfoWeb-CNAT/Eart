@@ -157,8 +157,11 @@
     <Compile Include="Areas\Comportamentos\ComportamentosAreaRegistration.cs" />
     <Compile Include="Areas\Comportamentos\Controllers\ComentariosController.cs" />
     <Compile Include="Areas\Comportamentos\Controllers\CurtidasController.cs" />
+    <Compile Include="Areas\Comportamentos\Controllers\PesquisaController.cs" />
+    <Compile Include="Areas\Comportamentos\Controllers\SeguindoController.cs" />
     <Compile Include="Areas\Comportamentos\Models\Comentario.cs" />
     <Compile Include="Areas\Comportamentos\Models\Curtida.cs" />
+    <Compile Include="Areas\Comportamentos\Models\Seguir.cs" />
     <Compile Include="Areas\Membros\Controllers\AccountController.cs" />
     <Compile Include="Areas\Membros\Controllers\MembrosController.cs" />
     <Compile Include="Areas\Membros\MembrosAreaRegistration.cs" />
@@ -174,16 +177,18 @@
     <Compile Include="Persistencia\DAL\ComentarioDAL.cs" />
     <Compile Include="Persistencia\DAL\CurtidaDAL.cs" />
     <Compile Include="Persistencia\DAL\MembroDAL.cs" />
+    <Compile Include="Persistencia\DAL\PesquisaDAL.cs" />
     <Compile Include="Persistencia\DAL\PostagemDAL.cs" />
+    <Compile Include="Persistencia\DAL\SeguirDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Membros\Views\Membros\Index.cshtml" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Css\editarPerfil.css" />
+    <Content Include="Css\modal.css" />
     <Content Include="Css\styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -201,17 +206,19 @@
     <Content Include="Areas\Membros\Views\Membros\Details.cshtml" />
     <Content Include="Areas\Membros\Views\Membros\Delete.cshtml" />
     <Content Include="Areas\Postagens\Views\web.config" />
-    <Content Include="Areas\Postagens\Views\Postagens\Index.cshtml" />
     <Content Include="Areas\Postagens\Views\Postagens\Create.cshtml" />
     <Content Include="Areas\Postagens\Views\Postagens\Edit.cshtml" />
     <Content Include="Areas\Postagens\Views\Postagens\Details.cshtml" />
     <Content Include="Areas\Postagens\Views\Postagens\Delete.cshtml" />
     <Content Include="Areas\Comportamentos\Views\web.config" />
     <Content Include="Areas\Comportamentos\Views\Comentarios\Index.cshtml" />
+    <Content Include="Areas\Comportamentos\Views\Comentarios\Details.cshtml" />
+    <Content Include="Areas\Postagens\Views\Postagens\FeedMembrosSeguidos.cshtml" />
+    <Content Include="Areas\Postagens\Views\Postagens\FeedPorRelevancia.cshtml" />
     <Content Include="Areas\Comportamentos\Views\Comentarios\Create.cshtml" />
     <Content Include="Areas\Comportamentos\Views\Comentarios\Edit.cshtml" />
-    <Content Include="Areas\Comportamentos\Views\Comentarios\Details.cshtml" />
     <Content Include="Areas\Comportamentos\Views\Comentarios\Delete.cshtml" />
+    <Content Include="Areas\Comportamentos\Views\Pesquisa\PesquisarMembros.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -223,6 +230,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\popper.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -237,7 +245,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Comportamentos\Data\" />
-    <Folder Include="Areas\Comportamentos\Views\Curtidas\" />
     <Folder Include="Areas\Comportamentos\Views\Shared\" />
     <Folder Include="Areas\Membros\Data\" />
     <Folder Include="Areas\Membros\Views\Shared\" />
