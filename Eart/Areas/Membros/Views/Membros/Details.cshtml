@@ -79,11 +79,11 @@
                 {
                     if (Model.Seguindo == true)
                     {
-                        @Html.ActionLink("Seguir", "Follow", "Seguindo", new { area = "Comportamentos", id = Model.MembroId }, new { @class = "editar-perfil" })
+                        @Html.ActionLink("Deixar de seguir", "Unfollow", "Seguindo", new { area = "Comportamentos", id = Model.MembroId }, new { @class = "editar-perfil" })
                     }
                     else
                     {
-                        @Html.ActionLink("Deixar de seguir", "Unfollow", "Seguindo", new { area = "Comportamentos", id = Model.MembroId }, new { @class = "editar-perfil" })
+                        @Html.ActionLink("Seguir", "Follow", "Seguindo", new { area = "Comportamentos", id = Model.MembroId }, new { @class = "editar-perfil" })
                     }
                 }
                 <div class="cont-posts">

@@ -16,7 +16,7 @@ namespace Eart.Persistencia.DAL
 
         public IQueryable<Membro> PesquisarMembros(string pesquisa)
         {
-            return context.Membros.Where(u => (u.Usuario.ToUpper() == pesquisa.ToUpper()) || (u.Nome.ToUpper() == pesquisa.ToUpper()));
+            return context.Membros.Where(u => (u.Usuario.ToUpper() == pesquisa.ToUpper()) || (u.Nome.ToUpper() == pesquisa.ToUpper()) && (u.Ativo == true));
         }
 
     }
