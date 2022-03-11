@@ -7,8 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Eart.Areas.Membros.Models;
-using Eart.Areas.Comportamentos.Models;
-using Eart.Areas.Postagens.Models;
 using Eart.Persistencia.DAL;
 
 namespace Eart.Areas.Membros.Controllers
@@ -16,9 +14,7 @@ namespace Eart.Areas.Membros.Controllers
     public class MembrosController : Controller
     {
         MembroDAL membroDAL = new MembroDAL();
-        PostagemDAL postagemDAL = new PostagemDAL();
-        ComentarioDAL comentarioDAL = new ComentarioDAL();
-        CurtidaDAL curtidaDAL = new CurtidaDAL();
+        SeguirDAL seguirDAL = new SeguirDAL();
 
         private ActionResult ObterVisaoMembroPorId(long? id)
         {
@@ -51,15 +47,6 @@ namespace Eart.Areas.Membros.Controllers
             return null;
         }
 
-        public ActionResult DownloadFotoPerfil(long id)
-        {
-            Membro membro = membroDAL.ObterMembroPorId(id);
-            FileStream fileStream = new FileStream(Server.MapPath("~/App_Data/" + membro.FotoPerfilNome), FileMode.Create, FileAccess.Write);
-            fileStream.Write(membro.FotoPerfil, 0, Convert.ToInt32(membro.FotoPerfilTamanho));
-            fileStream.Close();
-            return File(fileStream.Name, membro.FotoPerfilType, membro.FotoPerfilNome);
-        }
-
         private byte[] SetFotoCapa(HttpPostedFileBase fotoCapa)
         {
             var bytesFotoCapa = new byte[fotoCapa.ContentLength];
@@ -77,14 +64,6 @@ namespace Eart.Areas.Membros.Controllers
             return null;
         }
 
-        public ActionResult DownloadFotoCapa(long id)
-        {
-            Membro membro = membroDAL.ObterMembroPorId(id);
-            FileStream fileStream = new FileStream(Server.MapPath("~/App_Data/" + membro.FotoCapaNome), FileMode.Create, FileAccess.Write);
-            fileStream.Write(membro.FotoCapa, 0, Convert.ToInt32(membro.FotoCapaTamanho));
-            fileStream.Close();
-            return File(fileStream.Name, membro.FotoCapaType, membro.FotoCapaNome);
-        }
 
         private ActionResult GravarMembro(Membro membro, HttpPostedFileBase fotoPerfil = null, HttpPostedFileBase fotoCapa = null)
         {
@@ -96,15 +75,11 @@ namespace Eart.Areas.Membros.Controllers
                     {
                         membro.FotoPerfilType = fotoPerfil.ContentType;
                         membro.FotoPerfil = SetFotoPerfil(fotoPerfil);
-                        membro.FotoPerfilNome = fotoPerfil.FileName;
-                        membro.FotoPerfilTamanho = fotoPerfil.ContentLength;
                     }
                     if (fotoCapa != null)
                     {
                         membro.FotoCapaType = fotoCapa.ContentType;
                         membro.FotoCapa = SetFotoCapa(fotoCapa);
-                        membro.FotoCapaNome = fotoCapa.FileName;
-                        membro.FotoCapaTamanho = fotoCapa.ContentLength;
                     }
                     membroDAL.GravarMembro(membro);
                 }
@@ -171,6 +146,9 @@ namespace Eart.Areas.Membros.Controllers
         {
             Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
             ViewBag.MembroLogado = membroLogin.MembroId;
+            ViewBag.MembroVisualizado = id;
+            membroLogin.Seguindo = seguirDAL.ObterMembroSeguido((long)id, (long)membroLogin.MembroId);
+            GravarMembro(membroLogin);
             return ObterVisaoMembroPorId(id);
         }
 
@@ -191,31 +169,6 @@ namespace Eart.Areas.Membros.Controllers
                 GravarMembro(membro);
                 TempData["Message"] = "Membro " + membro.Nome.ToUpper() + " foi removido";
                 return RedirectToAction("Create", "Membros", new { Area = "Membros" });
-
-                /*IQueryable<Comentario> comentarios = comentarioDAL.ObterComentariosClassificadosPorMembro(id);
-                if (comentarios.Count() != 0)
-                {
-                    foreach (Comentario comentario in comentarios)
-                    {
-                        Comentario coment = comentarioDAL.EliminarComentarioPorId((long) comentario.ComentarioId);
-                    }
-                }
-                IQueryable<Curtida> curtidas = curtidaDAL.ObterCurtidasClassificadasPorMembro(id);
-                if (curtidas.Count() != 0)
-                {
-                    foreach (Curtida curtida in curtidas)
-                    {
-                        Curtida curt = curtidaDAL.EliminarCurtidaPorId((long) curtida.PostagemId, (long) curtida.MembroId);
-                    }
-                }
-                IQueryable<Postagem> postagens = postagemDAL.ObterPostagensClassificadasPorMembro(id);
-                if (postagens.Count() != 0)
-                {
-                    foreach (Postagem postagem in postagens)
-                    {
-                        Postagem post = postagemDAL.EliminarPostagemPorId((long) postagem.PostagemId);
-                    }
-                }*/
             }
             catch
             {

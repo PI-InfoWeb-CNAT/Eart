@@ -2,6 +2,7 @@
 @{ 
     string arroba = "@";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var membrologado = ViewBag.MembroLogado;
 }
 
 <!DOCTYPE html>
@@ -17,7 +18,7 @@
 <body style="display: block !important;">
     @using (Html.BeginForm("PesquisarMembros", "Pesquisar", FormMethod.Post))
     {
-    <div style="position: absolute; top: 0; margin-left: 10%;">
+    <div style="position: absolute; top: 0; margin-left: 15%;">
         <input type="text" class="pesquisar" name="pesquisa" placeholder="Pesquise aqui..." style="float: left;" />
         <button style="width: 0; float: right; position: absolute; right: -10%; top: -8%;" type="submit"><span class="iconify" data-icon="bx:search-alt-2" style="color: white; font-size: 24px; float: right; margin-right: 10px;"></span></button>
     </div>

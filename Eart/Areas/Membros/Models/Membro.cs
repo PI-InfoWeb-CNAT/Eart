@@ -50,18 +50,10 @@ namespace Eart.Areas.Membros.Models
         [DisplayName("Foto de Perfil")]
         public byte[] FotoPerfil { get; set; }
 
-        public string FotoPerfilNome { get; set; }
-
-        public long FotoPerfilTamanho { get; set; }
-
         public string FotoCapaType { get; set; }
 
         [DisplayName("Foto de capa")]
         public byte[] FotoCapa { get; set; }
-
-        public string FotoCapaNome { get; set; }
-
-        public long FotoCapaTamanho { get; set; }
 
         public bool Seguindo { get; set; }
 
@@ -69,17 +61,11 @@ namespace Eart.Areas.Membros.Models
 
         public long Cont_Seguidores { get; set; }
 
+        public long Cont_Posts { get; set; }
+
         public bool Ativo { get; set; }
 
-        /*public virtual ICollection<Membro> Seguindo { get; set; }
-
-        public virtual ICollection<Membro> Seguidores { get; set; }*/
-
         public virtual ICollection<Postagem> Postagens { get; set; }
-
-        /*public virtual ICollection<Comentario> Comentarios { get; set; }
-
-        public virtual ICollection<Curtida> Curtidas { get; set; }*/
     }
 
     public class LoginViewModel
@@ -94,4 +80,3 @@ namespace Eart.Areas.Membros.Models
         public string Senha { get; set; }
     }
 }
-

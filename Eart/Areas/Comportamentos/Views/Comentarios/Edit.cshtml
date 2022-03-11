@@ -1,13 +1,15 @@
-﻿@model Eart.Areas.Postagens.Models.Postagem
+﻿@model Eart.Areas.Comportamentos.Models.Comentario
 
 @{
+    var idIndex = ViewBag.IdIndex;
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Editar comentário";
 }
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <title> Editar postagem </title>
+    <title> Editar comentário </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
     <link rel="stylesheet" href="~/Css/styles.css">
@@ -20,33 +22,24 @@
         <h1 id="logo_nome" style="">Eart</h1>
     </header>
     <div class="container">
-        <div>
-            @using (Html.BeginForm("Edit", "Postagens", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        <div class="box">
+            @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
                 <div class="form-horizontal">
                     @Html.HiddenFor(model => model.PostagemId, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.HiddenFor(model => model.MembroId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.HiddenFor(model => model.FotoType)
-                    @Html.HiddenFor(model => model.Foto) 
+                    @Html.HiddenFor(model => model.ComentarioId, new { htmlAttributes = new { @class = "form-control" } })
                     <div class="form-group">
-                        <div class="col-md-10">
-                            @Html.TextAreaFor(model => model.Texto, new { @cols = 44, htmlAttributes = new { placeholder = "Adicionar legenda..." } })
+                        <div>
+                            @Html.TextAreaFor(model => model.Texto, new { @cols = 44, htmlAttributes = new { @class = "input", placeholder = "Adicionar comentário..." } })
                             @Html.ValidationMessageFor(model => model.Texto, "", new { @class = "error" })
                         </div>
                     </div>
-                    <div class="foto">
-                        <div>
-                            <div>
-                                @Html.TextBox("foto", "", new { type = "file" }) <br />
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
-                <div class="buttons">
-                    @Html.ActionLink("Cancelar", "FeedMembrosSeguidos", "Postagens", new { area = "Postagens" }, new { @class = "cancelar" })
+                <div>
                     <button class="publicar"> Publicar </button>
+                    @Html.ActionLink("Cancelar", "Index", "Comentarios", new { area = "Comportamentos", idPostagem = Model.PostagemId, idIndex = idIndex }, new { @class = "cancelar" })
                 </div>
                 <br />
                 <br />

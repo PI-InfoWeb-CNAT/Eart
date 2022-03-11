@@ -3,14 +3,14 @@
     "",
     "\\Eart",
     "\\Eart\\Areas",
-    "\\Eart\\Areas\\Membros",
-    "\\Eart\\Areas\\Membros\\Views",
-    "\\Eart\\Areas\\Membros\\Views\\Account",
+    "\\Eart\\Areas\\Comportamentos",
+    "\\Eart\\Areas\\Comportamentos\\Views",
+    "\\Eart\\Areas\\Comportamentos\\Views\\Comentarios",
     "\\Eart\\Areas\\Postagens",
     "\\Eart\\Areas\\Postagens\\Views",
     "\\Eart\\Areas\\Postagens\\Views\\Postagens",
     "\\Eart\\Css"
   ],
-  "SelectedNode": "\\Eart\\Css\\styles.css",
+  "SelectedNode": "\\Eart\\Areas\\Comportamentos\\Views\\Comentarios\\Create.cshtml",
   "PreviewInSolutionExplorer": false
 }

@@ -14,14 +14,9 @@ namespace Eart.Persistencia.DAL
     {
         EFContext context = new EFContext();
 
-        public IQueryable<Postagem> PesquisarPostagensPorConteudo(string texto)
-        {
-            return context.Postagens.Include(t => t.Texto.Contains(texto));
-        }
-
         public IQueryable<Membro> PesquisarMembros(string pesquisa)
         {
-            return context.Membros.Where(u => (u.Usuario == pesquisa) || (u.Nome == pesquisa));
+            return context.Membros.Where(u => (u.Usuario.ToUpper() == pesquisa.ToUpper()) || (u.Nome.ToUpper() == pesquisa.ToUpper()) && (u.Ativo == true));
         }
 
     }

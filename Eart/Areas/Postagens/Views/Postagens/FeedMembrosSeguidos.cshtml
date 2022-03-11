@@ -121,7 +121,7 @@
                     @if (item.Curtida != true)
                     {
                         <a href="@Url.Action("Curtir", "Curtidas", new { area = "Comportamentos", id = item.PostagemId })">
-                            <div class="iconBox" style="margin-left: 20px;">
+                            <div class="iconBox" style="margin-left: 10%;">
                                 <span class="iconify" data-icon="ant-design:heart-outlined" style="color: white; font-size: 30px; margin-left: 23px;"></span>
                                 @item.Cont_Curtidas
                             </div>
@@ -130,17 +130,14 @@
                     else
                     {
                         <a href="@Url.Action("Descurtir", "Curtidas", new { area = "Comportamentos", id = item.PostagemId })">
-                            <div class="iconBox" style="margin-left: 20px;">
+                            <div class="iconBox" style="margin-left: 10%;">
                                 <span class="iconify" data-icon="ant-design:heart-filled" style="color: #f0818e; font-size: 30px; margin-left: 23px;"></span>
                                 @item.Cont_Curtidas
                             </div>
                         </a>
-                    }
-                    <div class="iconBox" style="float: right; margin-right: 20px;" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Maaar">
-                        <span class="iconify" data-icon="fa-solid:share-square" style="color: white; font-size: 24px; margin-left: 27px; margin-top: 3px;"></span>
-                    </div>
+                    } 
                     <a href="@Url.Action("Index", "Comentarios", new { area = "Comportamentos", idPostagem = item.PostagemId, idIndex = 1 })">
-                        <div style="display: flex; align-items: center; justify-content: center;">
+                        <div style="display: flex; float: right; margin-right: 10%;">
                             <div class="iconBox">
                                 <span class="iconify" data-icon="akar-icons:comment" style="color: white; font-size: 25px; margin-top: 3px; margin-left: 25px;"></span>
                                 <span class="contadores">@item.Cont_Comentarios</span>

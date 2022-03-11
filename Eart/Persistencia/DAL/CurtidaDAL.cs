@@ -37,11 +37,6 @@ namespace Eart.Persistencia.DAL
             return context.Curtidas.Where(c => c.CurtidaId == id).First();
         }
 
-        public IList<Curtida> ObterCurtidasClassificadasPorMembro(long id)
-        {
-            return context.Curtidas.Where(m => m.MembroId == id).ToList();
-        }
-
         public IList<Curtida> ObterCurtidasClassificadasPorPostagem(long id)
         {
             return context.Curtidas.Where(p => p.PostagemId == id).ToList();

@@ -1,8 +1,7 @@
 ﻿<!DOCTYPE html>
 @{ var pageName = ViewContext.RouteData.Values["action"].ToString();
+   var pageName2 = ViewContext.RouteData.Values["controller"].ToString();
    var membrologado = ViewBag.MembroLogado;
-   var membrofoto = ViewBag.MembroFoto; 
-
  }
 <html>
 <head>
@@ -49,11 +48,16 @@
                     </a>
                 </li>
                 <li>
-                    <div>
-                        <a href="@Url.Action("Details", "Membros", new { Area = "Membros", id = membrologado })">
-                            <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 30px; height: 30px; border-radius: 50%; border: solid 1px #F0818E; position: absolute; right: 5%;" />
-                        </a>
-                    </div>
+                    <a href="@Url.Action("Details", "Membros", new { area = "Membros", id = membrologado })">
+                        @if (pageName2 != "Membros")
+                        {
+                            <span class="iconify" data-icon="carbon:user-avatar-filled-alt" style="display: block; margin-left: auto; margin-right: auto; width: 30px; height: 30px; color: white; position: absolute; right: 5%;"></span>
+                        }
+                        else 
+                        { 
+                            <span class="iconify" data-icon="carbon:user-avatar-filled" style="display: block; margin-left: auto; margin-right: auto; width: 30px; height: 30px; color: white; position: absolute; right: 5%;"></span>
+                        }
+                    </a>
                 </li> 
             </ul>
         </nav>
