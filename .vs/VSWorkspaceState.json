@@ -5,12 +5,12 @@
     "\\Eart\\Areas",
     "\\Eart\\Areas\\Comportamentos",
     "\\Eart\\Areas\\Comportamentos\\Views",
-    "\\Eart\\Areas\\Comportamentos\\Views\\Comentarios",
-    "\\Eart\\Areas\\Postagens",
-    "\\Eart\\Areas\\Postagens\\Views",
-    "\\Eart\\Areas\\Postagens\\Views\\Postagens",
+    "\\Eart\\Areas\\Comportamentos\\Views\\Pesquisar",
+    "\\Eart\\Areas\\Membros",
+    "\\Eart\\Areas\\Membros\\Views",
+    "\\Eart\\Areas\\Membros\\Views\\Account",
     "\\Eart\\Css"
   ],
-  "SelectedNode": "\\Eart\\Areas\\Comportamentos\\Views\\Comentarios\\Create.cshtml",
+  "SelectedNode": "\\Eart\\Eart.sln",
   "PreviewInSolutionExplorer": false
 }

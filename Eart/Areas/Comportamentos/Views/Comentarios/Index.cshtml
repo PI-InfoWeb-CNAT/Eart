@@ -3,6 +3,7 @@
 @{
     var idPostagem = ViewBag.IdPostagem;
     var urlanterior = ViewBag.UrlAnterior;
+    var membrologado = ViewBag.MembroLogado;
     var idIndex = ViewBag.IdIndex;
 }
 <!DOCTYPE html>
@@ -64,32 +65,22 @@
                         <div class="comentario">
                             @if (item.Membro.FotoPerfil == null)
                             {
-                            <div class="imgPerfPostag" style="margin-left: 5px;">
-                                <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
-                            </div> 
+                                <div class="imgPerfPostag" style="margin-left: 5px;">
+                                    <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                                </div> 
                             }
                             else
                             {
-                            <div class="imgPerfPostag" style="margin-left: 5px;">
-                                <a>
-                                    <img class="img-thumbnail" src="~/Membros/Membros/GetFotoPerfil/@item.Membro.MembroId" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
-                                </a>
-                            </div>
+                                <div class="imgPerfPostag" style="margin-left: 5px;">
+                                    <a>
+                                        <img class="img-thumbnail" src="~/Membros/Membros/GetFotoPerfil/@item.Membro.MembroId" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                                    </a>
+                                </div>
                             }
                             <details class="configPost" style="margin-right: 10px;">
                                 <summary style="list-style: none;"> <span class="iconify" data-icon="simple-line-icons:options" style="color: #f0818e; font-size: 25px;"></span> </summary>
                             <ol style="list-style: none;">
                                     <li> @Html.ActionLink("Ver comentário", "Details", "Comentarios", new { area = "Comportamentos", idComentario = item.ComentarioId, idIndex = idIndex }, null) </li>
-                                    @*@if (idIndex == 1)
-                                        {
-                                            <li> @Html.ActionLink("Editar comentário", "Edit1", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
-                                            <li> @Html.ActionLink("Excluir comentário", "Delete1", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
-                                        }
-                                        @if (idIndex == 2)
-                                        {
-                                            <li> @Html.ActionLink("Editar comentário", "Edit2", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
-                                            <li> @Html.ActionLink("Excluir comentário", "Delete2", "Comentarios", new { area = "Comportamentos", id = item.ComentarioId }, null)</li>
-                                        }*@
                                 </ol>
                             </details>
                             <div class="boxComent">

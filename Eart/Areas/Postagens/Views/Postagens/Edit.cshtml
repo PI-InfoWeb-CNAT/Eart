@@ -2,9 +2,10 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Editar Postagem";
 }
 
-<!DOCTYPE html>
+@*<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <title> Editar postagem </title>
@@ -12,9 +13,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
     <link rel="stylesheet" href="~/Css/styles.css">
     <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
-    <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
-</head>
-<body>
+</head>*@
+<div>
     <header class="logo" style="display: flex; justify-content: center !important; position: absolute; top: 0;">
         <img style="margin-left: 25% !important;" id="logo_img" alt="Logo" src="~/Imagens/logo.png" />
         <h1 id="logo_nome" style="">Eart</h1>
@@ -27,8 +27,11 @@
                 <div class="form-horizontal">
                     @Html.HiddenFor(model => model.PostagemId, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.HiddenFor(model => model.MembroId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.HiddenFor(model => model.Data)
                     @Html.HiddenFor(model => model.FotoType)
-                    @Html.HiddenFor(model => model.Foto) 
+                    @Html.HiddenFor(model => model.Foto)
+                    @Html.HiddenFor(model => model.Cont_Curtidas)
+                    @Html.HiddenFor(model => model.Cont_Comentarios)
                     <div class="form-group">
                         <div class="col-md-10">
                             @Html.TextAreaFor(model => model.Texto, new { @cols = 44, htmlAttributes = new { placeholder = "Adicionar legenda..." } })
@@ -42,16 +45,14 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="buttons">
-                    @Html.ActionLink("Cancelar", "FeedMembrosSeguidos", "Postagens", new { area = "Postagens" }, new { @class = "cancelar" })
                     <button class="publicar"> Publicar </button>
+                    @Html.ActionLink("Cancelar", "FeedMembrosSeguidos", "Postagens", new { area = "Postagens" }, new { @class = "cancelar" })
                 </div>
                 <br />
                 <br />
             }
         </div>
     </div>
-</body>
-</html>
+</div>
