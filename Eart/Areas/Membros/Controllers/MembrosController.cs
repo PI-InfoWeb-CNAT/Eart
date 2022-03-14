@@ -145,10 +145,13 @@ namespace Eart.Areas.Membros.Controllers
         public ActionResult Details(long? id)
         {
             Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
+            Membro membroVisto = membroDAL.ObterMembroPorId((long)id);
             ViewBag.MembroLogado = membroLogin.MembroId;
             ViewBag.MembroVisualizado = id;
             membroLogin.Seguindo = seguirDAL.ObterMembroSeguido((long)id, (long)membroLogin.MembroId);
+            membroVisto.Seguindo = membroLogin.Seguindo;
             GravarMembro(membroLogin);
+            GravarMembro(membroVisto);
             return ObterVisaoMembroPorId(id);
         }
 

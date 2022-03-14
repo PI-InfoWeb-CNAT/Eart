@@ -59,16 +59,20 @@ namespace Eart.Areas.Comportamentos.Controllers
             Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
             if (membroLogin != null)
             {
-                Seguir seguir = new Seguir();
-                seguir.SeguindoId = id;
-                seguir.SeguidorId = membroLogin.MembroId;
-                Membro seguido = membroDAL.ObterMembroPorId(id);
+                Membro seguindo = membroDAL.ObterMembroPorId(id);
                 Membro seguidor = membroLogin;
-                seguido.Cont_Seguidores++;
-                seguidor.Cont_Seguindo++;
-                GravarMembro(seguido);
-                GravarMembro(seguidor);
-                GravarSeguir(seguir);
+                seguindo.Seguindo = seguirDAL.ObterMembroSeguido((long)id, (long)membroLogin.MembroId);
+                if (seguindo.Seguindo == false)
+                {
+                    Seguir seguir = new Seguir();
+                    seguir.SeguindoId = id;
+                    seguir.SeguidorId = membroLogin.MembroId;
+                    seguindo.Cont_Seguidores++;
+                    seguidor.Cont_Seguindo++;
+                    GravarMembro(seguindo);
+                    GravarMembro(seguidor);
+                    GravarSeguir(seguir);
+                }
                 return Redirect(Request.UrlReferrer.ToString());
             }
             else
@@ -82,16 +86,19 @@ namespace Eart.Areas.Comportamentos.Controllers
             Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
             if (membroLogin != null)
             {
-                Seguir seguir = new Seguir();
-                seguir.SeguindoId = id;
-                seguir.SeguidorId = membroLogin.MembroId;
                 Membro seguindo = membroDAL.ObterMembroPorId(id);
                 Membro seguidor = membroLogin;
-                seguindo.Cont_Seguidores--;
-                seguidor.Cont_Seguindo--;
-                GravarMembro(seguindo);
-                GravarMembro(seguidor);
-                seguirDAL.EliminarSeguirPorId((long)seguir.SeguidorId, (long)seguir.SeguindoId);
+                seguindo.Seguindo = seguirDAL.ObterMembroSeguido((long)id, (long)membroLogin.MembroId);
+                if (seguindo.Seguindo == true) {
+                    Seguir seguir = new Seguir();
+                    seguir.SeguindoId = id;
+                    seguir.SeguidorId = membroLogin.MembroId;
+                    seguindo.Cont_Seguidores--;
+                    seguidor.Cont_Seguindo--;
+                    GravarMembro(seguindo);
+                    GravarMembro(seguidor);
+                    seguirDAL.EliminarSeguirPorId((long)seguir.SeguindoId, (long)seguir.SeguidorId);
+                }
                 return Redirect(Request.UrlReferrer.ToString());
             }
             else

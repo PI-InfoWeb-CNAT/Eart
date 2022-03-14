@@ -143,7 +143,7 @@ namespace Eart.Areas.Postagens.Controllers
             return View(postagem);
         }
 
-        [HttpPost]
+        [HttpPost] 
         [ValidateAntiForgeryToken]
         public ActionResult Create(Postagem postagem, HttpPostedFileBase foto = null)
         {
