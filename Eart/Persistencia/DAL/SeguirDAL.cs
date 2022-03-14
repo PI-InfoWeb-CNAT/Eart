@@ -46,7 +46,7 @@ namespace Eart.Persistencia.DAL
         }
         public Seguir EliminarSeguirPorId(long idMembroSeguido, long idMembroLogado)
         {
-            Seguir seguindo = context.Seguindo.Where(m => m.SeguindoId == idMembroSeguido && m.SeguidorId == idMembroLogado).First();
+            Seguir seguindo = context.Seguindo.Where(m => (m.SeguindoId == idMembroSeguido) && (m.SeguidorId == idMembroLogado)).First();
             context.Seguindo.Remove(seguindo);
             context.SaveChanges();
             return seguindo;

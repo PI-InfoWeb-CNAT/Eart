@@ -93,6 +93,11 @@ namespace Eart.Areas.Membros.Controllers
 
         public ActionResult Index()
         {
+            Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
+            if (membroLogin != null)
+            {
+                ViewBag.MembroLogado = membroLogin.MembroId;
+            }
             return View(membroDAL.ObterMembrosClassificadosPorNome());
         }
 
@@ -131,6 +136,11 @@ namespace Eart.Areas.Membros.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Membro membro, HttpPostedFileBase fotoPerfil = null, HttpPostedFileBase fotoCapa = null)
         {
+            Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
+            if (membroLogin != null)
+            {
+                ViewBag.MembroLogado = membroLogin.MembroId;
+            }
             if (ModelState.IsValid)
             {
                 GravarMembro(membro, fotoPerfil, fotoCapa);
@@ -149,6 +159,11 @@ namespace Eart.Areas.Membros.Controllers
             ViewBag.MembroVisualizado = id;
             membroLogin.Seguindo = seguirDAL.ObterMembroSeguido((long)id, (long)membroLogin.MembroId);
             GravarMembro(membroLogin);
+            if(membroLogin.MembroId != id) {
+               Membro membroVisto = membroDAL.ObterMembroPorId((long)id);
+               membroVisto.Seguindo = membroLogin.Seguindo;
+               GravarMembro(membroVisto);
+            }
             return ObterVisaoMembroPorId(id);
         }
 
@@ -164,6 +179,11 @@ namespace Eart.Areas.Membros.Controllers
         {
             try
             {
+                Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
+                if (membroLogin != null)
+                {
+                   ViewBag.MembroLogado = membroLogin.MembroId;
+                }
                 Membro membro = membroDAL.ObterMembroPorId(id);
                 membro.Ativo = false;
                 GravarMembro(membro);

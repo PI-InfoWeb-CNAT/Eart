@@ -134,6 +134,7 @@ namespace Eart.Areas.Postagens.Controllers
             Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
             if (membroLogin != null)
             {
+                ViewBag.MembroLogado = membroLogin.MembroId;
                 postagem.MembroId = membroLogin.MembroId;
             }
             else
@@ -143,7 +144,7 @@ namespace Eart.Areas.Postagens.Controllers
             return View(postagem);
         }
 
-        [HttpPost]
+        [HttpPost] 
         [ValidateAntiForgeryToken]
         public ActionResult Create(Postagem postagem, HttpPostedFileBase foto = null)
         {
@@ -178,6 +179,11 @@ namespace Eart.Areas.Postagens.Controllers
 
         public ActionResult Delete(long? id)
         {
+            Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
+            if (membroLogin != null)
+            {
+                ViewBag.MembroLogado = membroLogin.MembroId;
+            }
             return ObterVisaoPostagemPorId(id);
         }
 
@@ -187,6 +193,11 @@ namespace Eart.Areas.Postagens.Controllers
         {
             try
             {
+                Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
+                if (membroLogin != null)
+                {
+                   ViewBag.MembroLogado = membroLogin.MembroId;
+                }
                 IList<Comentario> comentarios = comentarioDAL.ObterComentariosClassificadosPorPostagem(id);
                 foreach (var comentario in comentarios)
                 {

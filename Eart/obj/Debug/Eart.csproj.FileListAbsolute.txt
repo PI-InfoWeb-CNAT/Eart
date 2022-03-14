@@ -465,4 +465,3 @@ C:\Users\Aris4\source\repos\Eart\Eart\bin\roslyn\vbc.exe.config
 C:\Users\Aris4\source\repos\Eart\Eart\bin\roslyn\vbc.rsp
 C:\Users\Aris4\source\repos\Eart\Eart\bin\roslyn\VBCSCompiler.exe
 C:\Users\Aris4\source\repos\Eart\Eart\bin\roslyn\VBCSCompiler.exe.config
-C:\Users\Aris4\source\repos\Eart\Eart\obj\Debug\Eart.csproj.AssemblyReference.cache
