@@ -127,6 +127,7 @@ a {
 }
 .panel-body {
     padding-top: 0 !important;
+    background-color: var(--cor2);
 }
 .bio {
     width: 300px;
@@ -272,6 +273,10 @@ a {
     nav {
         padding: 12px 0 12px 0;
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
     textarea {
         padding: 15px 13px 120px 13px;
         border-radius: 10px;
@@ -306,6 +311,10 @@ a {
         justify-content: start;
         background-color: var(--cor2);
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
     .contadores {
         margin-bottom: 20px;
     }
@@ -338,10 +347,16 @@ a {
     }
 
     #logoMenor {
+<<<<<<< HEAD
         height: 50px; 
         float: left;
         width: 50px;
         margin-top: 2%;
+=======
+        height: 50px;
+        margin: 10px 0 0 15px;
+        width: 50px;
+>>>>>>> main
     }
 
     .pesquisar {
@@ -358,21 +373,36 @@ a {
     #escreva {
         color: white;
     }
+<<<<<<< HEAD
     .boxComent{
+=======
+
+    .boxComent {
+>>>>>>> main
         width: 85%;
         border-radius: 15px;
         padding: 10px 0 10px 10px;
         margin-left: 50px;
         background-color: var(--cor1);
     }
+<<<<<<< HEAD
     .comentLeg{
         width: 200px;
     }
     .resultadoPesquisa{
+=======
+
+    .comentLeg {
+        width: 200px;
+    }
+
+    .resultadoPesquisa {
+>>>>>>> main
         width: 100%;
         margin-top: 10%;
         margin-left: 10%;
     }
+<<<<<<< HEAD
     #nomeMenor{
         color: var(--cor4);
         float: left;
@@ -383,6 +413,8 @@ a {
         justify-content: center;
         align-content: center;
     }
+=======
+>>>>>>> main
 }
 
 @media (min-width: 320px) and (max-width: 370px) {

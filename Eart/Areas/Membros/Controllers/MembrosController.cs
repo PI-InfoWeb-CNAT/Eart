@@ -159,11 +159,14 @@ namespace Eart.Areas.Membros.Controllers
             ViewBag.MembroVisualizado = id;
             membroLogin.Seguindo = seguirDAL.ObterMembroSeguido((long)id, (long)membroLogin.MembroId);
             GravarMembro(membroLogin);
+<<<<<<< HEAD
             if(membroLogin.MembroId != id) {
                Membro membroVisto = membroDAL.ObterMembroPorId((long)id);
                membroVisto.Seguindo = membroLogin.Seguindo;
                GravarMembro(membroVisto);
             }
+=======
+>>>>>>> main
             return ObterVisaoMembroPorId(id);
         }
 

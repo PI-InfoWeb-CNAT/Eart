@@ -46,12 +46,22 @@
             });
         </script>
     }
+<<<<<<< HEAD
     <div class="panel panel-primary" style="width: 100%;">
+=======
+    <div class="panel panel-primary">
+>>>>>>> main
         <div class="legendaComent">
             <a href="@Url.Content(@urlanterior)" style="float: left; margin-left: 10px;"><span class="iconify" data-icon="akar-icons:arrow-left" style="color: white; font-size: 24px;"></span></a>
             <h3 style="margin-right: 20px; font-size: 20px;">Comentários</h3>
         </div>
+<<<<<<< HEAD
         <div class="panel-body">
+=======
+        <br /><br /><br /><br />
+        <div class="panel-body">
+            <br /><br />
+>>>>>>> main
             @if (Model.Count() == 0)
             {
                 <p> Esta postagem não possui comentários. Seja o primeiro a comentar! </p>
@@ -63,6 +73,7 @@
                     if (item.Membro.Ativo == false && item.Texto != null)
                     {
                         <div class="comentario">
+<<<<<<< HEAD
                             @if (item.Membro.FotoPerfil == null)
                             {
                                 <div class="imgPerfPostag" style="margin-left: 5px;">
@@ -127,13 +138,99 @@
                             }
                         }
                     }
+=======
+                            <div class="conf">
+                                <details>
+                                    <summary> Configurações </summary>
+                                    <ol>
+                                        <li> @Html.ActionLink("Ver comentário", "Details", "Comentarios", new { area = "Comportamentos", idComentario = item.ComentarioId, idIndex = idIndex }, null) </li>
+                                    </ol>
+                                </details>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-user"></i>
+                                    </span>
+                                    <span class="form-control"> invalid-user </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-user"></i>
+                                    </span>
+                                    @Html.EditorFor(modelItem => item.Data, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-user"></i>
+                                    </span>
+                                    @Html.EditorFor(modelItem => item.Texto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="comentario">
+                            <div class="conf">
+                                <details>
+                                    <summary> Configurações </summary>
+                                    <ol>
+                                        <li> @Html.ActionLink("Ver comentário", "Details", "Comentarios", new { area = "Comportamentos", idComentario = item.ComentarioId, idIndex = idIndex }, null) </li>
+                                        <li> @Html.ActionLink("Editar comentário", "Edit", "Comentarios", new { area = "Comportamentos", idComentario = item.ComentarioId, idIndex = idIndex }, null)</li>
+                                        <li> @Html.ActionLink("Excluir comentário", "Delete", "Comentarios", new { area = "Comportamentos", idComentario = item.ComentarioId, idIndex = idIndex }, null)</li>
+                                    </ol>
+                                </details>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-user"></i>
+                                    </span>
+                                    <span>@Html.ActionLink(item.Membro.Nome, "Details", "Membros", new { Area = "Membros", id = item.MembroId }, new { @class = "nomeUsuario" })</span>
+                                    @Html.EditorFor(modelItem => item.Texto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-user"></i>
+                                    </span>
+                                    @Html.EditorFor(modelItem => item.Data, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-user"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <br /> <br />
+                    }
+                }
+            }
+>>>>>>> main
         </div>
     </div>
     <footer style="background-color: var(--cor1); height: 60px; display: flex; align-items: center;">
         <div class="comentBox">
+<<<<<<< HEAD
             @Html.ActionLink("Escreva um Comentário...", "Create", "Comentarios", new { Area = "Comportamentos", idPostagem = idPostagem, idIndex = idIndex }, new { @id = "escreva" })
         </div>
     </footer>
+=======
+            @Html.ActionLink("Escreva um Comentário...", "Create", "Comentarios", new { Area = "Comportamentos", idPostagem = idPostagem, idIndex = idIndex }, new { @id = "" })
+        </div>
+    </footer>
+    <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
+    <script src="@Url.Content("~/scripts/jquery-3.4.1.js")"></script>
+>>>>>>> main
     <script src="@Url.Content("~/scripts/bootstrap.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>

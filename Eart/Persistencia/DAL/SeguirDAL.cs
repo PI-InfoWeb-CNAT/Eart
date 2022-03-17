@@ -20,7 +20,11 @@ namespace Eart.Persistencia.DAL
 
         public bool ObterMembroSeguido(long idMembroSeguido, long idMembroLogado)
         {
+<<<<<<< HEAD
             IQueryable<Seguir> seguindo = context.Seguindo.Where(m => (m.SeguindoId == idMembroSeguido) && (m.SeguidorId == idMembroLogado));
+=======
+            IQueryable<Seguir> seguindo = context.Seguindo.Where(m => m.SeguindoId == idMembroSeguido && m.SeguidorId == idMembroLogado);
+>>>>>>> main
             if (seguindo.Count() != 0)
             {
                 return true;
@@ -46,7 +50,11 @@ namespace Eart.Persistencia.DAL
         }
         public Seguir EliminarSeguirPorId(long idMembroSeguido, long idMembroLogado)
         {
+<<<<<<< HEAD
             Seguir seguindo = context.Seguindo.Where(m => (m.SeguindoId == idMembroSeguido) && (m.SeguidorId == idMembroLogado)).First();
+=======
+            Seguir seguindo = context.Seguindo.Where(m => m.SeguindoId == idMembroSeguido && m.SeguidorId == idMembroLogado).First();
+>>>>>>> main
             context.Seguindo.Remove(seguindo);
             context.SaveChanges();
             return seguindo;

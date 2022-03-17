@@ -12,7 +12,7 @@ Todo material está publicado sob licença [GPL-3.0](https://www.gnu.org/license
 ### Artefatos do Projeto
 * [Documento de visão](./docs/visao_do_produto.md)
 
-* [Diagrama de casos de uso](./diagramas/Diagrama-de-Casos-de-Uso.png)
+* [Diagrama de casos de uso](./diagramas/diagrama-de-casos-de-uso-eart.png)
 
 * [Diagrama de classes de domínio](./diagramas/Diagrama-de-Classes.png)
 

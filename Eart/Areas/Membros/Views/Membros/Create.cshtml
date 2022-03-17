@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="~/Css/styles.css">
     <link rel="stylesheet" href="~/Css/modal.css">
     <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
-    <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
 </head>
 <body>
     <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-hidden="true" style="color:black">
@@ -34,7 +33,6 @@
     @if (@TempData["Message"] != null)
     {
         <script src="@Url.Content("~/scripts/jquery-3.4.1.js")"></script>
-
         <script>
             $(document).ready(function () {
                 $('#Modal').modal('show');

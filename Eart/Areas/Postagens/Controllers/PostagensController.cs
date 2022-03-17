@@ -193,11 +193,14 @@ namespace Eart.Areas.Postagens.Controllers
         {
             try
             {
+<<<<<<< HEAD
                 Membro membroLogin = HttpContext.Session["membroLogin"] as Membro;
                 if (membroLogin != null)
                 {
                    ViewBag.MembroLogado = membroLogin.MembroId;
                 }
+=======
+>>>>>>> main
                 IList<Comentario> comentarios = comentarioDAL.ObterComentariosClassificadosPorPostagem(id);
                 foreach (var comentario in comentarios)
                 {

@@ -190,7 +190,11 @@
     <Compile Include="Areas\Comportamentos\ComportamentosAreaRegistration.cs" />
     <Compile Include="Areas\Comportamentos\Controllers\ComentariosController.cs" />
     <Compile Include="Areas\Comportamentos\Controllers\CurtidasController.cs" />
+<<<<<<< HEAD
     <Compile Include="Areas\Comportamentos\Controllers\PesquisarController.cs" />
+=======
+    <Compile Include="Areas\Comportamentos\Controllers\PesquisaController.cs" />
+>>>>>>> main
     <Compile Include="Areas\Comportamentos\Controllers\SeguindoController.cs" />
     <Compile Include="Areas\Comportamentos\Models\Comentario.cs" />
     <Compile Include="Areas\Comportamentos\Models\Curtida.cs" />
@@ -217,7 +221,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Membros\Views\Membros\Index.cshtml" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -241,7 +244,6 @@
     <Content Include="Areas\Membros\Views\Membros\Details.cshtml" />
     <Content Include="Areas\Membros\Views\Membros\Delete.cshtml" />
     <Content Include="Areas\Postagens\Views\web.config" />
-    <Content Include="Areas\Postagens\Views\Postagens\Index.cshtml" />
     <Content Include="Areas\Postagens\Views\Postagens\Create.cshtml" />
     <Content Include="Areas\Postagens\Views\Postagens\Edit.cshtml" />
     <Content Include="Areas\Postagens\Views\Postagens\Details.cshtml" />
@@ -251,6 +253,7 @@
     <Content Include="Areas\Comportamentos\Views\Comentarios\Details.cshtml" />
     <Content Include="Areas\Postagens\Views\Postagens\FeedMembrosSeguidos.cshtml" />
     <Content Include="Areas\Postagens\Views\Postagens\FeedPorRelevancia.cshtml" />
+<<<<<<< HEAD
     <Content Include="Areas\Comportamentos\Views\Pesquisar\PesquisarMembros.cshtml" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
@@ -264,6 +267,12 @@
     <Content Include="Areas\Comportamentos\Views\Comentarios\Create.cshtml" />
     <Content Include="Areas\Comportamentos\Views\Comentarios\Edit.cshtml" />
     <Content Include="Areas\Comportamentos\Views\Comentarios\Delete.cshtml" />
+=======
+    <Content Include="Areas\Comportamentos\Views\Comentarios\Create.cshtml" />
+    <Content Include="Areas\Comportamentos\Views\Comentarios\Edit.cshtml" />
+    <Content Include="Areas\Comportamentos\Views\Comentarios\Delete.cshtml" />
+    <Content Include="Areas\Comportamentos\Views\Pesquisa\PesquisarMembros.cshtml" />
+>>>>>>> main
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -370,7 +379,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Comportamentos\Data\" />
-    <Folder Include="Areas\Comportamentos\Views\Seguindo\" />
     <Folder Include="Areas\Comportamentos\Views\Shared\" />
     <Folder Include="Areas\Membros\Data\" />
     <Folder Include="Areas\Membros\Views\Shared\" />

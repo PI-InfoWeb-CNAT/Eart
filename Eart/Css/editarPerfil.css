@@ -1,4 +1,4 @@
-﻿:root {
+﻿﻿:root {
     --cor1: #252E4F;
     --cor2: #1E2333;
     --cor3: #7E92BA;
@@ -17,7 +17,7 @@ body {
     background-color: var(--cor1);
     color: var(--cor5);
     display: flex;
-    flex-direction:inherit;
+    flex-direction: inherit;
     align-items: center;
     justify-content: center;
 }
@@ -91,7 +91,7 @@ hr {
 .logout {
     color: var(--cor5);
 }
- 
+
 .input1 {
     display: inline-block;
 }

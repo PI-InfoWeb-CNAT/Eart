@@ -7,7 +7,7 @@ Editar Perfil**
 
 | **Data**   | **Versão** | **Descrição**                              | **Autor**                                                    |
 | ---------- | ---------- | ------------------------------------------ | ------------------------------------------------------------ |
-| 29/11/2021 | 1.0        | Detalhamento do caso de uso Criar Cadastro | Aristóteles, Alexsander, Mariana, Viviane, Marcos Vinícius Maia |
+| 29/11/2021 | 1.0        | Detalhamento do caso de uso Editar Perfil | Aristóteles, Alexsander, Mariana, Viviane, Marcos Vinícius Maia |
 
 **1 Resumo**
 
