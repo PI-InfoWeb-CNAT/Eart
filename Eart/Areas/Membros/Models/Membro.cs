@@ -80,4 +80,3 @@ namespace Eart.Areas.Membros.Models
         public string Senha { get; set; }
     }
 }
-

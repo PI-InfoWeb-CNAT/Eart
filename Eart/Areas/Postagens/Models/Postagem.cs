@@ -39,4 +39,3 @@ namespace Eart.Areas.Postagens.Models
         public Membro Membro { get; set; }
     }
 }
-

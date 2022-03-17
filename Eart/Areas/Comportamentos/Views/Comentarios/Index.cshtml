@@ -3,6 +3,7 @@
 @{
     var idPostagem = ViewBag.IdPostagem;
     var urlanterior = ViewBag.UrlAnterior;
+    var membrologado = ViewBag.MembroLogado;
     var idIndex = ViewBag.IdIndex;
 }
 <!DOCTYPE html>
@@ -45,14 +46,22 @@
             });
         </script>
     }
+<<<<<<< HEAD
+    <div class="panel panel-primary" style="width: 100%;">
+=======
     <div class="panel panel-primary">
+>>>>>>> main
         <div class="legendaComent">
             <a href="@Url.Content(@urlanterior)" style="float: left; margin-left: 10px;"><span class="iconify" data-icon="akar-icons:arrow-left" style="color: white; font-size: 24px;"></span></a>
             <h3 style="margin-right: 20px; font-size: 20px;">Comentários</h3>
         </div>
+<<<<<<< HEAD
+        <div class="panel-body">
+=======
         <br /><br /><br /><br />
         <div class="panel-body">
             <br /><br />
+>>>>>>> main
             @if (Model.Count() == 0)
             {
                 <p> Esta postagem não possui comentários. Seja o primeiro a comentar! </p>
@@ -64,6 +73,72 @@
                     if (item.Membro.Ativo == false && item.Texto != null)
                     {
                         <div class="comentario">
+<<<<<<< HEAD
+                            @if (item.Membro.FotoPerfil == null)
+                            {
+                                <div class="imgPerfPostag" style="margin-left: 5px;">
+                                    <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                                </div> 
+                            }
+                            else
+                            {
+                                <div class="imgPerfPostag" style="margin-left: 5px;">
+                                    <a>
+                                        <img class="img-thumbnail" src="~/Membros/Membros/GetFotoPerfil/@item.Membro.MembroId" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                                    </a>
+                                </div>
+                            }
+                            <details class="configPost" style="margin-right: 10px;">
+                                <summary style="list-style: none;"> <span class="iconify" data-icon="simple-line-icons:options" style="color: #f0818e; font-size: 25px;"></span> </summary>
+                            <ol style="list-style: none;">
+                                    <li> @Html.ActionLink("Ver comentário", "Details", "Comentarios", new { area = "Comportamentos", idComentario = item.ComentarioId, idIndex = idIndex }, null) </li>
+                                </ol>
+                            </details>
+                            <div class="boxComent">
+                                <span>@Html.ActionLink(item.Membro.Nome, "Details", "Membros", new { Area = "Membros", id = item.MembroId }, new { @class = "nomeUsuario" })</span>
+                                <br />
+                                <span>@item.Texto</span>
+                            </div>
+                            <span class="dataPostagem" style="margin-left: 15%;">@item.Data</span>
+                        </div>
+                        <br />
+                    }
+                    else
+                    {
+                <div class="comentario">
+                    @if (item.Membro.FotoPerfil == null)
+                    {
+                        <div class="imgPerfPostag" style="margin-left: 5px;">
+                            <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                        </div> }
+                    else
+                    {
+                        <div class="imgPerfPostag" style="margin-left: 5px;">
+                            <a>
+                                <img class="img-thumbnail" src="~/Membros/Membros/GetFotoPerfil/@item.Membro.MembroId" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                            </a>
+                        </div>
+                    }
+                    <div class="boxComent">
+                        <details class="configPost" style="margin-right: 10px;">
+                            <summary style="list-style: none;"> <span class="iconify" data-icon="simple-line-icons:options" style="color: #f0818e; font-size: 25px;"></span> </summary>
+                            <ol style="list-style: none;">
+                                <li> @Html.ActionLink("Ver comentário", "Details", "Comentarios", new { area = "Comportamentos", idComentario = item.ComentarioId, idIndex = idIndex }, null) </li>
+                                        <li> @Html.ActionLink("Editar comentário", "Edit", "Comentarios", new { area = "Comportamentos", idComentario = item.ComentarioId, idIndex = idIndex }, null)</li>
+                                        <li> @Html.ActionLink("Excluir comentário", "Delete", "Comentarios", new { area = "Comportamentos", idComentario = item.ComentarioId, idIndex = idIndex }, null)</li>
+                            </ol>
+                        </details>
+                        <span>@Html.ActionLink(item.Membro.Nome, "Details", "Membros", new { Area = "Membros", id = item.MembroId }, new { @class = "nomeUsuario" })</span>
+                        <br />
+                        <p class="comentLeg">@item.Texto</p>
+                    </div>
+                    <span class="dataPostagem" style="margin-left: 15%;">@item.Data.ToShortDateString() às @item.Data.Hour:@item.Data.Minute</span>
+                </div>
+                                <br />  
+                            }
+                        }
+                    }
+=======
                             <div class="conf">
                                 <details>
                                     <summary> Configurações </summary>
@@ -140,17 +215,25 @@
                     }
                 }
             }
+>>>>>>> main
         </div>
     </div>
     <footer style="background-color: var(--cor1); height: 60px; display: flex; align-items: center;">
         <div class="comentBox">
+<<<<<<< HEAD
+            @Html.ActionLink("Escreva um Comentário...", "Create", "Comentarios", new { Area = "Comportamentos", idPostagem = idPostagem, idIndex = idIndex }, new { @id = "escreva" })
+        </div>
+    </footer>
+=======
             @Html.ActionLink("Escreva um Comentário...", "Create", "Comentarios", new { Area = "Comportamentos", idPostagem = idPostagem, idIndex = idIndex }, new { @id = "" })
         </div>
     </footer>
     <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
     <script src="@Url.Content("~/scripts/jquery-3.4.1.js")"></script>
+>>>>>>> main
     <script src="@Url.Content("~/scripts/bootstrap.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
+    <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
 </body>
 </html>

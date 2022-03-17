@@ -133,8 +133,13 @@ namespace Eart.Areas.Comportamentos.Controllers
             }
         }
 
+<<<<<<< HEAD
+        
+
+=======
 
 
+>>>>>>> main
         public ActionResult Edit(long? idComentario, long idIndex)
         {
             if (idIndex == 1)
@@ -163,7 +168,11 @@ namespace Eart.Areas.Comportamentos.Controllers
             }
         }
 
+<<<<<<< HEAD
+        
+=======
 
+>>>>>>> main
 
         public ActionResult Details(long? idComentario, long idIndex)
         {
@@ -198,7 +207,11 @@ namespace Eart.Areas.Comportamentos.Controllers
             try
             {
                 Comentario comentario_id = comentarioDAL.ObterComentarioPorId(idComentario);
+<<<<<<< HEAD
+                long postagemId = (long) comentario_id.PostagemId;
+=======
                 long postagemId = (long)comentario_id.PostagemId;
+>>>>>>> main
                 Comentario comentario = comentarioDAL.EliminarComentarioPorId(idComentario);
                 Postagem postagem = postagemDAL.ObterPostagemPorId(postagemId);
                 postagem.Cont_Comentarios -= 1;

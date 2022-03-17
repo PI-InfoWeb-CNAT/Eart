@@ -1,5 +1,13 @@
 ﻿@model Eart.Areas.Postagens.Models.Postagem
 
+<<<<<<< HEAD
+@{ 
+    var membrologado = ViewBag.MembroLogado;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+=======
 @{
     var membrologado = ViewBag.MembroLogado;
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,6 +15,7 @@
 }
 
 @*<!DOCTYPE html>
+>>>>>>> main
 <html lang="pt-br">
 <head>
     <title> Deletar postagem </title>
@@ -15,6 +24,52 @@
     <link rel="stylesheet" href="~/Css/styles.css">
     <link rel="stylesheet" href="~/Css/modal.css">
     <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
+<<<<<<< HEAD
+    <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
+</head>
+<body style="display: block !important;">
+    @Html.HiddenFor(model => model.PostagemId)
+    <div style="margin-top: 25%;">
+         @if (Model.Membro.FotoPerfil == null)
+                        {
+                            <div class="imgPerfPostag">
+                                <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                            </div> }
+                        else
+                        {
+                            <div class="imgPerfPostag">
+                                <a>
+                                    <img class="img-thumbnail" src="~/Membros/Membros/GetFotoPerfil/@membrologado" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                                </a>
+                            </div>
+                        }
+                    <div class="dadosPostagem">
+                                <span style="font-size: 20px !important;">@Html.ActionLink(Model.Membro.Nome, "Details", "Membros", new { Area = "Membros", id = Model.MembroId }, new { @class = "nomeUsuario" })</span>
+                                @*if (item.Membro.Seguindo != true)
+                            {
+                                @Html.ActionLink(" - Deixar de seguir", "Unfollow", "Comportamentos", new { Area = "Comportamentos", id = item.MembroId }, new { @class = "nomeUsuario" })
+                            }
+                            else {
+                                @Html.ActionLink("Seguir", "Follow", "Comportamentos", new { Area = "Comportamentos", id = item.MembroId }, new { @class = "nomeUsuario" })
+                            }*@
+                                <span class="dataPostagem" style="font-size: 14px !important;">@Model.Data.ToShortDateString() às @Model.Data.Hour:@Model.Data.Minute</span>
+                    </div>
+                    <div style="margin-bottom: 10px; max-width: 300px; font-size: 18px;">@Model.Texto</div>
+                    @if (Model.Foto != null)
+                    {
+                        <div class="midiaPost">
+                            <a>
+                               <img class="imgPost" src="@Url.Action("GetFoto", "Postagens", new { id = Model.PostagemId })" />
+                            </a>
+                        </div>
+                    }
+                   
+                </div>
+        <div style="margin-top: 20px;">
+            <a href="#" class="editar-perfil" data-toggle="modal" data-target="#deleteConfirmationModal"> Deletar postagem </a>
+            @Html.ActionLink("Cancelar", "FeedMembrosSeguidos", "Postagens", new { Area = "Postagens" }, new { @class = "btn btn-warning" })
+        </div>
+=======
 </head>*@
 <div style="display: block !important;">
     @Html.HiddenFor(model => model.PostagemId)
@@ -51,6 +106,7 @@
         <a href="#" class="editar-perfil" data-toggle="modal" data-target="#deleteConfirmationModal"> Deletar postagem </a>
         @Html.ActionLink("Cancelar", "FeedMembrosSeguidos", "Postagens", new { Area = "Postagens" }, new { @class = "btn btn-warning" })
     </div>
+>>>>>>> main
     <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-hidden="true" style="color:black">
         <div class="modal-dialog">
             <div class="modal-content">

@@ -31,7 +31,11 @@
         }
     }
 
+<<<<<<< HEAD
+    <div style="width: 100%;">
+=======
     <div class="panel panel-primary" style="width: 100%;">
+>>>>>>> main
         <div class="panel-heading" style="background: url(@capa_img) !important; background-size: cover !important;">
             <div class="fotoPerfil">
                 @if (Model.FotoPerfil == null)
@@ -61,6 +65,19 @@
                 <br />
                 @if (Model.MembroId == membrologado)
                 {
+<<<<<<< HEAD
+                    <div class="conf" style="position: fixed !important; float: right !important; color: #F0818E !important;">
+                        <details>
+                            <summary> <span class="iconify" data-icon="simple-line-icons:options" style="color: #f0818e; font-size: 30px;"></span> </summary>
+                            <ul style="text-decoration: none !important;">
+                                <li style="text-decoration:none !important;"> @Html.ActionLink("Sair", "Logout", "Account", new { area = "Membros" }, null) </li>
+                                <li> @Html.ActionLink("Editar perfil", "Edit", "Membros", new { area = "Membros", id = Model.MembroId }, null)</li>
+                                <li> @Html.ActionLink("Excluir perfil", "Delete", "Membros", new { area = "Membros", id = Model.MembroId }, null)</li>
+                            </ul>
+                        </details>
+                    </div>
+                    @Html.ActionLink("Criar Postagem", "Create", "Postagens", new { area = "Postagens" }, new { @class = "editar-perfil" })
+=======
                     <div class="conf">
                         <details>
                             <summary> <span class="iconify" data-icon="simple-line-icons:options" style="color: #f0818e; font-size: 30px;"></span> </summary>
@@ -74,11 +91,22 @@
                     @Html.ActionLink("Criar Postagem", "Create", "Postagens", new { area = "Postagens" }, new { @class = "editar-perfil" })
                     <br />
                     <br />
+>>>>>>> main
                 }
                 else
                 {
                     if (Model.Seguindo == true)
                     {
+<<<<<<< HEAD
+                        @Html.ActionLink("Deixar de seguir", "Unfollow", "Seguindo", new { area = "Comportamentos", id = Model.MembroId }, new { @class = "editar-perfil" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Seguir", "Follow", "Seguindo", new { area = "Comportamentos", id = Model.MembroId }, new { @class = "editar-perfil" })
+                    }
+                }
+                <br /><br />
+=======
                         @Html.ActionLink("Seguir", "Follow", "Seguindo", new { area = "Comportamentos", id = Model.MembroId }, new { @class = "editar-perfil" })
                     }
                     else
@@ -86,6 +114,7 @@
                         @Html.ActionLink("Deixar de seguir", "Unfollow", "Seguindo", new { area = "Comportamentos", id = Model.MembroId }, new { @class = "editar-perfil" })
                     }
                 }
+>>>>>>> main
                 <div class="cont-posts">
                     <span> @Model.Cont_Posts </span>
                     <span> Posts </span>

@@ -1,4 +1,15 @@
 ﻿<!DOCTYPE html>
+<<<<<<< HEAD
+@{ var pageName = ViewContext.RouteData.Values["action"].ToString();
+   var pageName2 = ViewContext.RouteData.Values["controller"].ToString();
+   var membrologado = ViewBag.MembroLogado;
+ }
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
+    <link rel="stylesheet" href="~/Css/styles.css">
+=======
 
 @{
     var pageName = ViewContext.RouteData.Values["action"].ToString();
@@ -14,6 +25,7 @@
     <link rel="stylesheet" href="~/Css/styles.css">
     <link rel="stylesheet" href="~/Css/modal.css">
     <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
+>>>>>>> main
 </head>
 <body>
     <footer>
@@ -23,6 +35,50 @@
                     <a href="@Url.Action("FeedPorRelevancia", "Postagens", new { area = "Postagens" })">
                         @if (pageName != "FeedPorRelevancia")
                         {
+<<<<<<< HEAD
+                            <span class="iconify" data-icon="ant-design:fire-outlined" style="color: white; font-size: 30px; position: absolute; left: 5%;"></span> }
+                        else
+                        {
+                            <span class="iconify" data-icon="ant-design:fire-filled" style="color: white; font-size: 30px; position: absolute; left: 5%;"></span>
+                        }
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("FeedMembrosSeguidos", "Postagens", new { area = "Postagens" })">
+                        @if (pageName != "FeedMembrosSeguidos")
+                        {
+                            <span class="iconify" data-icon="ant-design:home-outlined" style="color: white; font-size: 30px; position: absolute; left: 33%;"></span> }
+                        else
+                        {
+                            <span class="iconify" data-icon="ant-design:home-filled" style="color: white; font-size: 30px; position: absolute; left: 33%;"></span>
+                            }
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("PesquisarMembros", "Pesquisar", new { area = "Comportamentos" })">
+                        @if (pageName != "PesquisarMembros")
+                        {
+                            <span class="iconify" data-icon="bx:search-alt-2" style="color: white; font-size: 30px; float: right; margin-right: 10px; position: absolute; left: 63%;"></span>
+                        }
+                        else 
+                        { 
+                            <span class="iconify" data-icon="bxs:search-alt-2" style="color: white; font-size: 30px; position: absolute; left: 63%;"></span>
+                        }
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Details", "Membros", new { area = "Membros", id = membrologado })">
+                        @if (pageName2 != "Membros")
+                        {
+                            <span class="iconify" data-icon="carbon:user-avatar-filled-alt" style="display: block; margin-left: auto; margin-right: auto; width: 30px; height: 30px; color: white; position: absolute; right: 5%;"></span>
+                        }
+                        else 
+                        { 
+                            <span class="iconify" data-icon="carbon:user-avatar-filled" style="display: block; margin-left: auto; margin-right: auto; width: 30px; height: 30px; color: white; position: absolute; right: 5%;"></span>
+                        }
+                    </a>
+                </li> 
+=======
                             <span class="iconify" data-icon="ant-design:fire-outlined" style="color: white; font-size: 30px; margin-left: 15px;"></span> }
                         else
                         {
@@ -67,14 +123,18 @@
                         }
                     </a>
                 </li>
+>>>>>>> main
             </ul>
         </nav>
     </footer>
     @RenderBody()
     <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
+<<<<<<< HEAD
+=======
     <script src="@Url.Content("~/scripts/jquery-3.4.1.js")"></script>
     <script src="@Url.Content("~/scripts/bootstrap.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
+>>>>>>> main
 </body>
 </html>

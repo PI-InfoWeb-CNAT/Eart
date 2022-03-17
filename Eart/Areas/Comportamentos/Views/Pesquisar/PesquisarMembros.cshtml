@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Eart.Areas.Membros.Models.Membro>
+@{ 
+    string arroba = "@";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var membrologado = ViewBag.MembroLogado;
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title> Pesquisar </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
+    <link rel="stylesheet" href="~/Css/styles.css">
+    <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
+    <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
+</head>
+<body style="display: block !important;">
+    @using (Html.BeginForm("PesquisarMembros", "Pesquisar", FormMethod.Post))
+    {
+    <div style="position: absolute; top: 0; margin-left: 15%;">
+        <input type="text" class="pesquisar" name="pesquisa" placeholder="Pesquise aqui..." style="float: left;" />
+        <button style="width: 0; float: right; position: absolute; right: -10%; top: -8%;" type="submit"><span class="iconify" data-icon="bx:search-alt-2" style="color: white; font-size: 24px; float: right; margin-right: 10px;"></span></button>
+    </div>
+     }
+        <br /><br/>
+        <div class="resultadoPesquisa">
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <div class="membro">
+                    <div>
+                        <div>
+                            @if (item.FotoPerfil is null)
+                            {
+                                <div class="imgPerfPostag">
+                                    <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                                </div> 
+                            }
+                            else
+                            {
+                                <div class="imgPerfPostag">
+                                    <a>
+                                        <img class="img-thumbnail" src="@Url.Action("GetFotoPerfil", "Membros", new { area = "Membros", id = item.MembroId })" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                                    </a>
+                                </div>
+                            }
+                            <span>@Html.ActionLink(item.Nome, "Details", "Membros", new { Area = "Membros", id = item.MembroId }, new { @class = "nomeUsuario" })</span>
+                            <br />
+                            <span> @arroba@item.Usuario </span>
+                        </div>
+                    </div>
+                    <br />
+                </div>
+                <br/><br/>
+            }
+         }
+    </div>
+    <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
+</body>
+</html>

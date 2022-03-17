@@ -3,7 +3,10 @@
 @{
     var membrologado = ViewBag.MembroLogado;
     Layout = "~/Views/Shared/_Layout.cshtml";
+<<<<<<< HEAD
+=======
     ViewBag.Title = "Home";
+>>>>>>> main
     var membrofoto = ViewBag.MembroFoto;
 }
 
@@ -51,6 +54,12 @@
     <div>
         <div>
             <div class="topBar">
+<<<<<<< HEAD
+                <div class="logoArea">
+                    <img id="logoMenor" alt="Logo" src="~/Imagens/logo.png" />
+                    <h1 id="nomeMenor">Eart</h1>
+                </div>
+=======
                 <img id="logoMenor" alt="Logo" src="~/Imagens/logo.png" />
                 <a href="@Url.Action("PesquisarMembros", "Pesquisa", new { area = "Comportamentos" })">
                     <div class="pesquisar">
@@ -58,6 +67,7 @@
                         <span class="iconify" data-icon="bx:search-alt-2" style="color: white; font-size: 24px; float: right; margin-right: 10px;"></span>
                     </div>
                 </a>
+>>>>>>> main
             </div>
             <br />
             <div id="criarPubl">
@@ -66,6 +76,50 @@
             <br />
             @foreach (var item in Model)
             {
+<<<<<<< HEAD
+                <div class="postagem">
+                    <hr />
+                    <br />
+                    <div>
+                        <div class="usuario">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </span>
+                            @if (item.Membro.FotoPerfil == null)
+                            {
+                                <div class="imgPerfPostag">
+                                    <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                                </div> }
+                            else
+                            {
+                                <div class="imgPerfPostag">
+                                    <a>
+                                        <img class="img-thumbnail" src="~/Membros/Membros/GetFotoPerfil/@item.Membro.MembroId" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                                    </a>
+                                </div>
+                            }
+                            <details class="configPost">
+                                <summary style="list-style: none;"> <span class="iconify" data-icon="simple-line-icons:options" style="color: #f0818e; font-size: 30px;"></span> </summary>
+                                <ol style="list-style: none;">
+                                    <li> @Html.ActionLink("Ver publicação", "Details", "Postagens", new { area = "Postagens", id = item.PostagemId }, null) </li>
+                                    @if (item.MembroId == membrologado)
+                                    {
+                                        <li> @Html.ActionLink("Editar publicação", "Edit", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
+                                        <li> @Html.ActionLink("Excluir publicação", "Delete", "Postagens", new { area = "Postagens", id = item.PostagemId }, null)</li>
+                                    }
+                                </ol>
+                            </details>
+                            <div class="dadosPostagem">
+                                <span>@Html.ActionLink(item.Membro.Nome, "Details", "Membros", new { Area = "Membros", id = item.MembroId }, new { @class = "nomeUsuario" })</span>
+                                @*if (item.Membro.Seguindo != true)
+                            {
+                                @Html.ActionLink(" - Deixar de seguir", "Unfollow", "Comportamentos", new { Area = "Comportamentos", id = item.MembroId }, new { @class = "nomeUsuario" })
+                            }
+                            else {
+                                @Html.ActionLink("Seguir", "Follow", "Comportamentos", new { Area = "Comportamentos", id = item.MembroId }, new { @class = "nomeUsuario" })
+                            }*@
+                                <span class="dataPostagem">@item.Data.ToShortDateString() às @item.Data.Hour:@item.Data.Minute</span>
+=======
                 if (item.Membro.Ativo == false)
                 {
                     <div class="postagem">
@@ -185,9 +239,51 @@
                                 </div>
                                 <br />
                                 <div style="margin-bottom: 10px; max-width: 300px;">@item.Texto</div>
+>>>>>>> main
+                            </div>
+                            <br />
+                            <div style="margin-bottom: 10px; max-width: 300px;">@item.Texto</div>
+                        </div>
+                    </div>
+
+<<<<<<< HEAD
+                    @if (item.Foto != null)
+                    {
+                        <div class="midiaPost">
+                            <a>
+                                <img class="imgPost" src="@Url.Action("GetFoto", "Postagens", new { id = item.PostagemId })" />
+                            </a>
+                        </div>
+                    }
+                    @if (item.Curtida != true)
+                    {
+                        <a href="@Url.Action("Curtir", "Curtidas", new { area = "Comportamentos", id = item.PostagemId })">
+                            <div class="iconBox" style="margin-left: 10%;">
+                                <span class="iconify" data-icon="ant-design:heart-outlined" style="color: white; font-size: 30px; margin-left: 23px;"></span>
+                                @item.Cont_Curtidas
+                            </div>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Descurtir", "Curtidas", new { area = "Comportamentos", id = item.PostagemId })">
+                            <div class="iconBox" style="margin-left: 10%;">
+                                <span class="iconify" data-icon="ant-design:heart-filled" style="color: #f0818e; font-size: 30px; margin-left: 23px;"></span>
+                                @item.Cont_Curtidas
+                            </div>
+                        </a>
+                    }
+                    <a href="@Url.Action("Index", "Comentarios", new { area = "Comportamentos", idPostagem = item.PostagemId, idIndex = 1 })">
+                        <div style="display: flex; float: right; margin-right: 10%;">
+                            <div class="iconBox">
+                                <span class="iconify" data-icon="akar-icons:comment" style="color: white; font-size: 25px; margin-top: 3px; margin-left: 25px;"></span>
+                                <span class="contadores">@item.Cont_Comentarios</span>
                             </div>
                         </div>
-
+                    </a>
+                </div>
+                <br /><br />
+=======
                         @if (item.Foto != null)
                         {
                             <div class="midiaPost">
@@ -224,14 +320,20 @@
                         </a>
                     </div>
                 }
+>>>>>>> main
             }
+            <br /><br /><br />
         </div>
     </div>
-    <br /><br /><br />
     <script src="@Url.Content("~/Scripts/popper.min.js")"></script>
     <script src="@Url.Content("~/scripts/bootstrap.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
     <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
 
+<<<<<<< HEAD
+</body>
+</html>
+=======
 </div>
+>>>>>>> main

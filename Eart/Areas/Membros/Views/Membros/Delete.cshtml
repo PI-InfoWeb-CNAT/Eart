@@ -33,6 +33,12 @@
         }
     }
 
+<<<<<<< HEAD
+        <div style="width: 100%;">
+            <div class="panel-heading" style="background: url(@capa_img) !important; background-size: cover !important;">
+                <div class="fotoPerfil">
+                    @if (Model.FotoPerfil == null)
+=======
     <div class="panel panel-primary">
         <div class="panel-heading" style="background: url(@capa_img) !important; background-size: cover !important;">
             <div class="fotoPerfil">
@@ -117,11 +123,77 @@
                         </strong>
                     </p>
                     @using (Html.BeginForm("Delete", "Membros", FormMethod.Post, new { enctype = "multipart/form-data", @id = "delete-form", role = "form" }))
+>>>>>>> main
                     {
                         @Html.HiddenFor(model => model.MembroId)
                         @Html.AntiForgeryToken()
                     }
                 </div>
+<<<<<<< HEAD
+            </div>
+            <div class="panel-body" style="text-align: center; background-color: #1E2333;">
+                <br /> <br /> <br />
+                <div class="dados">
+                    <span style="font-size: 20px; margin-top: 200px;">@Model.Nome</span>
+                    <br />
+                    <span> @arroba@Model.Usuario </span>
+                    <br />
+                    <div class="bio">
+                        <span style="font-size: 14px; width: 20px;">@Model.Biografia</span>
+                    </div>
+                </div>
+                <br /><br />
+                <div class="cont-posts">
+                    <span> @Model.Cont_Posts </span>
+                    <span> Posts </span>
+                </div>
+                <div class="cont-seguidores">
+                    <span> @Model.Cont_Seguidores </span>
+                    <span> Seguidores </span>
+                </div>
+                <div class="cont-seguindo">
+                    <span> @Model.Cont_Seguindo </span>
+                    <span> Seguindo </span>
+                </div>
+                <br /><br />
+            </div>
+            <div style="margin-left: 13%;">
+                <a href="#" class="editar-perfil" data-toggle="modal" data-target="#deleteConfirmationModal" style="margin-right: 10%;">Remover Usuário</a>
+                @Html.ActionLink("Cancelar", "Details", new { area = "Membros", id = Model.MembroId }, new { @class = "cancelar" })
+            </div>
+        </div>
+        <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-hidden="true" style="color:black">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">
+                            Confirmação de exclusão de USUÁRIO
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Você está prestes a remover o usuário @Model.Nome.ToUpper() do cadastro.
+                        </p>
+                        <p>
+                            <strong>
+                                Você está certo que deseja prosseguir?
+                            </strong>
+                        </p>
+                        @using (Html.BeginForm("Delete", "Membros", FormMethod.Post, new { enctype = "multipart/form-data", @id = "delete-form", role = "form" }))
+                        {
+                            @Html.HiddenFor(model => model.MembroId)
+                            @Html.AntiForgeryToken()
+                        }
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" onclick="$('#delete-form').submit();">
+                            Sim, exclua este membro.
+                        </button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">
+                            Não, não exclua este membro.
+                        </button>
+                    </div>
+=======
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" onclick="$('#delete-form').submit();">
                         Sim, exclua este membro.
@@ -129,6 +201,7 @@
                     <button type="button" class="btn btn-primary" data-dismiss="modal">
                         Não, não exclua este membro.
                     </button>
+>>>>>>> main
                 </div>
             </div>
         </div>

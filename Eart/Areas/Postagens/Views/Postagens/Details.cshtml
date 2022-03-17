@@ -3,7 +3,10 @@
 @{
     var membrologado = ViewBag.MembroLogado;
     Layout = "~/Views/Shared/_Layout.cshtml";
+<<<<<<< HEAD
+=======
     ViewBag.Title = "Ver Postagem";
+>>>>>>> main
     var urlanterior = ViewBag.UrlAnterior;
 }
 @*<!DOCTYPE html>
@@ -14,13 +17,46 @@
     <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
     <link rel="stylesheet" href="~/Css/styles.css">
     <link rel="shortcut icon" type="imagex/png" href="~/Imagens/logo_ico.ico">
+<<<<<<< HEAD
+    <!--<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />-->
+</head>
+<body>
+=======
 </head>*@
 <div>
+>>>>>>> main
     <div class="panel panel-primary">
         <div class="panel-body">
             @if (Model.Membro.Ativo == false)
             {
                 <div class="postagem">
+<<<<<<< HEAD
+                     @if (Model.Membro.FotoPerfil == null)
+                        {
+                            <div class="imgPerfPostag">
+                                <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                            </div> }
+                        else
+                        {
+                            <div class="imgPerfPostag">
+                                <a>
+                                    <img class="img-thumbnail" src="~/Membros/Membros/GetFotoPerfil/@membrologado" style="display: block; margin-left: auto; margin-right: auto; width: 45px; height: 45px; border-radius: 50%; border: solid 1px #F0818E;" />
+                                </a>
+                            </div>
+                        }
+                    <div class="dadosPostagem">
+                                <span style="font-size: 20px !important;">@Html.ActionLink(Model.Membro.Nome, "Details", "Membros", new { Area = "Membros", id = Model.MembroId }, new { @class = "nomeUsuario" })</span>
+                                @*if (item.Membro.Seguindo != true)
+                            {
+                                @Html.ActionLink(" - Deixar de seguir", "Unfollow", "Comportamentos", new { Area = "Comportamentos", id = item.MembroId }, new { @class = "nomeUsuario" })
+                            }
+                            else {
+                                @Html.ActionLink("Seguir", "Follow", "Comportamentos", new { Area = "Comportamentos", id = item.MembroId }, new { @class = "nomeUsuario" })
+                            }*@
+                                <span class="dataPostagem" style="font-size: 14px !important;">@Model.Data.ToShortDateString() às @Model.Data.Hour:@Model.Data.Minute</span>
+                    </div>
+                    
+=======
                     @if (Model.Membro.FotoPerfil == null)
                     {
                         <div class="imgPerfPostag">
@@ -40,15 +76,24 @@
                         <span class="dataPostagem" style="font-size: 14px !important;">@Model.Data.ToShortDateString() às @Model.Data.Hour:@Model.Data.Minute</span>
                     </div>
 
+>>>>>>> main
                     @if (Model.Foto != null)
                     {
                         <div class="midiaPost">
                             <a>
+<<<<<<< HEAD
+                               <img class="imgPost" src="@Url.Action("GetFoto", "Postagens", new { id = Model.PostagemId })" />
+                            </a>
+                        </div>
+                    }
+                   
+=======
                                 <img class="imgPost" src="@Url.Action("GetFoto", "Postagens", new { id = Model.PostagemId })" />
                             </a>
                         </div>
                     }
 
+>>>>>>> main
                 </div>
             }
             else
@@ -59,8 +104,12 @@
                         {
                             <div class="imgPerfPostag">
                                 <img src="~/Imagens/avatar.png" style="display: block; margin-left: auto; margin-right: auto; width: 55px; height: 55px; border-radius: 50%; border: solid 1px #F0818E;" />
+<<<<<<< HEAD
+                            </div> }
+=======
                             </div>
                         }
+>>>>>>> main
                         else
                         {
                             <div class="imgPerfPostag">
@@ -70,6 +119,20 @@
                             </div>
                         }
                         <div class="dadosPostagem">
+<<<<<<< HEAD
+                                <span style="font-size: 20px !important;">@Html.ActionLink(Model.Membro.Nome, "Details", "Membros", new { Area = "Membros", id = Model.MembroId }, new { @class = "nomeUsuario" })</span>
+                                @*if (item.Membro.Seguindo != true)
+                            {
+                                @Html.ActionLink(" - Deixar de seguir", "Unfollow", "Comportamentos", new { Area = "Comportamentos", id = item.MembroId }, new { @class = "nomeUsuario" })
+                            }
+                            else {
+                                @Html.ActionLink("Seguir", "Follow", "Comportamentos", new { Area = "Comportamentos", id = item.MembroId }, new { @class = "nomeUsuario" })
+                            }*@
+                                <span class="dataPostagem" style="font-size: 14px !important;">@Model.Data.ToShortDateString() às @Model.Data.Hour:@Model.Data.Minute</span>
+                        </div>
+                        <div style="margin-bottom: 10px; max-width: 300px; font-size: 18px;">@Model.Texto</div>
+                    </div>
+=======
                             <span style="font-size: 20px !important;">@Html.ActionLink(Model.Membro.Nome, "Details", "Membros", new { Area = "Membros", id = Model.MembroId }, new { @class = "nomeUsuario" })</span>
                             @if (Model.Membro.Seguindo == true)
                             {
@@ -82,6 +145,7 @@
                             <span class="dataPostagem" style="font-size: 14px !important;">@Model.Data.ToShortDateString() às @Model.Data.Hour:@Model.Data.Minute</span>
                         </div>
                         <div style="margin-bottom: 10px; max-width: 300px; font-size: 18px;">@Model.Texto</div>
+>>>>>>> main
                     </div>
                     <div class="fotoPerfil">
                         @if (Model.Foto != null)
@@ -93,7 +157,11 @@
                             </div>
                         }
                     </div>
+<<<<<<< HEAD
+                    if (Model.Curtida != true)
+=======
                     @if (Model.Curtida != true)
+>>>>>>> main
                     {
                         <a href="@Url.Action("Curtir", "Curtidas", new { area = "Comportamentos", id = Model.PostagemId })">
                             <div class="iconBox" style="margin-left: 20px;">
@@ -111,17 +179,28 @@
                             </div>
                         </a>
                     }
+<<<<<<< HEAD
+                    <div class="iconBox" style="float: right; margin-right: 20px;" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Maaar">
+                        <span class="iconify" data-icon="fa-solid:share-square" style="color: white; font-size: 24px; margin-left: 27px; margin-top: 3px;"></span>
+                    </div>
+                    <a href="@Url.Action("Index", "Comentarios", new { area = "Comportamentos", idPostagem = Model.PostagemId, idIndex = 1 })">
+                        <div style="display: flex; align-items: center; justify-content: center;">
+                            <div class="iconBox">
+=======
                     <a href="@Url.Action("Index", "Comentarios", new { area = "Comportamentos", idPostagem = Model.PostagemId, idIndex = 1 })">
                         <div class="iconBox" style="float: right; margin-right: 20px">
                             <div style="display: flex; align-items: center; justify-content: center;">
+>>>>>>> main
                                 <span class="iconify" data-icon="akar-icons:comment" style="color: white; font-size: 25px; margin-top: 3px; margin-left: 25px;"></span>
                                 <span class="contadores">@Model.Cont_Comentarios</span>
                             </div>
                         </div>
                     </a>
+<<<<<<< HEAD
+=======
                 </div>
+>>>>>>> main
             }
-            @Html.ActionLink("Voltar", "FeedMembrosSeguidos", "Postagens", new { area = "Postagens" }, null)
         </div>
     </div>
 </div>
